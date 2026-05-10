@@ -1,16 +1,52 @@
-# React + Vite
+# Pawan Joshi | AI & Cloud Architect
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![Portfolio Preview](/public/hero-avatar.png)
 
-Currently, two official plugins are available:
+> Building the next generation of Autonomous Intelligence.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+A high-fidelity, interactive personal portfolio engineered to reflect a clinical, enterprise-grade aesthetic. Built to showcase technical depth in AI agentic frameworks, AWS cloud infrastructure, and modern frontend architecture.
 
-## React Compiler
+## 🚀 Live Demo
+[https://joshipawan.com.np](https://joshipawan.com.np) *(Replace with Vercel URL if different)*
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## ✨ Key Features
+*   **Deep Research Terminal**: A fully functional, interactive command-line interface simulation integrated directly into the DOM. Allows recruiters and engineers to explore credentials via commands (`/whoami`, `/research`, `/cloud`).
+*   **3D Spatial Interactions**: Advanced Framer Motion physics providing 3D tilt tracking, dynamic spotlight gradients, and butter-smooth hover animations.
+*   **Elite Minimalist UI**: "Dark void" design language utilizing stark contrasts, `Space Grotesk` typography, and structural grid layouts inspired by top-tier SaaS platforms.
+*   **Vite Optimization**: Highly optimized asset delivery and lightning-fast HMR using Vite.
+*   **SEO Ready**: Deeply integrated OpenGraph, Twitter Cards, and canonical meta tags for maximum discoverability.
 
-## Expanding the ESLint configuration
+## 🛠️ Technical Stack
+*   **Core**: React 19, JavaScript (ES6+)
+*   **Build Tool**: Vite
+*   **Animations**: Framer Motion
+*   **Icons**: Lucide-React
+*   **Styling**: Modular CSS with custom glassmorphism utilities
+*   **Deployment**: Vercel Ready (`vercel.json` included)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 📦 Local Setup
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/pwnjoshi/Pawan-Main-Portfolio.git
+   cd Pawan-Main-Portfolio
+   ```
+
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+
+3. **Run the development server:**
+   ```bash
+   npm run dev
+   ```
+   *The site will be available at `http://localhost:5174/`*
+
+## 🌐 Connect
+*   **LinkedIn**: [linkedin.com/in/pwnjoshi](https://linkedin.com/in/pwnjoshi)
+*   **Twitter/X**: [@pwnjoshidev](https://x.com/pwnjoshidev)
+*   **Email**: me@joshipawan.com.np
+
+---
+*Engineered for Impact. © 2026 Pawan Joshi.*
