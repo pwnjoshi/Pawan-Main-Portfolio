@@ -69,8 +69,8 @@ const Hero = () => {
       <div className="container" style={{ zIndex: 1, position: 'relative' }}>
         <div className="hero-grid" style={{ 
           display: 'grid', 
-          gridTemplateColumns: 'repeat(12, 1fr)', 
-          gap: '40px',
+          gridTemplateColumns: '1.6fr 0.9fr', 
+          gap: 'clamp(24px, 4vw, 50px)',
           alignItems: 'center'
         }}>
           {/* Left Content */}
@@ -79,7 +79,7 @@ const Hero = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="hero-content"
-            style={{ gridColumn: 'span 6' }}
+            style={{ maxWidth: '100%', overflow: 'hidden' }}
           >
             <motion.div 
               whileHover={{ scale: 1.05 }}
@@ -99,8 +99,8 @@ const Hero = () => {
               <span className="mono-label" style={{ color: 'rgba(255,255,255,0.4)' }}>/ 2026 EDITION</span>
             </motion.div>
             
-            <h1 className="display-text hero-headline" style={{ fontSize: 'clamp(32px, 5vw, 60px)', marginBottom: '24px' }}>
-              Building the next generation of <span style={{ color: 'var(--accent)' }}>Autonomous Intelligence.</span>
+            <h1 className="display-text hero-headline" style={{ fontSize: 'clamp(32px, 5vw, 60px)', marginBottom: '24px', lineHeight: '1.1' }}>
+              Building the next generation of <span className="hero-highlight">Autonomous Intelligence.</span>
             </h1>
             
             <p className="hero-subtext" style={{ 
@@ -139,10 +139,10 @@ const Hero = () => {
             transition={{ duration: 1, delay: 0.2 }}
             className="hero-visual"
             style={{ 
-              gridColumn: 'span 6',
               display: 'flex',
               justifyContent: 'center',
-              perspective: '1000px'
+              perspective: '1000px',
+              minWidth: 0
             }}
           >
             <motion.div 
