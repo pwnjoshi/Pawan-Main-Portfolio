@@ -15,7 +15,7 @@ const TechStack = () => {
           <h2 className="display-text" style={{ fontSize: '48px' }}>The Stack</h2>
         </div>
         
-        <div style={{ 
+        <div className="stack-grid" style={{ 
           display: 'grid', 
           gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))', 
           gap: '16px' 

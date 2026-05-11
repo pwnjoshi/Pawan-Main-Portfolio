@@ -187,6 +187,24 @@ body {
   }
 }
 
+/* Tech stack grid: ensure two columns on phones */
+.stack-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 16px;
+}
+
+@media (max-width: 768px) {
+  .stack-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px !important;
+  }
+  .stack-grid .elite-card {
+    padding: 16px !important;
+    font-size: 13px !important;
+  }
+}
+
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 4px;
