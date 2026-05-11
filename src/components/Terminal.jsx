@@ -230,10 +230,10 @@ const Terminal = () => {
   };
 
   return (
-    <section id="terminal" className="section-gap" style={{ background: '#000' }}>
+    <section id="terminal" className="section-gap" style={{ background: '#000', padding: 'clamp(40px, 8vw, 80px) 16px' }}>
       <div className="container">
-        <div className="mono-label" style={{ textAlign: 'center', marginBottom: '16px' }}>/ INTERACTIVE ENVIRONMENT</div>
-        <h2 className="display-text" style={{ textAlign: 'center', fontSize: 'clamp(28px, 5vw, 48px)', marginBottom: '64px' }}>
+        <div className="mono-label" style={{ textAlign: 'center', marginBottom: 'clamp(12px, 3vw, 16px)', fontSize: 'clamp(10px, 2vw, 12px)' }}>/ INTERACTIVE ENVIRONMENT</div>
+        <h2 className="display-text" style={{ textAlign: 'center', fontSize: 'clamp(24px, 6vw, 48px)', marginBottom: 'clamp(32px, 8vw, 64px)' }}>
           Deep Research <span style={{ color: 'var(--accent)' }}>Terminal</span>
         </h2>
         
@@ -241,9 +241,10 @@ const Terminal = () => {
           className="elite-card terminal-window"
           onClick={() => inputRef.current?.focus()}
           style={{ 
-            maxWidth: '900px', 
+            width: '100%',
+            maxWidth: 'clamp(320px, 95vw, 900px)', 
             margin: '0 auto', 
-            height: '500px', 
+            height: 'clamp(300px, 60vh, 500px)', 
             display: 'flex', 
             flexDirection: 'column',
             overflow: 'hidden',
@@ -272,9 +273,9 @@ const Terminal = () => {
             ref={scrollRef}
             style={{ 
               flex: 1, 
-              padding: '20px 24px', 
+              padding: 'clamp(12px, 4vw, 24px)', 
               fontFamily: 'var(--font-mono)', 
-              fontSize: '13px', 
+              fontSize: 'clamp(11px, 2.5vw, 13px)', 
               overflowY: 'auto',
               color: 'var(--accent)',
               lineHeight: '1.6',
@@ -298,8 +299,8 @@ const Terminal = () => {
             })}
             
             {!isTyping && (
-              <form onSubmit={onFormSubmit} style={{ display: 'flex', gap: '8px', alignItems: 'center', marginTop: '8px' }}>
-                <span style={{ color: 'var(--primary)' }}>{">"}</span>
+              <form onSubmit={onFormSubmit} style={{ display: 'flex', gap: 'clamp(4px, 2vw, 8px)', alignItems: 'center', marginTop: '8px', fontSize: 'clamp(11px, 2.5vw, 13px)' }}>
+                <span style={{ color: 'var(--primary)', flexShrink: 0 }}>{">"}</span>
                 <input 
                   ref={inputRef}
                   type="text"
@@ -314,9 +315,10 @@ const Terminal = () => {
                     color: 'var(--primary)', 
                     fontFamily: 'inherit',
                     fontSize: 'inherit',
-                    flex: 1
+                    flex: 1,
+                    minWidth: 0
                   }}
-                  placeholder="Type command or use arrow keys for history..."
+                  placeholder="Type command or use arrow keys..."
                 />
               </form>
             )}
@@ -325,13 +327,13 @@ const Terminal = () => {
 
           {/* Quick Commands */}
           <div className="terminal-actions" style={{ 
-            padding: '16px 20px', 
+            padding: 'clamp(10px, 3vw, 16px)', 
             background: 'rgba(5, 5, 5, 0.8)', 
             borderTop: '1px solid rgba(255,255,255,0.05)',
-            display: 'flex',
-            gap: '8px',
-            flexWrap: 'wrap',
-            maxHeight: '80px',
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(clamp(70px, 20vw, 100px), 1fr))',
+            gap: 'clamp(6px, 2vw, 8px)',
+            maxHeight: '100px',
             overflowY: 'auto'
           }}>
             {['/whoami', '/skills', '/projects', '/research', '/cloud', '/resume', '/contact', '/help'].map(cmd => (
@@ -344,13 +346,14 @@ const Terminal = () => {
                 style={{ 
                   background: 'transparent', 
                   border: '1px solid var(--border-hairline)', 
-                  padding: '6px 12px', 
+                  padding: 'clamp(4px, 1.5vw, 6px) clamp(8px, 2vw, 12px)', 
                   borderRadius: '4px',
                   cursor: 'pointer',
-                  fontSize: '10px',
+                  fontSize: 'clamp(9px, 2vw, 10px)',
                   fontWeight: '600',
                   transition: 'all 0.2s ease',
-                  color: 'var(--accent)'
+                  color: 'var(--accent)',
+                  whiteSpace: 'nowrap'
                 }}
                 onMouseOver={(e) => { e.currentTarget.style.borderColor = 'var(--accent)'; e.currentTarget.style.background = 'rgba(59, 130, 246, 0.1)'; }}
                 onMouseOut={(e) => { e.currentTarget.style.borderColor = 'var(--border-hairline)'; e.currentTarget.style.background = 'transparent'; }}
@@ -361,7 +364,7 @@ const Terminal = () => {
           </div>
         </div>
 
-        <p style={{ textAlign: 'center', marginTop: '24px', fontSize: '12px', color: 'var(--text-dim)' }}>
+        <p style={{ textAlign: 'center', marginTop: 'clamp(16px, 4vw, 24px)', fontSize: 'clamp(11px, 2vw, 12px)', color: 'var(--text-dim)' }}>
           💡 Tip: Use ↑↓ arrow keys for command history, Tab for autocomplete
         </p>
       </div>

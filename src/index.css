@@ -268,3 +268,26 @@ a.skip-link,
     transform: rotate(360deg);
   }
 }
+
+/* Terminal responsive styles */
+.terminal-window {
+  width: 100%;
+  overflow: hidden;
+}
+
+.terminal-actions {
+  -webkit-overflow-scrolling: touch;
+}
+
+@media (max-width: 640px) {
+  .terminal-window {
+    border-radius: 12px !important;
+  }
+  .terminal-window > div:first-child {
+    padding: 10px 14px !important;
+  }
+  .terminal-actions {
+    gap: 6px !important;
+    padding: 10px 12px !important;
+  }
+}
