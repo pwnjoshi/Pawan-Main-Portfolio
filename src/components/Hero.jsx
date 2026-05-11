@@ -83,7 +83,8 @@ const Hero = () => {
           >
             <motion.div 
               whileHover={{ scale: 1.05 }}
-              style={{ display: 'inline-flex', alignItems: 'center', gap: '12px', marginBottom: '24px', flexWrap: 'wrap', cursor: 'default' }}
+              className="hero-badges"
+              style={{ cursor: 'default' }}
             >
               <span className="mono-label" style={{ 
                 background: 'rgba(59, 130, 246, 0.1)', 

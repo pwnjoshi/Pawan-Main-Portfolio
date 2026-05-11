@@ -7,7 +7,7 @@
 A high-fidelity, interactive personal portfolio engineered to reflect a clinical, enterprise-grade aesthetic. Built to showcase technical depth in AI agentic frameworks, AWS cloud infrastructure, and modern frontend architecture.
 
 ## 🚀 Live Demo
-[https://joshipawan.com.np](https://joshipawan.com.np) *(Replace with Vercel URL if different)*
+[https://joshipawan.com.np](https://joshipawan.com.np)
 
 ## ✨ Key Features
 *   **Deep Research Terminal**: A fully functional, interactive command-line interface simulation integrated directly into the DOM. Allows recruiters and engineers to explore credentials via commands (`/whoami`, `/research`, `/cloud`).

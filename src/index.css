@@ -170,6 +170,23 @@ body {
   }
 }
 
+/* Hero badges (Student & Architect / 2026) */
+.hero-badges {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  cursor: default;
+  justify-content: flex-start;
+}
+
+@media (max-width: 1024px) {
+  .hero-badges {
+    justify-content: center !important;
+  }
+}
+
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 4px;
