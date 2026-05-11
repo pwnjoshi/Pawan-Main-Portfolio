@@ -6,19 +6,22 @@ const logbookEntries = [
     date: "2024 — PRESENT",
     title: "Building Tech Sangi",
     role: "Co-Founder & Tech Lead",
-    desc: "Architecting custom technical workflows and leading development of 8+ enterprise-grade products."
+    desc: "Architecting custom technical workflows and leading development of 8+ enterprise-grade products.",
+    link: "https://techsangi.com.np"
   },
   {
     date: "2025 — PRESENT",
     title: "AWS Student Builder Leader Group",
     role: "Group Leader @ Graphic Era University",
-    desc: "Bridging the gap between academic theory and cloud industry standards through hands-on architecture sessions."
+    desc: "Bridging the gap between academic theory and cloud industry standards through hands-on architecture sessions.",
+    verifyLink: "https://builder.aws.com/community/student-builder-groups"
   },
   {
     date: "2025 — 2026",
     title: "Infosys Springboard AI Intern",
     role: "Autonomous Cognitive Systems",
-    desc: "Developing a Deep Cognitive Task Framework using LangGraph. Implementing Virtual File Systems to mitigate LLM context window limitations."
+    desc: "Developing a Deep Cognitive Task Framework using LangGraph. Implementing Virtual File Systems to mitigate LLM context window limitations.",
+    verifyLink: "https://infyspringboard.onwingspan.com/public-assets/infosysheadstart/cert/lex_auth_01454259343803187223/14bb99d1-1b1d-45b5-badf-839bae33f2b5.pdf"
   },
   {
     date: "2025 — PRESENT",
@@ -64,7 +67,35 @@ const Experience = () => {
                 {entry.date}
               </div>
               <div>
-                <h3 className="display-text" style={{ fontSize: '24px', marginBottom: '8px' }}>{entry.title}</h3>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '8px', flexWrap: 'wrap' }}>
+                  <h3 className="display-text" style={{ fontSize: '24px', margin: 0 }}>{entry.title}</h3>
+                  {entry.link && (
+                    <a href={entry.link} target="_blank" rel="noopener noreferrer" style={{
+                      fontSize: '12px',
+                      color: 'var(--accent)',
+                      textDecoration: 'none',
+                      border: '1px solid var(--accent)',
+                      padding: '4px 10px',
+                      borderRadius: '4px',
+                      fontWeight: '600'
+                    }}>
+                      Visit
+                    </a>
+                  )}
+                  {entry.verifyLink && (
+                    <a href={entry.verifyLink} target="_blank" rel="noopener noreferrer" style={{
+                      fontSize: '12px',
+                      color: 'var(--accent)',
+                      textDecoration: 'none',
+                      border: '1px solid var(--accent)',
+                      padding: '4px 10px',
+                      borderRadius: '4px',
+                      fontWeight: '600'
+                    }}>
+                      Verify
+                    </a>
+                  )}
+                </div>
                 <p style={{ color: 'var(--accent)', fontWeight: '500', marginBottom: '16px', fontSize: '14px' }}>{entry.role}</p>
                 <p style={{ color: 'var(--text-dim)', maxWidth: '500px', lineHeight: '1.6' }}>{entry.desc}</p>
               </div>

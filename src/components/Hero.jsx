@@ -79,7 +79,7 @@ const Hero = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="hero-content"
-            style={{ gridColumn: 'span 7' }}
+            style={{ gridColumn: 'span 6' }}
           >
             <motion.div 
               whileHover={{ scale: 1.05 }}
@@ -139,7 +139,7 @@ const Hero = () => {
             transition={{ duration: 1, delay: 0.2 }}
             className="hero-visual"
             style={{ 
-              gridColumn: 'span 5',
+              gridColumn: 'span 6',
               display: 'flex',
               justifyContent: 'center',
               perspective: '1000px'
@@ -149,7 +149,7 @@ const Hero = () => {
               style={{ 
                 position: 'relative',
                 width: '100%',
-                maxWidth: '340px',
+                maxWidth: '420px',
                 aspectRatio: '1',
                 borderRadius: '24px',
                 overflow: 'hidden',

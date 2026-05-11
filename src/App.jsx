@@ -4,6 +4,7 @@ import Hero from './components/Hero'
 import Experience from './components/Experience'
 import Projects from './components/Projects'
 import TechStack from './components/TechStack'
+import Insights from './components/Insights'
 import Terminal from './components/Terminal'
 import Footer from './components/Footer'
 
@@ -15,6 +16,7 @@ function App() {
       <Experience />
       <Terminal />
       <Projects />
+      <Insights />
       <TechStack />
       <Footer />
     </main>

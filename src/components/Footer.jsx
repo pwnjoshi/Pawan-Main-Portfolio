@@ -13,10 +13,11 @@ const Footer = () => {
           </div>
           
           <div className="footer-bottom" style={{ textAlign: 'right' }}>
-            <div className="footer-links" style={{ display: 'flex', gap: '32px', justifyContent: 'flex-end', marginBottom: '40px' }}>
+            <div className="footer-links" style={{ display: 'flex', gap: '32px', justifyContent: 'flex-end', marginBottom: '40px', flexWrap: 'wrap' }}>
               <a href="https://linkedin.com/in/pwnjoshi" className="mono-label" style={{ textDecoration: 'none' }}>LinkedIn</a>
               <a href="https://github.com/pwnjoshi" className="mono-label" style={{ textDecoration: 'none' }}>GitHub</a>
               <a href="https://x.com/pwnjoshidev" className="mono-label" style={{ textDecoration: 'none' }}>Twitter</a>
+              <a href="https://builder.aws.com/community/@pawanjoshidev" target="_blank" rel="noopener noreferrer" className="mono-label" style={{ textDecoration: 'none' }}>AWS Builder</a>
             </div>
             <p className="mono-label" style={{ color: 'rgba(255,255,255,0.2)' }}>© 2026 PAWAN JOSHI / ENGINEERED FOR IMPACT</p>
           </div>

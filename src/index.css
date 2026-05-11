@@ -205,6 +205,48 @@ body {
   }
 }
 
+/* Hero visual sizing tweaks */
+.hero-visual > div {
+  max-width: 420px;
+}
+
+@media (min-width: 1200px) {
+  .hero-visual > div {
+    max-width: 520px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .hero-visual > div {
+    max-width: 360px !important;
+  }
+}
+
+/* Dev-only: hide common skip-to-content / a11y helpers when `dev-hide-a11y` class applied */
+.dev-hide-a11y .skip-link,
+.dev-hide-a11y a.skip-link,
+.dev-hide-a11y #skip,
+.dev-hide-a11y #skip-link,
+.dev-hide-a11y [data-skip],
+.dev-hide-a11y [role="skip"],
+.dev-hide-a11y [aria-label*="skip" i],
+.dev-hide-a11y [aria-hidden="false"][data-skip-hide]
+{
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+/* Permanently hide skip-link */
+.skip-link,
+a.skip-link,
+[href="#main"].skip-link
+{
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 4px;
@@ -215,4 +257,14 @@ body {
 ::-webkit-scrollbar-thumb {
   background: var(--border-hairline);
   border-radius: 10px;
+}
+
+/* Loading spinner animation */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
