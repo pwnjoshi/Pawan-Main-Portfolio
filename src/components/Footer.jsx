@@ -10,6 +10,20 @@ const Footer = () => {
             <a href="mailto:me@joshipawan.com.np" className="display-text" style={{ fontSize: 'clamp(18px, 2vw, 24px)', color: 'var(--primary)', textDecoration: 'none', borderBottom: '2px solid var(--accent)' }}>
               me@joshipawan.com.np
             </a>
+            <div style={{ marginTop: '24px' }}>
+              <p className="mono-label" style={{ marginBottom: '12px', color: 'var(--text-dim)' }}>
+                Support the project if you find it useful.
+              </p>
+              <a
+                href="https://ko-fi.com/pawanjoshi"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-secondary"
+                style={{ display: 'inline-flex' }}
+              >
+                Contribute on Ko-fi
+              </a>
+            </div>
           </div>
           
           <div className="footer-bottom" style={{ textAlign: 'right' }}>
