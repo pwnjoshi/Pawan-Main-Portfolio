@@ -5,7 +5,7 @@ const logbookEntries = [
   {
     date: "2024 — PRESENT",
     title: "Building Tech Sangi",
-    role: "Co-Founder & Tech Lead",
+    role: "Co-Founder",
     desc: "Architecting custom technical workflows and leading development of 8+ enterprise-grade products.",
     link: "https://techsangi.com.np"
   },
