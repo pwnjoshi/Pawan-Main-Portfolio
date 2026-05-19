@@ -1,0 +1,42 @@
+<svg width="1200" height="1200" viewBox="0 0 1200 1200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="1200" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#050505" />
+      <stop offset="45%" stop-color="#0B1220" />
+      <stop offset="100%" stop-color="#111827" />
+    </linearGradient>
+    <radialGradient id="glow1" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(300 260) rotate(45) scale(420 420)">
+      <stop stop-color="#3B82F6" stop-opacity="0.55" />
+      <stop offset="1" stop-color="#3B82F6" stop-opacity="0" />
+    </radialGradient>
+    <radialGradient id="glow2" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(900 860) rotate(45) scale(520 520)">
+      <stop stop-color="#8B5CF6" stop-opacity="0.28" />
+      <stop offset="1" stop-color="#8B5CF6" stop-opacity="0" />
+    </radialGradient>
+    <filter id="blur" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="40" />
+    </filter>
+  </defs>
+
+  <rect width="1200" height="1200" fill="url(#bg)" />
+  <circle cx="300" cy="260" r="420" fill="url(#glow1)" filter="url(#blur)" />
+  <circle cx="900" cy="860" r="520" fill="url(#glow2)" filter="url(#blur)" />
+
+  <rect x="90" y="90" width="1020" height="1020" rx="64" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.10)" />
+
+  <text x="120" y="220" fill="#A1A1AA" font-family="Space Grotesk, Inter, Arial, sans-serif" font-size="28" letter-spacing="6">PAWAN JOSHI</text>
+  <text x="120" y="320" fill="#FFFFFF" font-family="Space Grotesk, Inter, Arial, sans-serif" font-size="96" font-weight="700" letter-spacing="-3">AI &amp; CLOUD</text>
+  <text x="120" y="420" fill="#FFFFFF" font-family="Space Grotesk, Inter, Arial, sans-serif" font-size="96" font-weight="700" letter-spacing="-3">ARCHITECT</text>
+
+  <rect x="120" y="520" width="960" height="1" fill="rgba(255,255,255,0.14)" />
+
+  <text x="120" y="620" fill="#3B82F6" font-family="JetBrains Mono, monospace" font-size="30" letter-spacing="5">BUILDING AUTONOMOUS INTELLIGENCE</text>
+  <text x="120" y="690" fill="#D4D4D8" font-family="Inter, Arial, sans-serif" font-size="34">Portfolio • AWS • LangGraph • Cloud Systems</text>
+
+  <rect x="120" y="790" width="180" height="180" rx="24" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.12)" />
+  <text x="210" y="905" text-anchor="middle" fill="#FFFFFF" font-family="Space Grotesk, Inter, Arial, sans-serif" font-size="72" font-weight="700">PJ</text>
+
+  <text x="330" y="840" fill="#FFFFFF" font-family="Space Grotesk, Inter, Arial, sans-serif" font-size="54" font-weight="600">Graph Era • Tech Sangi</text>
+  <text x="330" y="900" fill="#A1A1AA" font-family="Inter, Arial, sans-serif" font-size="30">Research • Projects • Writing • Mentorship</text>
+  <text x="330" y="960" fill="#A1A1AA" font-family="Inter, Arial, sans-serif" font-size="30">joshipawan.com.np</text>
+</svg>

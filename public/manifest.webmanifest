@@ -1,0 +1,17 @@
+{
+  "name": "Pawan Joshi | AI & Cloud Architect",
+  "short_name": "Pawan Joshi",
+  "description": "Portfolio of Pawan Joshi, building the next generation of Autonomous Intelligence.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#050505",
+  "theme_color": "#050505",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
