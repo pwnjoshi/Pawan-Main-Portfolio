@@ -1,4 +1,3 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 
 const Navbar = () => {
@@ -7,6 +6,8 @@ const Navbar = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       className="fixed top-0 left-0 right-0 z-50"
+      role="navigation"
+      aria-label="Main Navigation"
       style={{ 
         padding: '12px 0', 
         background: 'rgba(5, 5, 5, 0.8)', 

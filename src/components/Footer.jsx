@@ -1,5 +1,3 @@
-import React from 'react';
-
 const Footer = () => {
   return (
     <footer id="contact" style={{ padding: '80px 0 60px', borderTop: '1px solid var(--border-hairline)' }}>

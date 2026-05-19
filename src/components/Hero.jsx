@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import { useRef } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { ArrowRight, Sparkles } from 'lucide-react';
 
@@ -79,7 +79,7 @@ const Hero = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="hero-content"
-            style={{ maxWidth: '100%', overflow: 'hidden' }}
+            style={{ maxWidth: '100%', overflow: 'visible' }}
           >
             <motion.div 
               whileHover={{ scale: 1.05 }}
@@ -118,14 +118,14 @@ const Hero = () => {
               <motion.a 
                 whileHover={{ scale: 1.05, boxShadow: '0 0 30px rgba(255,255,255,0.2)' }}
                 whileTap={{ scale: 0.95 }}
-                href="#lab" className="btn btn-primary"
+                href="#lab" className="btn btn-primary" data-cursor="link"
               >
                 View the Lab <ArrowRight size={18} />
               </motion.a>
               <motion.a 
                 whileHover={{ scale: 1.05, backgroundColor: 'rgba(255,255,255,0.05)' }}
                 whileTap={{ scale: 0.95 }}
-                href="#journey" className="btn btn-secondary"
+                href="#journey" className="btn btn-secondary" data-cursor="link"
               >
                 The Journey
               </motion.a>
@@ -163,6 +163,10 @@ const Hero = () => {
               <img 
                 src="/hero-avatar.png" 
                 alt="Pawan Joshi" 
+                width="420"
+                height="420"
+                decoding="async"
+                loading="eager"
                 style={{ width: '100%', height: '100%', objectFit: 'cover', transform: 'translateZ(-20px)' }}
               />
               

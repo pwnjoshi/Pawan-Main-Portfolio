@@ -1,4 +1,3 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
 
@@ -39,6 +38,7 @@ const Projects = () => {
               viewport={{ once: true, margin: "-50px" }}
               whileHover={{ y: -8, transition: { duration: 0.3, ease: "easeOut" } }}
               className="elite-card lab-card"
+              data-cursor="project"
               style={{ 
                 padding: '60px', 
                 display: 'flex', 
@@ -55,7 +55,7 @@ const Projects = () => {
               </div>
               
               <div style={{ zIndex: 1 }}>
-                <a href="#" style={{ 
+                <a href="#" data-cursor="link" style={{ 
                   width: '64px', height: '64px', borderRadius: '50%', 
                   background: 'var(--primary)', color: '#000', 
                   display: 'flex', alignItems: 'center', justifyContent: 'center' 

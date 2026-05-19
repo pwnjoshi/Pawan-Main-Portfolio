@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Inter:wght@300;400;500;600&display=swap');
-
 :root {
   /* Elite Palette */
   --bg-base: #050505;
@@ -230,6 +228,19 @@ body {
 ::-webkit-scrollbar {
   width: 4px;
 }
+
+/* Visible focus styles for keyboard users */
+a:focus-visible, button:focus-visible, .btn:focus-visible, a[href]:focus-visible, [role="button"]:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 4px;
+  box-shadow: 0 8px 30px rgba(59,130,246,0.08);
+  border-radius: 8px;
+}
+
+/* Ensure focus is still subtle for mouse interactions */
+*:focus {
+  outline: none;
+}
 ::-webkit-scrollbar-track {
   background: var(--bg-base);
 }
@@ -307,64 +318,26 @@ body {
   justify-content: center;
   background: var(--bg-base);
   z-index: 9999;
-  animation: fadeOut 0.6s ease-out 1.2s forwards;
 }
 
-.preloader-box {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
+/* Skeleton styles for preloader */
+.skeleton-line {
+  background: linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+  border-radius: 8px;
+}
+.skeleton-rect {
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.04));
+  border-radius: 12px;
 }
 
-.preloader-logo {
-  color: var(--accent);
-  animation: spin 2s linear infinite;
-}
-
-.preloader-title {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 18px;
-  font-weight: 600;
-  color: var(--primary);
-  letter-spacing: 0.5px;
-}
-
-.preloader-dots {
-  display: flex;
-  gap: 6px;
-}
-
-.preloader-dots span {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--accent);
-  animation: pulse 1.4s ease-in-out infinite;
-}
-
-.preloader-dots span:nth-child(2) {
-  animation-delay: 0.2s;
-}
-
-.preloader-dots span:nth-child(3) {
-  animation-delay: 0.4s;
-}
-
-@keyframes pulse {
-  0%, 100% {
-    opacity: 0.3;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.2);
+@media (prefers-reduced-motion: no-preference) {
+  .skeleton-line, .skeleton-rect {
+    background-size: 200% 100%;
+    animation: shimmer 1.6s linear infinite;
   }
 }
 
-@keyframes fadeOut {
-  to {
-    opacity: 0;
-    pointer-events: none;
-  }
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
 }

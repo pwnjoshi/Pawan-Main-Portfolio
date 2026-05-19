@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import Experience from './components/Experience'
@@ -8,6 +8,8 @@ import Insights from './components/Insights'
 import Terminal from './components/Terminal'
 import Footer from './components/Footer'
 import Preloader from './components/Preloader'
+import Cursor from './components/Cursor'
+import Particles from './components/Particles'
 
 function App() {
   const [showPreloader, setShowPreloader] = useState(true);
@@ -29,6 +31,8 @@ function App() {
     <>
       {showPreloader && <Preloader onFinish={() => setShowPreloader(false)} />}
       <main style={{ display: showPreloader ? 'none' : 'block' }}>
+        <Particles />
+        <Cursor />
         <Navbar />
         <Hero />
         <Experience />

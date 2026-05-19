@@ -1,4 +1,3 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 
 const logbookEntries = [
@@ -54,6 +53,7 @@ const Experience = () => {
               viewport={{ once: true, margin: "-50px" }}
               whileHover={{ x: 8, backgroundColor: 'rgba(255,255,255,0.02)', borderRadius: '12px', paddingLeft: '16px', paddingRight: '16px' }}
               className="journey-item"
+              data-cursor="project"
               style={{ 
                 display: 'grid', 
                 gridTemplateColumns: '1fr 2fr', 
@@ -70,7 +70,7 @@ const Experience = () => {
                 <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '8px', flexWrap: 'wrap' }}>
                   <h3 className="display-text" style={{ fontSize: '24px', margin: 0 }}>{entry.title}</h3>
                   {entry.link && (
-                    <a href={entry.link} target="_blank" rel="noopener noreferrer" style={{
+                    <a href={entry.link} target="_blank" rel="noopener noreferrer" data-cursor="link" style={{
                       fontSize: '12px',
                       color: 'var(--accent)',
                       textDecoration: 'none',
@@ -83,7 +83,7 @@ const Experience = () => {
                     </a>
                   )}
                   {entry.verifyLink && (
-                    <a href={entry.verifyLink} target="_blank" rel="noopener noreferrer" style={{
+                    <a href={entry.verifyLink} target="_blank" rel="noopener noreferrer" data-cursor="link" style={{
                       fontSize: '12px',
                       color: 'var(--accent)',
                       textDecoration: 'none',
