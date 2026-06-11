@@ -44,10 +44,10 @@ const Navbar = () => {
         </div>
         
         <div className="nav-links" style={{ display: 'flex', gap: '32px' }}>
-          {['Lab', 'Journey', 'Research', 'Stack'].map((item) => (
+          {['Journey', 'Research', 'Stack'].map((item) => (
             <a 
               key={item} 
-              href={item === 'Research' ? '#terminal' : `#${item.toLowerCase()}`}
+              href={`#${item.toLowerCase()}`}
               className="mono-label"
               style={{ textDecoration: 'none', color: 'var(--text-dim)', transition: 'color 0.3s' }}
               onMouseOver={(e) => e.target.style.color = 'var(--primary)'}

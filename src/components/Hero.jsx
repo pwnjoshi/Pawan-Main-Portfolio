@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { ArrowRight, Sparkles } from 'lucide-react';
 
@@ -81,23 +81,13 @@ const Hero = () => {
             className="hero-content"
             style={{ maxWidth: '100%', overflow: 'visible' }}
           >
-            <motion.div 
-              whileHover={{ scale: 1.05 }}
-              className="hero-badges"
-              style={{ cursor: 'default' }}
-            >
-              <span className="mono-label" style={{ 
-                background: 'rgba(59, 130, 246, 0.1)', 
-                padding: '6px 14px', 
-                borderRadius: '100px',
-                border: '1px solid rgba(59, 130, 246, 0.3)',
-                boxShadow: '0 0 20px rgba(59, 130, 246, 0.2)'
-              }}>
-                <Sparkles size={12} style={{ marginRight: '6px', display: 'inline' }} />
-                Student & Architect
+            <div className="hero-badges">
+              <span className="hero-role-badge mono-label">
+                <Sparkles size={11} style={{ marginRight: '6px', display: 'inline', opacity: 0.7 }} />
+                Student &amp; Architect
               </span>
-              <span className="mono-label" style={{ color: 'rgba(255,255,255,0.4)' }}>/ 2026 EDITION</span>
-            </motion.div>
+              <span className="hero-edition-tag mono-label">2026</span>
+            </div>
             
             <h1 className="display-text hero-headline" style={{ fontSize: 'clamp(32px, 5vw, 60px)', marginBottom: '24px', lineHeight: '1.1' }}>
               Building the next generation of <span className="hero-highlight">Autonomous Intelligence.</span>

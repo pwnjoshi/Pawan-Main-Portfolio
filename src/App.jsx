@@ -5,7 +5,6 @@ import Experience from './components/Experience'
 import Projects from './components/Projects'
 import TechStack from './components/TechStack'
 import Insights from './components/Insights'
-import Terminal from './components/Terminal'
 import Footer from './components/Footer'
 import Preloader from './components/Preloader'
 import Cursor from './components/Cursor'
@@ -36,7 +35,6 @@ function App() {
         <Navbar />
         <Hero />
         <Experience />
-        <Terminal />
         <Projects />
         <Insights />
         <TechStack />
