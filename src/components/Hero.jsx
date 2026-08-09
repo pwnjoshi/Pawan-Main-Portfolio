@@ -46,7 +46,7 @@ const Hero = () => {
         display: 'flex', 
         alignItems: 'center', 
         position: 'relative',
-        paddingTop: '40px',
+        paddingTop: 'clamp(80px, 15vw, 100px)',
         paddingBottom: '40px',
         overflow: 'hidden',
         perspective: '1000px'
@@ -213,7 +213,7 @@ const Hero = () => {
                   transition={{ repeat: Infinity, duration: 2 }}
                   style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#22C55E' }} 
                 />
-                <span className="mono-label" style={{ fontSize: '9px', color: '#fff' }}>STATUS: ARCHITECTING FUTURE</span>
+                <span className="mono-label" style={{ fontSize: '9px', color: '#fff' }}>OPEN TO WORK & COLLABORATE</span>
               </div>
             </motion.div>
           </motion.div>
