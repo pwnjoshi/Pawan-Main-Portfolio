@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import { ArrowRight, Cpu } from 'lucide-react';
+import { ArrowRight, Cpu, FileText } from 'lucide-react';
 
 const Hero = () => {
   const containerRef = useRef(null);
@@ -103,7 +103,7 @@ const Hero = () => {
               Engineering at Graphic Era, building <span style={{ color: '#60A5FA', fontWeight: '500' }}>Tech Sangi</span>, and leading the AWS Student Builder Group.
             </p>
             
-            <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
+            <div style={{ display: 'flex', gap: '14px', flexWrap: 'wrap', alignItems: 'center' }}>
               <motion.a 
                 whileHover={{ y: -2 }}
                 whileTap={{ y: 0 }}
@@ -121,11 +121,15 @@ const Hero = () => {
                 whileHover={{ y: -2 }}
                 whileTap={{ y: 0 }}
                 transition={{ duration: 0.2 }}
-                href="#journey" 
+                href="https://linkedin.com/in/pwnjoshi" 
+                target="_blank"
+                rel="noopener noreferrer"
                 className="btn btn-secondary" 
                 data-cursor="link"
+                style={{ gap: '6px' }}
               >
-                View Experience
+                <FileText size={15} />
+                <span>Resume / Bio</span>
               </motion.a>
             </div>
           </motion.div>
