@@ -43,8 +43,8 @@ const Navbar = () => {
             display: 'flex',
             justify: 'space-between',
             alignItems: 'center',
-            gap: '16px',
-            padding: '10px 20px',
+            position: 'relative',
+            padding: '8px 16px',
             background: scrolled ? 'rgba(10, 10, 15, 0.85)' : 'rgba(15, 15, 20, 0.5)',
             backdropFilter: 'blur(20px)',
             WebkitBackdropFilter: 'blur(20px)',
@@ -58,7 +58,7 @@ const Navbar = () => {
             transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
           }}
         >
-          {/* Brand Logo & Name */}
+          {/* Left: Brand Logo & Name */}
           <a
             href="#"
             style={{
@@ -68,26 +68,25 @@ const Navbar = () => {
               textDecoration: 'none',
               color: 'inherit',
               flexShrink: 0,
+              zIndex: 2,
             }}
           >
             <motion.div
-              whileHover={{ scale: 1.08, rotate: 3 }}
+              whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              transition={{ type: 'spring', stiffness: 400, damping: 15 }}
               style={{
-                width: '36px',
-                height: '36px',
+                width: '34px',
+                height: '34px',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(37, 99, 235, 0.05))',
                 border: '1px solid rgba(59, 130, 246, 0.4)',
-                borderRadius: '10px',
-                fontSize: '14px',
+                borderRadius: '8px',
+                fontSize: '13px',
                 fontWeight: '800',
                 fontFamily: 'var(--font-display)',
                 color: '#60A5FA',
-                boxShadow: '0 0 15px rgba(59, 130, 246, 0.25)',
               }}
             >
               PJ
@@ -95,7 +94,7 @@ const Navbar = () => {
             <span
               className="display-text"
               style={{
-                fontSize: '17px',
+                fontSize: '16px',
                 fontWeight: '700',
                 letterSpacing: '-0.02em',
                 color: '#FFFFFF',
@@ -106,17 +105,17 @@ const Navbar = () => {
             </span>
           </a>
 
-          {/* Desktop Navigation Links */}
+          {/* Center: Desktop Navigation Links */}
           <div
             className="nav-links"
             style={{
               display: 'flex',
               alignItems: 'center',
-              gap: '4px',
-              background: 'rgba(255, 255, 255, 0.04)',
-              padding: '4px 6px',
-              borderRadius: '12px',
-              border: '1px solid rgba(255, 255, 255, 0.06)',
+              gap: '6px',
+              position: 'absolute',
+              left: '50%',
+              transform: 'translateX(-50%)',
+              zIndex: 1,
             }}
           >
             {navItems.map((item) => (
@@ -126,20 +125,22 @@ const Navbar = () => {
                 style={{
                   textDecoration: 'none',
                   color: 'var(--text-dim)',
-                  padding: '6px 12px',
-                  borderRadius: '6px',
+                  padding: '6px 14px',
+                  borderRadius: '8px',
                   fontSize: '13px',
                   fontWeight: '500',
                   fontFamily: 'var(--font-body)',
-                  transition: 'color 0.2s ease, opacity 0.2s ease',
+                  transition: 'color 0.2s ease, background 0.2s ease',
                   display: 'inline-block',
                   whiteSpace: 'nowrap',
                 }}
                 onMouseOver={(e) => {
                   e.currentTarget.style.color = '#FFFFFF';
+                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.04)';
                 }}
                 onMouseOut={(e) => {
                   e.currentTarget.style.color = 'var(--text-dim)';
+                  e.currentTarget.style.background = 'transparent';
                 }}
               >
                 {item.name}
@@ -147,8 +148,8 @@ const Navbar = () => {
             ))}
           </div>
 
-          {/* CTA Button */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+          {/* Right: CTA Button & Mobile Toggle */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', zIndex: 2 }}>
             <motion.a
               whileHover={{ opacity: 0.9, y: -1 }}
               whileTap={{ y: 0 }}
@@ -156,12 +157,12 @@ const Navbar = () => {
               href="#contact"
               className="btn"
               style={{
-                padding: '8px 16px',
+                padding: '7px 15px',
                 fontSize: '13px',
                 fontWeight: '600',
                 background: 'linear-gradient(135deg, #3B82F6 0%, #2563EB 100%)',
                 color: '#FFFFFF',
-                borderRadius: '10px',
+                borderRadius: '8px',
                 border: '1px solid rgba(255, 255, 255, 0.15)',
                 textDecoration: 'none',
                 display: 'inline-flex',
@@ -171,7 +172,7 @@ const Navbar = () => {
                 flexShrink: 0,
               }}
             >
-              <MessageSquare size={14} />
+              <MessageSquare size={13} />
               Let's talk
             </motion.a>
 
@@ -185,12 +186,12 @@ const Navbar = () => {
                 background: 'rgba(255, 255, 255, 0.05)',
                 border: '1px solid rgba(255, 255, 255, 0.1)',
                 color: '#FFFFFF',
-                padding: '8px',
-                borderRadius: '10px',
+                padding: '7px',
+                borderRadius: '8px',
                 cursor: 'pointer',
               }}
             >
-              {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+              {mobileMenuOpen ? <X size={18} /> : <Menu size={18} />}
             </button>
           </div>
         </nav>
