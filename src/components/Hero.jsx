@@ -90,7 +90,7 @@ const Hero = () => {
             </div>
             
             <h1 className="display-text hero-headline" style={{ fontSize: 'clamp(36px, 5.5vw, 64px)', marginBottom: '24px', lineHeight: '1.1' }}>
-              I am <span className="hero-highlight">Pawan Joshi</span>, building the future of intelligence.
+              I am <span className="hero-highlight">Pawan Joshi.</span>
             </h1>
             
             <p className="hero-subtext" style={{ 
@@ -100,34 +100,27 @@ const Hero = () => {
               marginBottom: '32px',
               lineHeight: '1.6'
             }}>
-              Engineering autonomous AI systems at Graphic Era, building <span style={{ color: '#60A5FA', fontWeight: '500' }}>Tech Sangi</span>, and leading the AWS Student Builder Group.
+              Engineering at Graphic Era, building <span style={{ color: '#60A5FA', fontWeight: '500' }}>Tech Sangi</span>, and leading the AWS Student Builder Group.
             </p>
             
             <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
               <motion.a 
-                whileHover={{ y: -4, boxShadow: '0 12px 30px -8px rgba(59, 130, 246, 0.5)' }}
-                whileTap={{ y: 0, scale: 0.98 }}
-                transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+                whileHover={{ y: -2 }}
+                whileTap={{ y: 0 }}
+                transition={{ duration: 0.2 }}
                 href="#lab" 
                 className="btn btn-primary" 
                 data-cursor="link"
                 style={{ position: 'relative', overflow: 'hidden' }}
               >
                 <span>View the Lab</span>
-                <motion.span
-                  initial={{ x: 0 }}
-                  whileHover={{ x: 4 }}
-                  transition={{ type: 'spring', stiffness: 400, damping: 20 }}
-                  style={{ display: 'inline-flex', alignItems: 'center' }}
-                >
-                  <ArrowRight size={18} />
-                </motion.span>
+                <ArrowRight size={16} />
               </motion.a>
               
               <motion.a 
-                whileHover={{ y: -4, borderColor: 'rgba(255, 255, 255, 0.4)', backgroundColor: 'rgba(255, 255, 255, 0.06)' }}
-                whileTap={{ y: 0, scale: 0.98 }}
-                transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+                whileHover={{ y: -2 }}
+                whileTap={{ y: 0 }}
+                transition={{ duration: 0.2 }}
                 href="#journey" 
                 className="btn btn-secondary" 
                 data-cursor="link"

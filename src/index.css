@@ -96,8 +96,8 @@ body {
 }
 
 .btn-primary:hover {
-  opacity: 0.9;
-  transform: scale(0.98);
+  opacity: 0.95;
+  background: #f0f0f0;
 }
 
 .btn-secondary {
@@ -108,7 +108,7 @@ body {
 
 .btn-secondary:hover {
   background: rgba(255, 255, 255, 0.05);
-  border-color: var(--primary);
+  border-color: rgba(255, 255, 255, 0.3);
 }
 
 /* Responsive Utilities */
@@ -152,6 +152,9 @@ body {
   }
   .nav-links {
     display: none !important;
+  }
+  .mobile-menu-btn {
+    display: flex !important;
   }
   .journey-item {
     grid-template-columns: 1fr !important;
