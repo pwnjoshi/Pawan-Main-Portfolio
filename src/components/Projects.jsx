@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ArrowUpRight, GitBranch, ExternalLink, Cpu, Bot, Server, Blocks, Sparkles, Shield } from 'lucide-react';
+import { ArrowUpRight, GitBranch, ExternalLink } from 'lucide-react';
 
 const labs = [
   {
@@ -8,7 +8,7 @@ const labs = [
     desc: "A deep research framework utilizing ReAct loops and virtual file systems for autonomous agentic reasoning.",
     type: "AI ARCHITECTURE",
     tags: ["LangGraph", "Python", "RAG", "ReAct"],
-    icon: Bot,
+
     color: "#8B5CF6",
     link: "#",
     github: "#"
@@ -19,7 +19,7 @@ const labs = [
     desc: "End-to-end interview automation platform with multi-stage evaluation and stateful candidate management.",
     type: "AUTOMATION",
     tags: ["Django", "OpenAI", "PostgreSQL", "REST API"],
-    icon: Sparkles,
+
     color: "#3B82F6",
     link: "#",
     github: "#"
@@ -30,7 +30,7 @@ const labs = [
     desc: "Real-time attendance engine engineered for AWS high-availability with O(1) lookup performance.",
     type: "INFRASTRUCTURE",
     tags: ["AWS", "Lambda", "DynamoDB", "CloudWatch"],
-    icon: Server,
+
     color: "#06B6D4",
     link: "#",
     github: "#"
@@ -41,9 +41,9 @@ const labs = [
     desc: "Full-stack SaaS product powering Tech Sangi Pvt. Ltd. — from community tools to analytics dashboards.",
     type: "SAAS / STARTUP",
     tags: ["React", "Node.js", "AWS", "Stripe"],
-    icon: Blocks,
+
     color: "#F59E0B",
-    link: "https://techsangi.com",
+    link: "https://techsangi.com.np",
     github: "#"
   }
 ];
@@ -68,7 +68,6 @@ const Projects = () => {
         {/* Projects Grid */}
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '24px' }}>
           {labs.map((lab, index) => {
-            const IconComponent = lab.icon;
             return (
               <motion.div
                 key={index}
@@ -97,24 +96,10 @@ const Projects = () => {
                   e.currentTarget.style.boxShadow = 'none';
                 }}
               >
-                {/* Top Row: Number + Icon */}
+                {/* Top Row: Number + Type Label */}
                 <div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '28px' }}>
-                    <div style={{
-                      width: '48px',
-                      height: '48px',
-                      borderRadius: '14px',
-                      background: `${lab.color}15`,
-                      border: `1px solid ${lab.color}30`,
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                    }}>
-                      <IconComponent size={22} style={{ color: lab.color }} />
-                    </div>
-                    <div className="mono-label" style={{ color: 'rgba(255,255,255,0.25)', fontSize: '10px' }}>
-                      {lab.id} / {lab.type}
-                    </div>
+                  <div className="mono-label" style={{ color: 'rgba(255,255,255,0.25)', fontSize: '10px', marginBottom: '24px' }}>
+                    {lab.id} / {lab.type}
                   </div>
 
                   {/* Title & Description */}
