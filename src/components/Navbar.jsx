@@ -42,7 +42,7 @@ const Navbar = () => {
           aria-label="Main Navigation"
           style={{
             display: 'flex',
-            justify: 'space-between',
+            justifyContent: 'space-between',
             alignItems: 'center',
             position: 'relative',
             padding: '10px 20px',
