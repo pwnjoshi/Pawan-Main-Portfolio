@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import { ArrowRight, Sparkles } from 'lucide-react';
+import { ArrowRight, Cpu } from 'lucide-react';
 
 const Hero = () => {
   const containerRef = useRef(null);
@@ -83,39 +83,54 @@ const Hero = () => {
           >
             <div className="hero-badges">
               <span className="hero-role-badge mono-label">
-                <Sparkles size={11} style={{ marginRight: '6px', display: 'inline', opacity: 0.7 }} />
+                <Cpu size={12} style={{ marginRight: '6px', display: 'inline', opacity: 0.85, verticalAlign: '-1px' }} />
                 Student &amp; Architect
               </span>
               <span className="hero-edition-tag mono-label">2026</span>
             </div>
             
-            <h1 className="display-text hero-headline" style={{ fontSize: 'clamp(32px, 5vw, 60px)', marginBottom: '24px', lineHeight: '1.1' }}>
-              Building the next generation of <span className="hero-highlight">Autonomous Intelligence.</span>
+            <h1 className="display-text hero-headline" style={{ fontSize: 'clamp(36px, 5.5vw, 64px)', marginBottom: '24px', lineHeight: '1.1' }}>
+              I am <span className="hero-highlight">Pawan Joshi</span>, building the future of intelligence.
             </h1>
             
             <p className="hero-subtext" style={{ 
               fontSize: '18px', 
               color: 'var(--text-dim)', 
-              maxWidth: '500px', 
+              maxWidth: '520px', 
               marginBottom: '32px',
               lineHeight: '1.6'
             }}>
-              Hi, I'm <span style={{ color: 'var(--primary)', fontWeight: '600' }}>Pawan Joshi</span>. Currently engineering at Graphic Era, 
-              building <span style={{ color: 'var(--primary)' }}>Tech Sangi</span> and leading the AWS Student Builder Group.
+              Engineering autonomous AI systems at Graphic Era, building <span style={{ color: '#60A5FA', fontWeight: '500' }}>Tech Sangi</span>, and leading the AWS Student Builder Group.
             </p>
             
             <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
               <motion.a 
-                whileHover={{ scale: 1.05, boxShadow: '0 0 30px rgba(255,255,255,0.2)' }}
-                whileTap={{ scale: 0.95 }}
-                href="#lab" className="btn btn-primary" data-cursor="link"
+                whileHover={{ y: -4, boxShadow: '0 12px 30px -8px rgba(59, 130, 246, 0.5)' }}
+                whileTap={{ y: 0, scale: 0.98 }}
+                transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+                href="#lab" 
+                className="btn btn-primary" 
+                data-cursor="link"
+                style={{ position: 'relative', overflow: 'hidden' }}
               >
-                View the Lab <ArrowRight size={18} />
+                <span>View the Lab</span>
+                <motion.span
+                  initial={{ x: 0 }}
+                  whileHover={{ x: 4 }}
+                  transition={{ type: 'spring', stiffness: 400, damping: 20 }}
+                  style={{ display: 'inline-flex', alignItems: 'center' }}
+                >
+                  <ArrowRight size={18} />
+                </motion.span>
               </motion.a>
+              
               <motion.a 
-                whileHover={{ scale: 1.05, backgroundColor: 'rgba(255,255,255,0.05)' }}
-                whileTap={{ scale: 0.95 }}
-                href="#journey" className="btn btn-secondary" data-cursor="link"
+                whileHover={{ y: -4, borderColor: 'rgba(255, 255, 255, 0.4)', backgroundColor: 'rgba(255, 255, 255, 0.06)' }}
+                whileTap={{ y: 0, scale: 0.98 }}
+                transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+                href="#journey" 
+                className="btn btn-secondary" 
+                data-cursor="link"
               >
                 The Journey
               </motion.a>
