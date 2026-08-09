@@ -2,37 +2,37 @@ import { motion } from 'framer-motion';
 
 const logbookEntries = [
   {
-    date: "2024 — PRESENT",
-    title: "Building Tech Sangi",
-    role: "Co-Founder",
-    desc: "Architecting custom technical workflows and leading development of 8+ enterprise-grade products.",
-    link: "https://techsangi.com.np"
-  },
-  {
-    date: "2025 — PRESENT",
-    title: "AWS Student Builder Leader Group",
-    role: "Group Leader @ Graphic Era University",
-    desc: "Bridging the gap between academic theory and cloud industry standards through hands-on architecture sessions.",
+    date: "NOV 2025 — PRESENT",
+    title: "AWS Student Builder Group Leader",
+    role: "Founder & Campus Leader @ Graphic Era University",
+    desc: "Leading the official AWS Student Builder Group. Built a thriving builder community focused on cloud computing & AI. Conducted hands-on architecture sessions with Amazon S3, CloudFront, IAM, Route 53, and CLF-C02 preparation.",
     verifyLink: "https://builder.aws.com/community/student-builder-groups"
   },
   {
-    date: "2025 — 2026",
+    date: "OCT 2025 — PRESENT",
+    title: "Google Student Ambassador",
+    role: "Google Campus Ambassador @ Graphic Era",
+    desc: "Promoting AI awareness and peer learning around Google Gemini and emerging AI tools. Organizing hands-on technical workshops and cultivating a collaborative developer ecosystem on campus."
+  },
+  {
+    date: "NOV 2024 — PRESENT",
+    title: "Co-Founder",
+    role: "Tech Sangi Pvt. Ltd.",
+    desc: "Leading development of AI-powered, cloud-native software systems and automated workflows. Architected and delivered 8+ enterprise products focused on intelligent automation and developer tooling.",
+    link: "https://techsangi.com.np"
+  },
+  {
+    date: "DEC 2025 — FEB 2026",
     title: "Infosys Springboard AI Intern",
-    role: "Autonomous Cognitive Systems",
-    desc: "Developing a Deep Cognitive Task Framework using LangGraph. Implementing Virtual File Systems to mitigate LLM context window limitations.",
+    role: "Autonomous Cognitive Systems Intern",
+    desc: "Developed a Deep Cognitive Task Framework utilizing LangGraph agent orchestration, ReAct reasoning loops, and Virtual File Systems to overcome context window limitations for long-context execution.",
     verifyLink: "https://infyspringboard.onwingspan.com/public-assets/infosysheadstart/cert/lex_auth_01454259343803187223/14bb99d1-1b1d-45b5-badf-839bae33f2b5.pdf"
   },
   {
-    date: "2025 — PRESENT",
-    title: "Google Student Ambassador",
-    role: "AI Awareness & Liaison",
-    desc: "Representing Google Gemini on campus and promoting GenAI awareness through peer-learning sessions and workshops."
-  },
-  {
-    date: "2025",
+    date: "AUG 2025 — SEP 2025",
     title: "Google Cloud Arcade Mentor",
-    role: "Technical Mentorship",
-    desc: "Guided 100+ students through hands-on GCP labs, mastering cloud tools and earning industry skill badges."
+    role: "Google Cloud Skills Boost",
+    desc: "Mentored 300+ students through hands-on GCP labs, cloud learning pathways, and skill badges. Guided peers in core cloud deployment and troubleshooting."
   }
 ];
 

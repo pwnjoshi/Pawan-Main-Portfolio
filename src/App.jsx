@@ -3,6 +3,7 @@ import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import Experience from './components/Experience'
 import Projects from './components/Projects'
+import Certifications from './components/Certifications'
 import TechStack from './components/TechStack'
 import Insights from './components/Insights'
 import Footer from './components/Footer'
@@ -36,6 +37,7 @@ function App() {
         <Hero />
         <Experience />
         <Projects />
+        <Certifications />
         <Insights />
         <TechStack />
         <Footer />
