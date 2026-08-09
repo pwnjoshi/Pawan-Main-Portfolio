@@ -26,8 +26,8 @@ const Projects = () => {
   return (
     <section id="lab" className="section-gap" style={{ background: '#080808' }}>
       <div className="container">
-        <div className="mono-label" style={{ marginBottom: '16px' }}>/ RESEARCH & DEVELOPMENT</div>
-        <h2 className="display-text" style={{ fontSize: '48px', marginBottom: '80px' }}>The Lab</h2>
+        <div className="mono-label" style={{ marginBottom: '16px' }}>/ FEATURED PROJECTS</div>
+        <h2 className="display-text" style={{ fontSize: '48px', marginBottom: '80px' }}>Projects &amp; Systems</h2>
         
         <div style={{ display: 'grid', gap: '32px' }}>
           {labs.map((lab, index) => (

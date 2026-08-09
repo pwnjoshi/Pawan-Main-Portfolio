@@ -10,8 +10,8 @@ const TechStack = () => {
     <section id="stack" className="section-gap">
       <div className="container">
         <div style={{ textAlign: 'center', marginBottom: '80px' }}>
-          <div className="mono-label" style={{ marginBottom: '16px' }}>/ CAPABILITIES</div>
-          <h2 className="display-text" style={{ fontSize: '48px' }}>The Stack</h2>
+          <div className="mono-label" style={{ marginBottom: '16px' }}>/ TECHNICAL SKILLS</div>
+          <h2 className="display-text" style={{ fontSize: '48px' }}>Tech Stack</h2>
         </div>
         
         <div className="stack-grid" style={{ 

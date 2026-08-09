@@ -19,10 +19,10 @@ const Navbar = () => {
   }, []);
 
   const navItems = [
-    { name: 'Journey', href: '#journey' },
-    { name: 'Research', href: '#lab' },
+    { name: 'Experience', href: '#journey' },
+    { name: 'Projects', href: '#lab' },
     { name: 'Insights', href: '#insights' },
-    { name: 'Stack', href: '#stack' },
+    { name: 'Tech Stack', href: '#stack' },
   ];
 
   return (

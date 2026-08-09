@@ -113,7 +113,7 @@ const Hero = () => {
                 data-cursor="link"
                 style={{ position: 'relative', overflow: 'hidden' }}
               >
-                <span>View the Lab</span>
+                <span>Explore Projects</span>
                 <ArrowRight size={16} />
               </motion.a>
               
@@ -125,7 +125,7 @@ const Hero = () => {
                 className="btn btn-secondary" 
                 data-cursor="link"
               >
-                The Journey
+                View Experience
               </motion.a>
             </div>
           </motion.div>

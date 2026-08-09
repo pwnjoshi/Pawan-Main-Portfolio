@@ -40,8 +40,8 @@ const Experience = () => {
   return (
     <section id="journey" className="section-gap">
       <div className="container">
-        <div className="mono-label" style={{ marginBottom: '16px' }}>/ LOGBOOK</div>
-        <h2 className="display-text" style={{ fontSize: '48px', marginBottom: '80px' }}>The Journey</h2>
+        <div className="mono-label" style={{ marginBottom: '16px' }}>/ EXPERIENCE & LEADERSHIP</div>
+        <h2 className="display-text" style={{ fontSize: '48px', marginBottom: '80px' }}>Work &amp; Leadership</h2>
         
         <div style={{ borderTop: '1px solid var(--border-hairline)' }}>
           {logbookEntries.map((entry, index) => (
