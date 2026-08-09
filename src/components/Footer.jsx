@@ -16,32 +16,31 @@ const Footer = () => {
     setErrorMessage('');
 
     try {
-      const response = await fetch('https://formsubmit.co/ajax/joshipawan2021@gmail.com', {
+      // Direct call to Resend Serverless API endpoint
+      const response = await fetch('/api/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Accept': 'application/json'
         },
         body: JSON.stringify({
-          sender: 'site@joshipawan.com.np',
           name: formData.name,
           email: formData.email,
           message: formData.message,
-          _subject: `New Portfolio Message from ${formData.name}`,
-          _template: 'table'
         })
       });
 
-      if (response.ok) {
+      const result = await response.json();
+
+      if (response.ok && result.success) {
         setStatus('success');
         setFormData({ name: '', email: '', message: '' });
       } else {
-        throw new Error('Failed to send message.');
+        throw new Error(result.error || 'Failed to send email via Resend.');
       }
     } catch (err) {
       console.error(err);
       setStatus('error');
-      setErrorMessage('Something went wrong. Please try again or reach out on LinkedIn.');
+      setErrorMessage(err.message || 'Something went wrong. Please try again or reach out on LinkedIn.');
     }
   };
 
@@ -101,7 +100,7 @@ const Footer = () => {
                 <div>
                   <h4 style={{ margin: 0, fontSize: '16px', fontWeight: '600' }}>Message Sent!</h4>
                   <p style={{ margin: '4px 0 0', fontSize: '13px', color: 'rgba(255, 255, 255, 0.8)' }}>
-                    Thank you for reaching out. Your message has been sent successfully.
+                    Thank you for reaching out. Your message powered by Resend API has been sent successfully.
                   </p>
                 </div>
               </div>
@@ -221,7 +220,7 @@ const Footer = () => {
                   {status === 'loading' ? (
                     <>
                       <Loader2 size={16} style={{ animation: 'spin 1s linear infinite' }} />
-                      <span>Sending...</span>
+                      <span>Sending via Resend...</span>
                     </>
                   ) : (
                     <>

@@ -44,7 +44,7 @@ const Navbar = () => {
             display: 'flex',
             justify: 'space-between',
             alignItems: 'center',
-            gap: '16px',
+            position: 'relative',
             padding: '10px 20px',
             background: scrolled ? 'rgba(10, 10, 15, 0.85)' : 'rgba(15, 15, 20, 0.5)',
             backdropFilter: 'blur(20px)',
@@ -66,6 +66,7 @@ const Navbar = () => {
               textDecoration: 'none',
               color: 'inherit',
               flexShrink: 0,
+              zIndex: 2,
             }}
           >
             <span
@@ -89,7 +90,10 @@ const Navbar = () => {
               display: 'flex',
               alignItems: 'center',
               gap: '4px',
-              flexWrap: 'nowrap',
+              position: 'absolute',
+              left: '50%',
+              transform: 'translateX(-50%)',
+              zIndex: 1,
             }}
           >
             {navItems.map((item) => (
@@ -123,7 +127,7 @@ const Navbar = () => {
           </div>
 
           {/* Right: CTA Button & Mobile Menu Toggle */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexShrink: 0 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', zIndex: 2, flexShrink: 0 }}>
             <motion.a
               whileHover={{ opacity: 0.9, y: -1 }}
               whileTap={{ y: 0 }}
