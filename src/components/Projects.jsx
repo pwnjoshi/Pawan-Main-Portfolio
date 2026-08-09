@@ -66,7 +66,7 @@ const Projects = () => {
         </div>
         
         {/* Projects Grid */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '24px' }}>
+        <div className="projects-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '24px' }}>
           {labs.map((lab, index) => {
             return (
               <motion.div

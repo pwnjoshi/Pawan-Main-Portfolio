@@ -69,6 +69,7 @@ const Hero = () => {
       <div className="container" style={{ zIndex: 1, position: 'relative' }}>
         <div className="hero-grid" style={{ 
           display: 'grid', 
+          gridTemplateColumns: '1.6fr 0.9fr',
           gap: 'clamp(24px, 4vw, 50px)',
           alignItems: 'center'
         }}>

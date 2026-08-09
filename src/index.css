@@ -26,6 +26,7 @@
 
 html {
   scroll-behavior: smooth;
+  overscroll-behavior-y: contain;
 }
 
 body {
@@ -33,7 +34,14 @@ body {
   color: var(--primary);
   font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Touch-friendly on mobile */
+a, button, .btn, [role="button"] {
+  touch-action: manipulation;
 }
 
 /* Typography Utilities */
@@ -111,79 +119,11 @@ body {
   border-color: rgba(255, 255, 255, 0.3);
 }
 
-/* Responsive Utilities */
-@media (max-width: 1024px) {
-  .hero-grid {
-    grid-template-columns: 1fr !important;
-    text-align: center;
-    gap: 60px !important;
-  }
-  .hero-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  .hero-visual {
-    order: -1;
-  }
-  .hero-headline {
-    font-size: clamp(32px, 8vw, 56px) !important;
-    max-width: 100% !important;
-  }
-  .hero-subtext {
-    margin-left: auto;
-    margin-right: auto;
-  }
-}
+/* ==========================================
+   DESKTOP DEFAULTS (unchanged from original)
+   ========================================== */
 
-@media (min-width: 1025px) {
-  .hero-headline {
-    font-size: clamp(40px, 4.2vw, 60px) !important;
-    max-width: 100% !important;
-  }
-  .hero-subtext {
-    font-size: 17px !important;
-  }
-}
-
-@media (max-width: 1024px) {
-  .nav-links {
-    display: none !important;
-  }
-  .mobile-menu-btn {
-    display: flex !important;
-  }
-}
-
-@media (max-width: 768px) {
-  .container {
-    padding: 0 20px;
-  }
-  .journey-item {
-    grid-template-columns: 1fr !important;
-    gap: 12px !important;
-    padding: 32px 0 !important;
-  }
-  .lab-card {
-    padding: 32px !important;
-    flex-direction: column !important;
-    align-items: flex-start !important;
-    gap: 32px !important;
-  }
-  .footer-grid {
-    grid-template-columns: 1fr !important;
-    text-align: center !important;
-    gap: 48px !important;
-  }
-  .footer-links {
-    justify-content: center !important;
-  }
-  .footer-bottom {
-    text-align: center !important;
-  }
-}
-
-/* Hero badges (Student & Architect / 2026) */
+/* Hero badges */
 .hero-badges {
   display: inline-flex;
   align-items: center;
@@ -194,7 +134,7 @@ body {
   justify-content: flex-start;
 }
 
-/* Role pill — left side */
+/* Role pill */
 .hero-role-badge {
   position: relative;
   padding: 5px 14px 5px 12px;
@@ -223,7 +163,7 @@ body {
   transform: translateX(100%);
 }
 
-/* Year tag — right side */
+/* Year tag */
 .hero-edition-tag {
   font-size: 10px;
   letter-spacing: 0.2em;
@@ -238,58 +178,38 @@ body {
   border-color: rgba(255, 255, 255, 0.3);
 }
 
-@media (max-width: 1024px) {
-  .hero-badges {
-    justify-content: center !important;
-  }
+.hero-highlight {
+  color: var(--accent);
+  display: inline-block;
+  white-space: nowrap;
+  max-width: 100%;
 }
 
-/* Tech stack grid: ensure two columns on phones */
+/* Hero visual */
+.hero-visual > div {
+  width: 100%;
+  max-width: clamp(240px, 28vw, 380px);
+}
+
+/* Stack grid */
 .stack-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   gap: 16px;
 }
 
-@media (max-width: 768px) {
-  .stack-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 12px !important;
-  }
-  .stack-grid .elite-card {
-    padding: 16px !important;
-    font-size: 13px !important;
-  }
-}
-
-/* Hero visual sizing tweaks */
-.hero-visual > div {
+/* Terminal */
+.terminal-window {
   width: 100%;
-  max-width: clamp(240px, 28vw, 380px);
+  overflow: hidden;
+}
+.terminal-actions {
+  -webkit-overflow-scrolling: touch;
 }
 
-@media (max-width: 1024px) {
-  .hero-visual > div {
-    max-width: 360px !important;
-  }
-}
-
-/* Custom Scrollbar */
+/* Scrollbar */
 ::-webkit-scrollbar {
   width: 4px;
-}
-
-/* Visible focus styles for keyboard users */
-a:focus-visible, button:focus-visible, .btn:focus-visible, a[href]:focus-visible, [role="button"]:focus-visible {
-  outline: 3px solid var(--accent);
-  outline-offset: 4px;
-  box-shadow: 0 8px 30px rgba(59,130,246,0.08);
-  border-radius: 8px;
-}
-
-/* Ensure focus is still subtle for mouse interactions */
-*:focus {
-  outline: none;
 }
 ::-webkit-scrollbar-track {
   background: var(--bg-base);
@@ -299,27 +219,182 @@ a:focus-visible, button:focus-visible, .btn:focus-visible, a[href]:focus-visible
   border-radius: 10px;
 }
 
-/* Loading spinner animation */
+/* Focus & Accessibility */
+a:focus-visible, button:focus-visible, .btn:focus-visible, a[href]:focus-visible, [role="button"]:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 4px;
+  box-shadow: 0 8px 30px rgba(59,130,246,0.08);
+  border-radius: 8px;
+}
+*:focus {
+  outline: none;
+}
+
+/* Animations */
 @keyframes spin {
-  from {
-    transform: rotate(0deg);
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Preloader & Skeleton */
+.preloader-root {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-base);
+  z-index: 9999;
+}
+.skeleton-line {
+  background: linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+  border-radius: 8px;
+}
+.skeleton-rect {
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.04));
+  border-radius: 12px;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .skeleton-line, .skeleton-rect {
+    background-size: 200% 100%;
+    animation: shimmer 1.6s linear infinite;
   }
-  to {
-    transform: rotate(360deg);
+}
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ==========================================
+   TABLET BREAKPOINT (max-width: 1024px)
+   Hero stacks, nav hides — same as original
+   ========================================== */
+@media (max-width: 1024px) {
+  .hero-grid {
+    grid-template-columns: 1fr !important;
+    text-align: center;
+    gap: 48px !important;
+  }
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .hero-visual {
+    order: -1;
+  }
+  .hero-visual > div {
+    max-width: 320px !important;
+    margin: 0 auto;
+  }
+  .hero-headline {
+    font-size: clamp(32px, 8vw, 56px) !important;
+    max-width: 100% !important;
+  }
+  .hero-subtext {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+  .hero-badges {
+    justify-content: center !important;
+  }
+  .nav-links {
+    display: none !important;
+  }
+  .mobile-menu-btn {
+    display: flex !important;
   }
 }
 
-/* Terminal responsive styles */
-.terminal-window {
-  width: 100%;
-  overflow: hidden;
+@media (min-width: 1025px) {
+  .hero-headline {
+    font-size: clamp(40px, 4.2vw, 60px) !important;
+    max-width: 100% !important;
+  }
+  .hero-subtext {
+    font-size: 17px !important;
+  }
 }
 
-.terminal-actions {
-  -webkit-overflow-scrolling: touch;
-}
+/* ==========================================
+   PHONE BREAKPOINT (max-width: 768px)
+   Full native app mobile experience
+   ========================================== */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 16px;
+  }
 
-@media (max-width: 640px) {
+  .section-gap {
+    padding: 48px 0;
+  }
+
+  /* Buttons: 44px touch targets */
+  .btn {
+    min-height: 44px;
+    font-size: 14px;
+    padding: 10px 18px;
+  }
+
+  /* Hero */
+  .hero-grid {
+    gap: 32px !important;
+  }
+  .hero-visual > div {
+    max-width: 240px !important;
+  }
+  .hero-headline {
+    font-size: clamp(28px, 7vw, 36px) !important;
+  }
+  .hero-subtext {
+    font-size: 15px !important;
+  }
+
+  /* Experience */
+  .journey-item {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+    padding: 24px 0 !important;
+  }
+
+  /* Projects */
+  .projects-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+  .lab-card {
+    padding: 24px !important;
+    min-height: auto !important;
+  }
+
+  /* Footer */
+  .footer-grid {
+    grid-template-columns: 1fr !important;
+    text-align: center !important;
+    gap: 40px !important;
+  }
+  .footer-links {
+    justify-content: center !important;
+    flex-wrap: wrap !important;
+  }
+  .footer-bottom {
+    flex-direction: column !important;
+    text-align: center !important;
+    gap: 12px !important;
+  }
+
+  /* Stack grid */
+  .stack-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px !important;
+  }
+  .stack-grid .elite-card {
+    padding: 14px !important;
+    font-size: 13px !important;
+  }
+
+  /* Terminal */
   .terminal-window {
     border-radius: 12px !important;
   }
@@ -330,28 +405,46 @@ a:focus-visible, button:focus-visible, .btn:focus-visible, a[href]:focus-visible
     gap: 6px !important;
     padding: 10px 12px !important;
   }
-}
 
-/* Hero highlighted phrase behavior */
-.hero-highlight {
-  color: var(--accent);
-  display: inline-block;
-  white-space: nowrap;
-  max-width: 100%;
-}
+  /* Cards: tighter radius on mobile */
+  .elite-card {
+    border-radius: 16px;
+  }
 
-/* Try to keep the hero headline compact on small phones so the highlight fits on one line */
-@media (max-width: 420px) {
-  .hero-headline {
-    font-size: clamp(18px, 5.5vw, 28px) !important;
-    line-height: 1.05 !important;
+  /* Mono labels slightly smaller */
+  .mono-label {
+    font-size: 10px;
   }
 }
 
-/* For very small phones allow wrapping to avoid horizontal overflow */
+/* ==========================================
+   SMALL PHONES (max-width: 420px)
+   ========================================== */
+@media (max-width: 420px) {
+  .container {
+    padding: 0 14px;
+  }
+
+  .hero-headline {
+    font-size: clamp(24px, 6.5vw, 30px) !important;
+    line-height: 1.05 !important;
+  }
+
+  .hero-visual > div {
+    max-width: 200px !important;
+  }
+
+  .section-gap {
+    padding: 36px 0;
+  }
+}
+
+/* ==========================================
+   TINY PHONES (max-width: 360px)
+   ========================================== */
 @media (max-width: 360px) {
   .hero-headline {
-    font-size: clamp(16px, 5.5vw, 22px) !important;
+    font-size: clamp(20px, 6vw, 24px) !important;
   }
   .hero-highlight {
     white-space: normal;
@@ -359,35 +452,12 @@ a:focus-visible, button:focus-visible, .btn:focus-visible, a[href]:focus-visible
   }
 }
 
-/* Preloader Styles */
-.preloader-root {
-  position: fixed;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--bg-base);
-  z-index: 9999;
-}
-
-/* Skeleton styles for preloader */
-.skeleton-line {
-  background: linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0.06), rgba(255,255,255,0.03));
-  border-radius: 8px;
-}
-.skeleton-rect {
-  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.04));
-  border-radius: 12px;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .skeleton-line, .skeleton-rect {
-    background-size: 200% 100%;
-    animation: shimmer 1.6s linear infinite;
+/* ==========================================
+   SAFE AREA INSETS (Notched phones)
+   ========================================== */
+@supports (padding-top: env(safe-area-inset-top)) {
+  body {
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
   }
-}
-
-@keyframes shimmer {
-  0% { background-position: 200% 0; }
-  100% { background-position: -200% 0; }
 }
