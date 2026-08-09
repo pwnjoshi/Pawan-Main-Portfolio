@@ -1,20 +1,34 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { MessageSquare, Menu, X } from 'lucide-react';
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const lastScrollY = useRef(0);
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 20) {
-        setScrolled(true);
+      const currentY = window.scrollY;
+
+      // Scrolled state for background tint
+      setScrolled(currentY > 20);
+
+      // Hide/reveal logic: hide on scroll down, show on scroll up
+      if (currentY > 80) {
+        if (currentY > lastScrollY.current + 5) {
+          setHidden(true);  // scrolling down
+        } else if (currentY < lastScrollY.current - 5) {
+          setHidden(false); // scrolling up
+        }
       } else {
-        setScrolled(false);
+        setHidden(false); // always show near top
       }
+
+      lastScrollY.current = currentY;
     };
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -31,9 +45,15 @@ const Navbar = () => {
       initial={{ y: -50, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-      className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
       style={{
-        padding: scrolled ? '10px 0' : '16px 0',
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        zIndex: 50,
+        padding: scrolled ? '8px 0' : '16px 0',
+        transform: hidden ? 'translateY(-100%)' : 'translateY(0)',
+        transition: 'transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), padding 0.3s ease',
       }}
     >
       <div className="container">
