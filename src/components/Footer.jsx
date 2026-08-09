@@ -16,7 +16,7 @@ const Footer = () => {
     setErrorMessage('');
 
     try {
-      // Using FormSubmit AJAX endpoint so form entries are securely delivered to target inbox without exposing keys
+      // Using FormSubmit AJAX dispatcher configured with custom sender identifier
       const response = await fetch('https://formsubmit.co/ajax/joshipawan2021@gmail.com', {
         method: 'POST',
         headers: {
@@ -24,10 +24,11 @@ const Footer = () => {
           'Accept': 'application/json'
         },
         body: JSON.stringify({
+          sender: 'site@joshipawan.com.np',
           name: formData.name,
           email: formData.email,
           message: formData.message,
-          _subject: `New Portfolio Contact Message from ${formData.name}`,
+          _subject: `New Portfolio Message from ${formData.name} via site@joshipawan.com.np`,
           _template: 'table'
         })
       });
@@ -101,7 +102,7 @@ const Footer = () => {
                 <div>
                   <h4 style={{ margin: 0, fontSize: '16px', fontWeight: '600' }}>Message Sent!</h4>
                   <p style={{ margin: '4px 0 0', fontSize: '13px', color: 'rgba(255, 255, 255, 0.8)' }}>
-                    Thank you for reaching out. Your message has been sent to joshipawan2021@gmail.com.
+                    Thank you for reaching out. Your message from site@joshipawan.com.np has been sent to joshipawan2021@gmail.com.
                   </p>
                 </div>
               </div>
