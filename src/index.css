@@ -345,6 +345,12 @@ a:focus-visible, button:focus-visible, .btn:focus-visible, a[href]:focus-visible
     gap: 4px !important;
   }
 
+  @media (max-width: 480px) {
+    .mobile-cta-hide {
+      display: none !important;
+    }
+  }
+
   /* Hero */
   .hero-grid {
     gap: 32px !important;

@@ -153,7 +153,7 @@ const Navbar = () => {
               whileTap={{ y: 0 }}
               transition={{ duration: 0.2 }}
               href="#contact"
-              className="btn nav-cta"
+              className="btn nav-cta mobile-cta-hide"
               style={{
                 padding: '7px 15px',
                 fontSize: '13px',
