@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Menu, X } from 'lucide-react';
+import { MessageSquare, Menu, X } from 'lucide-react';
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -44,7 +44,8 @@ const Navbar = () => {
             display: 'flex',
             justify: 'space-between',
             alignItems: 'center',
-            padding: '12px 24px',
+            position: 'relative',
+            padding: '10px 20px',
             background: scrolled ? 'rgba(10, 10, 15, 0.85)' : 'rgba(15, 15, 20, 0.5)',
             backdropFilter: 'blur(20px)',
             WebkitBackdropFilter: 'blur(20px)',
@@ -65,6 +66,7 @@ const Navbar = () => {
               textDecoration: 'none',
               color: 'inherit',
               flexShrink: 0,
+              zIndex: 2,
             }}
           >
             <span
@@ -81,13 +83,17 @@ const Navbar = () => {
             </span>
           </a>
 
-          {/* Right: Desktop Navigation Links */}
+          {/* Center: Desktop Navigation Links */}
           <div
             className="nav-links"
             style={{
               display: 'flex',
               alignItems: 'center',
-              gap: '6px',
+              gap: '4px',
+              position: 'absolute',
+              left: '50%',
+              transform: 'translateX(-50%)',
+              zIndex: 1,
             }}
           >
             {navItems.map((item) => (
@@ -97,7 +103,7 @@ const Navbar = () => {
                 style={{
                   textDecoration: 'none',
                   color: 'var(--text-dim)',
-                  padding: '6px 14px',
+                  padding: '6px 12px',
                   borderRadius: '8px',
                   fontSize: '13px',
                   fontWeight: '500',
@@ -120,23 +126,52 @@ const Navbar = () => {
             ))}
           </div>
 
-          {/* Mobile Menu Toggle Button */}
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label="Toggle Navigation Menu"
-            className="mobile-menu-btn"
-            style={{
-              display: 'none',
-              background: 'rgba(255, 255, 255, 0.05)',
-              border: '1px solid rgba(255, 255, 255, 0.1)',
-              color: '#FFFFFF',
-              padding: '7px',
-              borderRadius: '8px',
-              cursor: 'pointer',
-            }}
-          >
-            {mobileMenuOpen ? <X size={18} /> : <Menu size={18} />}
-          </button>
+          {/* Right: CTA Button & Mobile Menu Toggle */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', zIndex: 2 }}>
+            <motion.a
+              whileHover={{ opacity: 0.9, y: -1 }}
+              whileTap={{ y: 0 }}
+              transition={{ duration: 0.2 }}
+              href="#contact"
+              className="btn"
+              style={{
+                padding: '7px 15px',
+                fontSize: '13px',
+                fontWeight: '600',
+                background: 'linear-gradient(135deg, #3B82F6 0%, #2563EB 100%)',
+                color: '#FFFFFF',
+                borderRadius: '8px',
+                border: '1px solid rgba(255, 255, 255, 0.15)',
+                textDecoration: 'none',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '6px',
+                whiteSpace: 'nowrap',
+                flexShrink: 0,
+              }}
+            >
+              <MessageSquare size={13} />
+              Let's talk
+            </motion.a>
+
+            {/* Mobile Menu Toggle Button */}
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label="Toggle Navigation Menu"
+              className="mobile-menu-btn"
+              style={{
+                display: 'none',
+                background: 'rgba(255, 255, 255, 0.05)',
+                border: '1px solid rgba(255, 255, 255, 0.1)',
+                color: '#FFFFFF',
+                padding: '7px',
+                borderRadius: '8px',
+                cursor: 'pointer',
+              }}
+            >
+              {mobileMenuOpen ? <X size={18} /> : <Menu size={18} />}
+            </button>
+          </div>
         </nav>
 
         {/* Mobile Dropdown Menu */}
