@@ -120,34 +120,30 @@ const Navbar = () => {
             }}
           >
             {navItems.map((item) => (
-              <motion.a
+              <a
                 key={item.name}
                 href={item.href}
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.97 }}
                 style={{
                   textDecoration: 'none',
                   color: 'var(--text-dim)',
-                  padding: '7px 14px',
-                  borderRadius: '8px',
+                  padding: '6px 12px',
+                  borderRadius: '6px',
                   fontSize: '13px',
                   fontWeight: '500',
                   fontFamily: 'var(--font-body)',
-                  transition: 'all 0.2s ease',
+                  transition: 'color 0.2s ease, opacity 0.2s ease',
                   display: 'inline-block',
                   whiteSpace: 'nowrap',
                 }}
                 onMouseOver={(e) => {
                   e.currentTarget.style.color = '#FFFFFF';
-                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.08)';
                 }}
                 onMouseOut={(e) => {
                   e.currentTarget.style.color = 'var(--text-dim)';
-                  e.currentTarget.style.background = 'transparent';
                 }}
               >
                 {item.name}
-              </motion.a>
+              </a>
             ))}
           </div>
 
