@@ -103,7 +103,7 @@ const Hero = () => {
               Engineering at Graphic Era, building <span style={{ color: '#60A5FA', fontWeight: '500' }}>Tech Sangi</span>, and leading the AWS Student Builder Group.
             </p>
             
-            <div style={{ display: 'flex', gap: '14px', flexWrap: 'wrap', alignItems: 'center' }}>
+            <div style={{ display: 'flex', gap: '14px', flexWrap: 'wrap', alignItems: 'center', marginBottom: '32px' }}>
               <motion.a 
                 whileHover={{ y: -2 }}
                 whileTap={{ y: 0 }}
@@ -131,6 +131,30 @@ const Hero = () => {
                 <FileText size={15} />
                 <span>Resume / Bio</span>
               </motion.a>
+            </div>
+
+            {/* Quick Metrics Ticker */}
+            <div style={{
+              display: 'flex',
+              gap: '24px',
+              paddingTop: '20px',
+              borderTop: '1px solid rgba(255, 255, 255, 0.08)',
+              flexWrap: 'wrap'
+            }}>
+              <div>
+                <div style={{ fontSize: '20px', fontWeight: '800', color: '#FFFFFF', fontFamily: 'var(--font-display)' }}>8+</div>
+                <div style={{ fontSize: '12px', color: 'var(--text-dim)', fontFamily: 'var(--font-mono)' }}>Products Built</div>
+              </div>
+              <div style={{ width: '1px', background: 'rgba(255, 255, 255, 0.1)' }} />
+              <div>
+                <div style={{ fontSize: '20px', fontWeight: '800', color: '#FFFFFF', fontFamily: 'var(--font-display)' }}>300+</div>
+                <div style={{ fontSize: '12px', color: 'var(--text-dim)', fontFamily: 'var(--font-mono)' }}>Students Mentored</div>
+              </div>
+              <div style={{ width: '1px', background: 'rgba(255, 255, 255, 0.1)' }} />
+              <div>
+                <div style={{ fontSize: '20px', fontWeight: '800', color: '#60A5FA', fontFamily: 'var(--font-display)' }}>6+</div>
+                <div style={{ fontSize: '12px', color: 'var(--text-dim)', fontFamily: 'var(--font-mono)' }}>Cloud/AI Badges</div>
+              </div>
             </div>
           </motion.div>
 
