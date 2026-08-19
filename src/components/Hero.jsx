@@ -134,26 +134,20 @@ const Hero = () => {
             </div>
 
             {/* Quick Metrics Ticker */}
-            <div style={{
-              display: 'flex',
-              gap: '24px',
-              paddingTop: '20px',
-              borderTop: '1px solid rgba(255, 255, 255, 0.08)',
-              flexWrap: 'wrap'
-            }}>
-              <div>
-                <div style={{ fontSize: '20px', fontWeight: '800', color: '#FFFFFF', fontFamily: 'var(--font-display)' }}>8+</div>
-                <div style={{ fontSize: '12px', color: 'var(--text-dim)', fontFamily: 'var(--font-mono)' }}>Products Built</div>
+            <div className="hero-metrics-ticker">
+              <div className="hero-metric-item">
+                <div className="hero-metric-num">8+</div>
+                <div className="hero-metric-label">Products Built</div>
               </div>
-              <div style={{ width: '1px', background: 'rgba(255, 255, 255, 0.1)' }} />
-              <div>
-                <div style={{ fontSize: '20px', fontWeight: '800', color: '#FFFFFF', fontFamily: 'var(--font-display)' }}>300+</div>
-                <div style={{ fontSize: '12px', color: 'var(--text-dim)', fontFamily: 'var(--font-mono)' }}>Students Mentored</div>
+              <div className="hero-metric-divider" />
+              <div className="hero-metric-item">
+                <div className="hero-metric-num">300+</div>
+                <div className="hero-metric-label">Students Mentored</div>
               </div>
-              <div style={{ width: '1px', background: 'rgba(255, 255, 255, 0.1)' }} />
-              <div>
-                <div style={{ fontSize: '20px', fontWeight: '800', color: '#60A5FA', fontFamily: 'var(--font-display)' }}>6+</div>
-                <div style={{ fontSize: '12px', color: 'var(--text-dim)', fontFamily: 'var(--font-mono)' }}>Cloud/AI Badges</div>
+              <div className="hero-metric-divider" />
+              <div className="hero-metric-item">
+                <div className="hero-metric-num accent">6+</div>
+                <div className="hero-metric-label">Cloud/AI Badges</div>
               </div>
             </div>
           </motion.div>
@@ -196,24 +190,25 @@ const Hero = () => {
                 style={{ width: '100%', height: '100%', objectFit: 'cover', transform: 'translateZ(-20px)' }}
               />
               
-              <div style={{ 
-                position: 'absolute', bottom: '20px', left: '20px', right: '20px',
-                background: 'rgba(255, 255, 255, 0.05)',
-                backdropFilter: 'blur(12px)',
-                padding: '12px',
-                borderRadius: '16px',
-                border: '1px solid rgba(255, 255, 255, 0.2)',
+              <div className="hero-status-pill" style={{ 
+                position: 'absolute', bottom: '16px', left: '16px', right: '16px',
+                background: 'rgba(10, 10, 15, 0.75)',
+                backdropFilter: 'blur(16px)',
+                WebkitBackdropFilter: 'blur(16px)',
+                padding: '10px 14px',
+                borderRadius: '12px',
+                border: '1px solid rgba(255, 255, 255, 0.15)',
                 display: 'flex',
                 alignItems: 'center',
-                gap: '12px',
+                gap: '8px',
                 transform: 'translateZ(30px)'
               }}>
                 <motion.div 
-                  animate={{ scale: [1, 1.5, 1], opacity: [1, 0.5, 1] }} 
+                  animate={{ scale: [1, 1.4, 1], opacity: [1, 0.6, 1] }} 
                   transition={{ repeat: Infinity, duration: 2 }}
-                  style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#22C55E' }} 
+                  style={{ width: '7px', height: '7px', borderRadius: '50%', background: '#22C55E', flexShrink: 0 }} 
                 />
-                <span className="mono-label" style={{ fontSize: '9px', color: '#fff' }}>OPEN TO WORK & COLLABORATE</span>
+                <span className="mono-label" style={{ fontSize: '9px', color: 'rgba(255, 255, 255, 0.9)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>OPEN TO OPPORTUNITIES</span>
               </div>
             </motion.div>
           </motion.div>

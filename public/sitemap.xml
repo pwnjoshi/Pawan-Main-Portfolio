@@ -1,8 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://joshipawan.com.np/</loc>
+    <lastmod>2026-08-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://joshipawan.com.np/hero-avatar.png</image:loc>
+      <image:title>Pawan Joshi - AI &amp; Cloud Architect</image:title>
+      <image:caption>Pawan Joshi official avatar picture</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://pawan.info.np/</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
   </url>
 </urlset>

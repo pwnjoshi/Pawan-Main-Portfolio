@@ -72,7 +72,7 @@ const Certifications = () => {
           </p>
         </div>
 
-        <div style={{
+        <div className="cert-grid" style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
           gap: '20px'

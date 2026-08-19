@@ -185,6 +185,37 @@ a, button, .btn, [role="button"] {
   max-width: 100%;
 }
 
+/* Metrics Ticker Desktop Base */
+.hero-metrics-ticker {
+  display: flex;
+  gap: 24px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  flex-wrap: wrap;
+}
+.hero-metric-item {
+  display: flex;
+  flex-direction: column;
+}
+.hero-metric-num {
+  font-size: 20px;
+  font-weight: 800;
+  color: #FFFFFF;
+  font-family: var(--font-display);
+}
+.hero-metric-num.accent {
+  color: #60A5FA;
+}
+.hero-metric-label {
+  font-size: 12px;
+  color: var(--text-dim);
+  font-family: var(--font-mono);
+}
+.hero-metric-divider {
+  width: 1px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
 /* Hero visual */
 .hero-visual > div {
   width: 100%;
@@ -323,11 +354,20 @@ a:focus-visible, button:focus-visible, .btn:focus-visible, a[href]:focus-visible
    ========================================== */
 @media (max-width: 768px) {
   .container {
-    padding: 0 16px;
+    padding: 0 18px;
   }
 
   .section-gap {
-    padding: 48px 0;
+    padding: 56px 0;
+  }
+
+  /* Section Headings on Mobile */
+  .display-text {
+    font-size: clamp(28px, 6.5vw, 36px) !important;
+  }
+  
+  .section-header-mb {
+    margin-bottom: 40px !important;
   }
 
   /* Buttons: 44px touch targets */
@@ -353,33 +393,87 @@ a:focus-visible, button:focus-visible, .btn:focus-visible, a[href]:focus-visible
 
   /* Hero */
   .hero-grid {
-    gap: 32px !important;
+    gap: 36px !important;
   }
   .hero-visual > div {
-    max-width: 240px !important;
+    max-width: 260px !important;
   }
   .hero-headline {
     font-size: clamp(28px, 7vw, 36px) !important;
   }
   .hero-subtext {
     font-size: 15px !important;
+    line-height: 1.55 !important;
   }
 
-  /* Experience */
+  /* Hero Metrics Ticker - Clean 3-col on Mobile */
+  .hero-metrics-ticker {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 8px !important;
+    padding-top: 20px !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+    width: 100% !important;
+  }
+  .hero-metric-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .hero-metric-num {
+    font-size: 18px !important;
+    font-weight: 800;
+    font-family: var(--font-display);
+    color: #FFFFFF;
+  }
+  .hero-metric-num.accent {
+    color: #60A5FA;
+  }
+  .hero-metric-label {
+    font-size: 10px !important;
+    color: var(--text-dim);
+    font-family: var(--font-mono);
+    margin-top: 2px;
+    line-height: 1.2;
+  }
+  .hero-metric-divider {
+    display: none !important;
+  }
+
+  /* Experience / Leadership */
   .journey-item {
     grid-template-columns: 1fr !important;
-    gap: 12px !important;
+    gap: 8px !important;
     padding: 24px 0 !important;
+  }
+  .journey-item h3 {
+    font-size: 20px !important;
   }
 
   /* Projects */
   .projects-grid {
     grid-template-columns: 1fr !important;
-    gap: 16px !important;
+    gap: 20px !important;
   }
   .lab-card {
     padding: 24px !important;
     min-height: auto !important;
+  }
+  .lab-card h3 {
+    font-size: 22px !important;
+  }
+
+  /* Certifications */
+  .cert-grid {
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+  }
+
+  /* Insights / Articles */
+  .insights-grid {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
   }
 
   /* Footer */
@@ -395,16 +489,16 @@ a:focus-visible, button:focus-visible, .btn:focus-visible, a[href]:focus-visible
   .footer-bottom {
     flex-direction: column !important;
     text-align: center !important;
-    gap: 12px !important;
+    gap: 16px !important;
   }
 
-  /* Stack grid */
+  /* Tech Stack Grid - Clean 2-column mobile layout */
   .stack-grid {
     grid-template-columns: repeat(2, 1fr) !important;
-    gap: 10px !important;
+    gap: 12px !important;
   }
   .stack-grid .elite-card {
-    padding: 14px !important;
+    padding: 16px 12px !important;
     font-size: 13px !important;
   }
 
@@ -420,12 +514,12 @@ a:focus-visible, button:focus-visible, .btn:focus-visible, a[href]:focus-visible
     padding: 10px 12px !important;
   }
 
-  /* Cards: tighter radius on mobile */
+  /* Cards: comfortable 16px radius on mobile */
   .elite-card {
     border-radius: 16px;
   }
 
-  /* Mono labels slightly smaller */
+  /* Mono labels */
   .mono-label {
     font-size: 10px;
   }

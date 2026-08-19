@@ -93,7 +93,11 @@ const Insights = () => {
           </div>
         ) : (
           <>
-            <div style={{ display: 'grid', gap: '32px', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))' }}>
+            <div className="insights-grid" style={{ 
+              display: 'grid', 
+              gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', 
+              gap: '32px' 
+            }}>
               {insights.map((post, index) => (
                 <motion.a
                   key={post.id}
