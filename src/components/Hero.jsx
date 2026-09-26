@@ -121,7 +121,7 @@ const Hero = () => {
                 whileHover={{ y: -2 }}
                 whileTap={{ y: 0 }}
                 transition={{ duration: 0.2 }}
-                href="https://linkedin.com/in/pwnjoshi" 
+                href="/Pawan_Joshi_Resume.pdf" 
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn btn-secondary" 
