@@ -123,32 +123,32 @@
     <link rel="preload" as="image" href="/hero-avatar.png">
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   </head>
-  <body>
+  <body style="background-color: #050505; color: #FFFFFF; margin: 0;">
     <div id="root">
-      <header>
+      <div id="initial-loader" style="position:fixed;inset:0;background:#050505;display:flex;align-items:center;justify-content:center;z-index:9999;">
+        <div style="width:36px;height:36px;border:2px solid rgba(255,255,255,0.08);border-top-color:#3B82F6;border-radius:50%;animation:initial-spin 0.8s linear infinite;"></div>
+      </div>
+      <style>
+        @keyframes initial-spin { to { transform: rotate(360deg); } }
+      </style>
+    </div>
+    <noscript>
+      <div style="padding: 2rem; max-width: 800px; margin: 0 auto; font-family: sans-serif; color: #FFFFFF; background-color: #050505;">
         <h1>Pawan Joshi</h1>
         <p>AI &amp; Cloud Architect, Co-Founder @ Tech Sangi Pvt. Ltd., AWS Student Builder Group Leader at Graphic Era University</p>
-      </header>
-      <main>
-        <section>
-          <h2>About Pawan Joshi</h2>
-          <p>Pawan Joshi is an AI &amp; Cloud Engineer based in Dehradun, India. B.Tech Computer Science student at Graphic Era Deemed to be University. Former AI Engineering Intern at Infosys Springboard, Google Student Ambassador, and Founding Leader of AWS Student Builder Group.</p>
-        </section>
-        <section>
-          <h2>Projects &amp; Systems by Pawan Joshi</h2>
-          <ul>
-            <li><strong>Autonomous Cognitive Engine:</strong> Deep research framework utilizing ReAct loops and virtual file systems in LangGraph.</li>
-            <li><strong>InterviewGen AI:</strong> End-to-end interview automation platform built with Django, OpenAI, and PostgreSQL.</li>
-            <li><strong>ARTAMS:</strong> Real-time attendance system engineered in C on AWS EC2 behind Nginx FastCGI.</li>
-            <li><strong>Tech Sangi Platform:</strong> SaaS product powering Tech Sangi Pvt. Ltd. (<a href="https://techsangi.com.np">techsangi.com.np</a>).</li>
-          </ul>
-        </section>
-        <section>
-          <h2>Resume</h2>
-          <p><a href="https://joshipawan.com.np/Pawan_Joshi_Resume.pdf">Download Pawan Joshi's Resume (PDF)</a></p>
-        </section>
-      </main>
-    </div>
+        <h2>About Pawan Joshi</h2>
+        <p>Pawan Joshi is an AI &amp; Cloud Engineer based in Dehradun, India. B.Tech Computer Science student at Graphic Era Deemed to be University. Former AI Engineering Intern at Infosys Springboard, Google Student Ambassador, and Founding Leader of AWS Student Builder Group.</p>
+        <h2>Projects &amp; Systems by Pawan Joshi</h2>
+        <ul>
+          <li><strong>Autonomous Cognitive Engine:</strong> Deep research framework utilizing ReAct loops and virtual file systems in LangGraph.</li>
+          <li><strong>InterviewGen AI:</strong> End-to-end interview automation platform built with Django, OpenAI, and PostgreSQL.</li>
+          <li><strong>ARTAMS:</strong> Real-time attendance system engineered in C on AWS EC2 behind Nginx FastCGI.</li>
+          <li><strong>Tech Sangi Platform:</strong> SaaS product powering Tech Sangi Pvt. Ltd. (<a href="https://techsangi.com.np" style="color: #60A5FA;">techsangi.com.np</a>).</li>
+        </ul>
+        <h2>Resume</h2>
+        <p><a href="https://joshipawan.com.np/Pawan_Joshi_Resume.pdf" style="color: #60A5FA;">Download Pawan Joshi's Resume (PDF)</a></p>
+      </div>
+    </noscript>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

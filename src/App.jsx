@@ -30,7 +30,7 @@ function App() {
   return (
     <>
       {showPreloader && <Preloader onFinish={() => setShowPreloader(false)} />}
-      <main style={{ minHeight: '100vh' }}>
+      <main style={{ minHeight: '100vh', opacity: showPreloader ? 0 : 1, transition: 'opacity 0.4s ease' }}>
         <Particles />
         <Cursor />
         <Navbar />
