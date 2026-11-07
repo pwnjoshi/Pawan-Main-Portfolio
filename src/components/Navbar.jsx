@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { MessageSquare, Menu, X } from 'lucide-react';
 
 const Navbar = () => {
@@ -12,18 +12,18 @@ const Navbar = () => {
     const handleScroll = () => {
       const currentY = window.scrollY;
 
-      // Scrolled state for background tint
+      // Scrolled state for background blur
       setScrolled(currentY > 20);
 
-      // Hide/reveal logic: hide on scroll down, show on scroll up
-      if (currentY > 80) {
-        if (currentY > lastScrollY.current + 5) {
+      // Smart hide/reveal on scroll
+      if (currentY > 100) {
+        if (currentY > lastScrollY.current + 8) {
           setHidden(true);  // scrolling down
-        } else if (currentY < lastScrollY.current - 5) {
+        } else if (currentY < lastScrollY.current - 8) {
           setHidden(false); // scrolling up
         }
       } else {
-        setHidden(false); // always show near top
+        setHidden(false); // near top
       }
 
       lastScrollY.current = currentY;
@@ -36,22 +36,22 @@ const Navbar = () => {
     { name: 'Experience', href: '#journey' },
     { name: 'Projects', href: '#lab' },
     { name: 'Certifications', href: '#certifications' },
-    { name: 'Insights', href: '#insights' },
-    { name: 'Tech Stack', href: '#stack' },
+    { name: 'Articles', href: '#insights' },
+    { name: 'Stack', href: '#stack' },
   ];
 
   return (
     <motion.header
-      initial={{ y: -50, opacity: 0 }}
+      initial={{ y: -40, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+      transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
       style={{
         position: 'fixed',
         top: 0,
         left: 0,
         right: 0,
         zIndex: 50,
-        padding: scrolled ? '8px 0' : '16px 0',
+        padding: scrolled ? '10px 0' : '16px 0',
         transform: hidden ? 'translateY(-100%)' : 'translateY(0)',
         transition: 'transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), padding 0.3s ease',
       }}
@@ -65,21 +65,21 @@ const Navbar = () => {
             justifyContent: 'space-between',
             alignItems: 'center',
             position: 'relative',
-            padding: '10px 20px',
-            background: scrolled ? 'rgba(10, 10, 15, 0.85)' : 'rgba(15, 15, 20, 0.5)',
+            padding: '8px 16px',
+            background: scrolled ? 'rgba(10, 11, 15, 0.85)' : 'rgba(15, 17, 23, 0.6)',
             backdropFilter: 'blur(20px)',
             WebkitBackdropFilter: 'blur(20px)',
-            borderRadius: '16px',
+            borderRadius: '14px',
             border: scrolled
               ? '1px solid rgba(255, 255, 255, 0.12)'
               : '1px solid rgba(255, 255, 255, 0.08)',
             boxShadow: scrolled
-              ? '0 20px 40px -15px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
-              : '0 8px 32px rgba(0, 0, 0, 0.2)',
-            transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
+              ? '0 16px 36px -10px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.08)'
+              : '0 8px 24px rgba(0, 0, 0, 0.25)',
+            transition: 'background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease',
           }}
         >
-          {/* Left: Brand Name */}
+          {/* Left: Brand Identity */}
           <a
             href="#"
             style={{
@@ -87,12 +87,24 @@ const Navbar = () => {
               color: 'inherit',
               flexShrink: 0,
               zIndex: 2,
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '8px',
             }}
           >
             <span
+              style={{
+                width: '10px',
+                height: '10px',
+                borderRadius: '50%',
+                background: '#3B82F6',
+                boxShadow: '0 0 10px rgba(59, 130, 246, 0.8)',
+              }}
+            />
+            <span
               className="display-text"
               style={{
-                fontSize: '18px',
+                fontSize: '16px',
                 fontWeight: '700',
                 letterSpacing: '-0.02em',
                 color: '#FFFFFF',
@@ -109,7 +121,7 @@ const Navbar = () => {
             style={{
               display: 'flex',
               alignItems: 'center',
-              gap: '4px',
+              gap: '2px',
               position: 'absolute',
               left: '50%',
               transform: 'translateX(-50%)',
@@ -120,26 +132,7 @@ const Navbar = () => {
               <a
                 key={item.name}
                 href={item.href}
-                style={{
-                  textDecoration: 'none',
-                  color: 'var(--text-dim)',
-                  padding: '6px 12px',
-                  borderRadius: '8px',
-                  fontSize: '13px',
-                  fontWeight: '500',
-                  fontFamily: 'var(--font-body)',
-                  transition: 'color 0.2s ease, background 0.2s ease',
-                  display: 'inline-block',
-                  whiteSpace: 'nowrap',
-                }}
-                onMouseOver={(e) => {
-                  e.currentTarget.style.color = '#FFFFFF';
-                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)';
-                }}
-                onMouseOut={(e) => {
-                  e.currentTarget.style.color = 'var(--text-dim)';
-                  e.currentTarget.style.background = 'transparent';
-                }}
+                className="nav-link-item"
               >
                 {item.name}
               </a>
@@ -147,15 +140,14 @@ const Navbar = () => {
           </div>
 
           {/* Right: CTA Button & Mobile Menu Toggle */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', zIndex: 2, flexShrink: 0 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', zIndex: 2, flexShrink: 0 }}>
             <motion.a
-              whileHover={{ opacity: 0.9, y: -1 }}
-              whileTap={{ y: 0 }}
-              transition={{ duration: 0.2 }}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
               href="#contact"
               className="btn nav-cta mobile-cta-hide"
               style={{
-                padding: '7px 15px',
+                padding: '7px 14px',
                 fontSize: '13px',
                 fontWeight: '600',
                 background: 'linear-gradient(135deg, #3B82F6 0%, #2563EB 100%)',
@@ -167,11 +159,11 @@ const Navbar = () => {
                 alignItems: 'center',
                 gap: '6px',
                 whiteSpace: 'nowrap',
-                flexShrink: 0,
+                boxShadow: '0 4px 14px rgba(37, 99, 235, 0.35)',
               }}
             >
               <MessageSquare size={13} />
-              Let's talk
+              <span>Let's talk</span>
             </motion.a>
 
             {/* Mobile Menu Toggle Button */}
@@ -181,7 +173,7 @@ const Navbar = () => {
               className="mobile-menu-btn"
               style={{
                 display: 'none',
-                background: 'rgba(255, 255, 255, 0.05)',
+                background: 'rgba(255, 255, 255, 0.04)',
                 border: '1px solid rgba(255, 255, 255, 0.1)',
                 color: '#FFFFFF',
                 padding: '7px',
@@ -195,44 +187,69 @@ const Navbar = () => {
         </nav>
 
         {/* Mobile Dropdown Menu */}
-        {mobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            style={{
-              marginTop: '8px',
-              padding: '16px',
-              background: 'rgba(10, 10, 15, 0.95)',
-              backdropFilter: 'blur(20px)',
-              WebkitBackdropFilter: 'blur(20px)',
-              borderRadius: '16px',
-              border: '1px solid rgba(255, 255, 255, 0.1)',
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '10px',
-            }}
-          >
-            {navItems.map((item) => (
+        <AnimatePresence>
+          {mobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -8, scale: 0.98 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -8, scale: 0.98 }}
+              transition={{ duration: 0.2 }}
+              style={{
+                marginTop: '8px',
+                padding: '14px',
+                background: 'rgba(10, 11, 15, 0.96)',
+                backdropFilter: 'blur(24px)',
+                WebkitBackdropFilter: 'blur(24px)',
+                borderRadius: '14px',
+                border: '1px solid rgba(255, 255, 255, 0.1)',
+                boxShadow: '0 20px 40px rgba(0, 0, 0, 0.6)',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '8px',
+              }}
+            >
+              {navItems.map((item) => (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  onClick={() => setMobileMenuOpen(false)}
+                  style={{
+                    textDecoration: 'none',
+                    color: '#E2E8F0',
+                    padding: '10px 14px',
+                    borderRadius: '8px',
+                    fontSize: '14px',
+                    fontWeight: '500',
+                    background: 'rgba(255, 255, 255, 0.03)',
+                    transition: 'background 0.2s ease',
+                  }}
+                >
+                  {item.name}
+                </a>
+              ))}
               <a
-                key={item.name}
-                href={item.href}
+                href="#contact"
                 onClick={() => setMobileMenuOpen(false)}
                 style={{
                   textDecoration: 'none',
-                  color: 'var(--text-dim)',
+                  color: '#FFFFFF',
                   padding: '10px 14px',
                   borderRadius: '8px',
                   fontSize: '14px',
-                  fontWeight: '500',
-                  background: 'rgba(255, 255, 255, 0.03)',
+                  fontWeight: '600',
+                  background: 'linear-gradient(135deg, #3B82F6 0%, #2563EB 100%)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                  marginTop: '4px',
                 }}
               >
-                {item.name}
+                <MessageSquare size={14} />
+                <span>Let's talk</span>
               </a>
-            ))}
-          </motion.div>
-        )}
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </motion.header>
   );

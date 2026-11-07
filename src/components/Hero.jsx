@@ -1,30 +1,27 @@
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import { ArrowRight, Cpu, FileText } from 'lucide-react';
+import { ArrowRight, FileText, MapPin } from 'lucide-react';
 
 const Hero = () => {
   const containerRef = useRef(null);
   
-  // Mouse position for spotlight
+  // Smooth mouse coordinates for soft spotlight
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
-  // Smooth springs for 3D tilt
-  const tiltX = useSpring(useMotionValue(0), { stiffness: 100, damping: 30 });
-  const tiltY = useSpring(useMotionValue(0), { stiffness: 100, damping: 30 });
+  // Gentle, dampened 3D tilt
+  const tiltX = useSpring(useMotionValue(0), { stiffness: 80, damping: 25 });
+  const tiltY = useSpring(useMotionValue(0), { stiffness: 80, damping: 25 });
   
-  const rotateX = useTransform(tiltY, [-0.5, 0.5], ["15deg", "-15deg"]);
-  const rotateY = useTransform(tiltX, [-0.5, 0.5], ["-15deg", "15deg"]);
+  const rotateX = useTransform(tiltY, [-0.5, 0.5], ['6deg', '-6deg']);
+  const rotateY = useTransform(tiltX, [-0.5, 0.5], ['-6deg', '6deg']);
 
   const handleMouseMove = (e) => {
     if (!containerRef.current) return;
     const rect = containerRef.current.getBoundingClientRect();
-    
-    // Spotlight position
     mouseX.set(e.clientX - rect.left);
     mouseY.set(e.clientY - rect.top);
     
-    // Tilt calculations (-0.5 to 0.5)
     const xPct = (e.clientX - rect.left) / rect.width - 0.5;
     const yPct = (e.clientY - rect.top) / rect.height - 0.5;
     tiltX.set(xPct);
@@ -42,24 +39,24 @@ const Hero = () => {
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       style={{ 
-        minHeight: '90vh', 
+        minHeight: '88vh', 
         display: 'flex', 
         alignItems: 'center', 
         position: 'relative',
-        paddingTop: 'clamp(80px, 15vw, 100px)',
-        paddingBottom: '40px',
+        paddingTop: 'clamp(90px, 14vw, 120px)',
+        paddingBottom: 'clamp(40px, 6vw, 60px)',
         overflow: 'hidden',
-        perspective: '1000px'
       }}
     >
-      {/* Dynamic Spotlight */}
+      {/* Subtle cursor spotlight */}
       <motion.div
+        aria-hidden="true"
         style={{
           position: 'absolute',
-          top: 0, left: 0, right: 0, bottom: 0,
+          inset: 0,
           background: useTransform(
             [mouseX, mouseY],
-            ([x, y]) => `radial-gradient(600px circle at ${x}px ${y}px, rgba(59, 130, 246, 0.08), transparent 80%)`
+            ([x, y]) => `radial-gradient(500px circle at ${x}px ${y}px, rgba(59, 130, 246, 0.06), transparent 80%)`
           ),
           pointerEvents: 'none',
           zIndex: 0
@@ -69,75 +66,144 @@ const Hero = () => {
       <div className="container" style={{ zIndex: 1, position: 'relative' }}>
         <div className="hero-grid" style={{ 
           display: 'grid', 
-          gridTemplateColumns: '1.6fr 0.9fr',
-          gap: 'clamp(24px, 4vw, 50px)',
+          gridTemplateColumns: '1.45fr 1fr',
+          gap: 'clamp(32px, 5vw, 64px)',
           alignItems: 'center'
         }}>
-          {/* Left Content */}
+          {/* Left: Grounded, Unslop Hero Copy */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
             className="hero-content"
-            style={{ maxWidth: '100%', overflow: 'visible' }}
           >
-            <div className="hero-badges">
-              <span className="hero-role-badge mono-label">
-                <Cpu size={12} style={{ marginRight: '6px', display: 'inline', opacity: 0.85, verticalAlign: '-1px' }} />
-                Student &amp; Architect
-              </span>
-              <span className="hero-edition-tag mono-label">2026</span>
+            {/* Status & Location Row */}
+            <div className="hero-badges" style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '20px', flexWrap: 'wrap' }}>
+              <div style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '8px',
+                padding: '4px 12px',
+                borderRadius: '9999px',
+                background: 'rgba(34, 197, 94, 0.08)',
+                border: '1px solid rgba(34, 197, 94, 0.25)',
+                fontSize: '12px',
+                color: '#4ADE80',
+                fontFamily: 'var(--font-mono)',
+                fontWeight: '500'
+              }}>
+                <span style={{
+                  width: '6px',
+                  height: '6px',
+                  borderRadius: '50%',
+                  backgroundColor: '#22C55E',
+                  boxShadow: '0 0 8px #22C55E'
+                }} />
+                Available for Roles &amp; Collaborations
+              </div>
+
+              <div style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '5px',
+                padding: '4px 10px',
+                borderRadius: '9999px',
+                background: 'rgba(255, 255, 255, 0.03)',
+                border: '1px solid rgba(255, 255, 255, 0.08)',
+                fontSize: '12px',
+                color: 'var(--text-dim)',
+                fontFamily: 'var(--font-mono)'
+              }}>
+                <MapPin size={12} style={{ opacity: 0.7 }} />
+                Dehradun, India
+              </div>
             </div>
             
-            <h1 className="display-text hero-headline" style={{ fontSize: 'clamp(36px, 5.5vw, 64px)', marginBottom: '24px', lineHeight: '1.1' }}>
-              I am <span className="hero-highlight">Pawan Joshi.</span>
+            {/* Primary Headline */}
+            <h1 className="display-text hero-headline" style={{ 
+              fontSize: 'clamp(38px, 5.2vw, 62px)', 
+              marginBottom: '16px', 
+              lineHeight: '1.08',
+              letterSpacing: '-0.03em'
+            }}>
+              Pawan <span className="hero-highlight" style={{ color: '#60A5FA' }}>Joshi</span>
             </h1>
             
-            <p className="hero-subtext" style={{ 
-              fontSize: '18px', 
-              color: 'var(--text-dim)', 
-              maxWidth: '520px', 
-              marginBottom: '32px',
-              lineHeight: '1.6'
+            {/* Value Proposition */}
+            <p style={{
+              fontSize: 'clamp(18px, 2.2vw, 22px)',
+              color: '#F1F5F9',
+              fontWeight: '500',
+              lineHeight: '1.4',
+              marginBottom: '16px',
+              fontFamily: 'var(--font-display)',
+              letterSpacing: '-0.01em'
             }}>
-              Engineering at Graphic Era, building <span style={{ color: '#60A5FA', fontWeight: '500' }}>Tech Sangi</span>, and leading the AWS Student Builder Group.
+              Software engineer specializing in autonomous AI agents and cloud infrastructure.
+            </p>
+
+            {/* Context Narrative */}
+            <p className="hero-subtext" style={{ 
+              fontSize: '15px', 
+              color: 'var(--text-dim)', 
+              maxWidth: '540px', 
+              marginBottom: '32px',
+              lineHeight: '1.65'
+            }}>
+              Co-Founder at <a href="https://techsangi.com.np" target="_blank" rel="noopener noreferrer" style={{ color: '#FFFFFF', textDecoration: 'none', borderBottom: '1px solid rgba(255, 255, 255, 0.3)', fontWeight: '500' }}>Tech Sangi</a>, founding leader of the AWS Student Builder Group at Graphic Era University, and former AI Engineering Intern at Infosys Springboard.
             </p>
             
-            <div style={{ display: 'flex', gap: '14px', flexWrap: 'wrap', alignItems: 'center', marginBottom: '32px' }}>
+            {/* Primary Action Buttons */}
+            <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', alignItems: 'center', marginBottom: '36px' }}>
               <motion.a 
                 whileHover={{ y: -2 }}
                 whileTap={{ y: 0 }}
-                transition={{ duration: 0.2 }}
+                transition={{ duration: 0.15 }}
                 href="#lab" 
-                className="btn btn-primary" 
-                data-cursor="link"
-                style={{ position: 'relative', overflow: 'hidden' }}
+                className="btn btn-primary"
+                style={{
+                  background: '#FFFFFF',
+                  color: '#09090B',
+                  fontWeight: '600',
+                  fontSize: '14px',
+                  padding: '11px 22px',
+                  borderRadius: '10px',
+                  boxShadow: '0 10px 25px -5px rgba(255, 255, 255, 0.12)'
+                }}
               >
                 <span>Explore Projects</span>
-                <ArrowRight size={16} />
+                <ArrowRight size={15} />
               </motion.a>
               
               <motion.a 
                 whileHover={{ y: -2 }}
                 whileTap={{ y: 0 }}
-                transition={{ duration: 0.2 }}
+                transition={{ duration: 0.15 }}
                 href="/Pawan_Joshi_Resume.pdf" 
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn btn-secondary" 
-                data-cursor="link"
-                style={{ gap: '6px' }}
+                className="btn btn-secondary"
+                style={{
+                  background: 'rgba(255, 255, 255, 0.04)',
+                  border: '1px solid rgba(255, 255, 255, 0.12)',
+                  color: '#FFFFFF',
+                  fontWeight: '500',
+                  fontSize: '14px',
+                  padding: '11px 20px',
+                  borderRadius: '10px',
+                  gap: '8px'
+                }}
               >
-                <FileText size={15} />
-                <span>Resume / Bio</span>
+                <FileText size={15} style={{ color: '#60A5FA' }} />
+                <span>Resume (PDF)</span>
               </motion.a>
             </div>
 
-            {/* Quick Metrics Ticker */}
+            {/* Grounded Metrics Ticker */}
             <div className="hero-metrics-ticker">
               <div className="hero-metric-item">
-                <div className="hero-metric-num">8+</div>
-                <div className="hero-metric-label">Products Built</div>
+                <div className="hero-metric-num">450+</div>
+                <div className="hero-metric-label">Builders Reached</div>
               </div>
               <div className="hero-metric-divider" />
               <div className="hero-metric-item">
@@ -146,69 +212,73 @@ const Hero = () => {
               </div>
               <div className="hero-metric-divider" />
               <div className="hero-metric-item">
-                <div className="hero-metric-num accent">6+</div>
-                <div className="hero-metric-label">Cloud/AI Badges</div>
+                <div className="hero-metric-num accent">4x</div>
+                <div className="hero-metric-label">Cloud &amp; AI Certified</div>
               </div>
             </div>
           </motion.div>
 
-          {/* Right Visual (3D Avatar) */}
+          {/* Right: Refined, Clean Portrait Frame */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
+            initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, delay: 0.2 }}
+            transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
             className="hero-visual"
             style={{ 
               display: 'flex',
               justifyContent: 'center',
               perspective: '1000px',
-              minWidth: 0
             }}
           >
             <motion.div 
               style={{ 
                 position: 'relative',
                 width: '100%',
-                maxWidth: '420px',
+                maxWidth: '380px',
                 aspectRatio: '1',
                 borderRadius: '24px',
-                overflow: 'hidden',
-                border: '1px solid rgba(255,255,255,0.15)',
-                boxShadow: '0 40px 100px rgba(0,0,0,0.5), inset 0 0 0 1px rgba(255,255,255,0.1)',
+                padding: '6px',
+                background: 'linear-gradient(145deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.03) 100%)',
+                boxShadow: '0 25px 60px -15px rgba(0, 0, 0, 0.7), 0 0 40px -10px rgba(59, 130, 246, 0.1)',
                 rotateX,
                 rotateY,
-                transformStyle: 'preserve-3d'
+                transformStyle: 'preserve-3d',
+                transition: 'transform 0.2s ease-out'
               }}
             >
-              <img 
-                src="/hero-avatar.png" 
-                alt="Pawan Joshi" 
-                width="420"
-                height="420"
-                decoding="async"
-                loading="eager"
-                style={{ width: '100%', height: '100%', objectFit: 'cover', transform: 'translateZ(-20px)' }}
-              />
-              
-              <div className="hero-status-pill" style={{ 
-                position: 'absolute', bottom: '16px', left: '16px', right: '16px',
-                background: 'rgba(10, 10, 15, 0.75)',
-                backdropFilter: 'blur(16px)',
-                WebkitBackdropFilter: 'blur(16px)',
-                padding: '10px 14px',
-                borderRadius: '12px',
-                border: '1px solid rgba(255, 255, 255, 0.15)',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '8px',
-                transform: 'translateZ(30px)'
+              <div style={{
+                width: '100%',
+                height: '100%',
+                borderRadius: '18px',
+                overflow: 'hidden',
+                position: 'relative',
+                background: '#0F1117'
               }}>
-                <motion.div 
-                  animate={{ scale: [1, 1.4, 1], opacity: [1, 0.6, 1] }} 
-                  transition={{ repeat: Infinity, duration: 2 }}
-                  style={{ width: '7px', height: '7px', borderRadius: '50%', background: '#22C55E', flexShrink: 0 }} 
+                <img 
+                  src="/hero-avatar.png" 
+                  alt="Pawan Joshi - AI & Cloud Engineer" 
+                  width="420"
+                  height="420"
+                  decoding="async"
+                  loading="eager"
+                  style={{ 
+                    width: '100%', 
+                    height: '100%', 
+                    objectFit: 'cover',
+                    display: 'block'
+                  }}
                 />
-                <span className="mono-label" style={{ fontSize: '9px', color: 'rgba(255, 255, 255, 0.9)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>OPEN TO OPPORTUNITIES</span>
+                
+                {/* Subtle bottom gradient to ground the portrait */}
+                <div 
+                  aria-hidden="true"
+                  style={{
+                    position: 'absolute',
+                    inset: 0,
+                    background: 'linear-gradient(to top, rgba(9, 9, 11, 0.3) 0%, transparent 40%)',
+                    pointerEvents: 'none'
+                  }}
+                />
               </div>
             </motion.div>
           </motion.div>

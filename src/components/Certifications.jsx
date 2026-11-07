@@ -1,34 +1,34 @@
 import { motion } from 'framer-motion';
-import { Award, ExternalLink } from 'lucide-react';
+import { Award, ExternalLink, ShieldCheck } from 'lucide-react';
 
 const certifications = [
   {
     title: "AWS Certified Cloud Practitioner (CLF-C02)",
     issuer: "Amazon Web Services (AWS)",
-    date: "Issued Jul 2026 · Expires Jul 2029",
+    date: "Issued Jul 2026",
     badgeUrl: "https://www.credly.com/badges/34758bd1-d052-4760-9d70-845e54f44e8c/linked_in_profile",
     category: "Cloud Architecture"
   },
   {
-    title: "Google Cloud Generative AI Leader Certification",
+    title: "Google Cloud Generative AI Leader",
     issuer: "Google Cloud",
-    date: "Issued Jul 2026 · Expires Jul 2029",
+    date: "Issued Jul 2026",
     badgeUrl: "https://www.credly.com/badges/b563155e-bb45-463f-bfde-2c396c536df8/linked_in_profile",
-    category: "Artificial Intelligence"
+    category: "Generative AI"
   },
   {
     title: "Nebius Agentic AI Builder Certification",
     issuer: "Nebius Academy",
     date: "Issued Jul 2026",
     badgeUrl: "https://www.credly.com/badges/74ddfbd8-2a2e-4992-aa4c-714f1481d609/linked_in_profile",
-    category: "AI Engineering"
+    category: "Agentic Systems"
   },
   {
     title: "Nebius AI CloudOps Engineer Certification",
     issuer: "Nebius Academy",
-    date: "Issued Jul 2026 · Expires Jul 2029",
+    date: "Issued Jul 2026",
     badgeUrl: "https://www.credly.com/badges/9713db14-bab7-4e84-b0fc-3cd9a89a6f05/linked_in_profile",
-    category: "CloudOps & AI"
+    category: "CloudOps & ML"
   },
   {
     title: "AWS AI & ML Scholars Challenge",
@@ -48,13 +48,13 @@ const certifications = [
     title: "Principles of Generative AI Certification",
     issuer: "Infosys Springboard",
     date: "Issued Oct 2025",
-    badgeUrl: null,
-    category: "Generative AI"
+    badgeUrl: "https://infyspringboard.onwingspan.com",
+    category: "Foundational AI"
   },
   {
-    title: "Notion AI Badge",
+    title: "Notion AI Certified",
     issuer: "Notion",
-    date: "Issued May 2026 · Expires May 2028",
+    date: "Issued May 2026",
     badgeUrl: "https://verify.skilljar.com/c/d6texn532eym",
     category: "Productivity AI"
   }
@@ -62,45 +62,53 @@ const certifications = [
 
 const Certifications = () => {
   return (
-    <section id="certifications" className="section-gap" style={{ background: 'rgba(255, 255, 255, 0.015)' }}>
+    <section id="certifications" className="section-gap" style={{ position: 'relative' }}>
       <div className="container">
-        <div style={{ marginBottom: '60px' }}>
-          <div className="mono-label" style={{ marginBottom: '16px' }}>/ VERIFIED CREDENTIALS</div>
-          <h2 className="display-text" style={{ fontSize: '48px', marginBottom: '16px' }}>Certifications &amp; Badges</h2>
-          <p style={{ fontSize: '18px', color: 'var(--text-dim)', maxWidth: '600px' }}>
-            Official industry certifications across Cloud Architecture, Generative AI, CloudOps, and Leadership.
+        {/* Section Header */}
+        <div style={{ marginBottom: '56px' }}>
+          <div className="mono-label" style={{ marginBottom: '12px', color: '#60A5FA' }}>
+            / 03 &mdash; CREDENTIALS
+          </div>
+          <h2 className="display-text" style={{ fontSize: 'clamp(32px, 4.5vw, 48px)', marginBottom: '16px' }}>
+            Certifications &amp; Badges
+          </h2>
+          <p style={{ color: 'var(--text-dim)', fontSize: '16px', maxWidth: '580px', lineHeight: '1.6' }}>
+            Officially verified industry credentials across Cloud Computing, Generative AI, CloudOps, and Engineering Leadership.
           </p>
         </div>
 
+        {/* 3-Column Clean Card Grid */}
         <div className="cert-grid" style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
+          gridTemplateColumns: 'repeat(auto-fill, minmax(270px, 1fr))',
           gap: '20px'
         }}>
           {certifications.map((cert, index) => (
             <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
+              key={cert.title}
+              initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.05 }}
-              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.35, delay: index * 0.05 }}
+              viewport={{ once: true, margin: "-30px" }}
               className="elite-card"
               style={{
                 padding: '24px',
                 display: 'flex',
                 flexDirection: 'column',
-                justify: 'space-between',
+                justifyContent: 'space-between',
                 borderRadius: '16px',
                 border: '1px solid rgba(255, 255, 255, 0.08)',
-                background: 'rgba(15, 15, 20, 0.6)',
+                background: 'linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%)',
+                minHeight: '210px'
               }}
             >
               <div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '12px' }}>
-                  <div style={{
-                    padding: '4px 10px',
+                {/* Category Pill + Icon */}
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '14px' }}>
+                  <span style={{
+                    padding: '3px 8px',
                     borderRadius: '6px',
-                    background: 'rgba(59, 130, 246, 0.1)',
+                    background: 'rgba(59, 130, 246, 0.08)',
                     border: '1px solid rgba(59, 130, 246, 0.2)',
                     color: '#60A5FA',
                     fontSize: '11px',
@@ -108,17 +116,19 @@ const Certifications = () => {
                     fontFamily: 'var(--font-mono)'
                   }}>
                     {cert.category}
-                  </div>
-                  <Award size={18} style={{ color: 'rgba(255, 255, 255, 0.4)' }} />
+                  </span>
+                  <ShieldCheck size={16} style={{ color: 'rgba(255, 255, 255, 0.35)' }} />
                 </div>
 
-                <h3 style={{ fontSize: '16px', fontWeight: '700', color: '#FFFFFF', marginBottom: '8px', lineHeight: '1.3' }}>
+                <h3 style={{ fontSize: '15px', fontWeight: '700', color: '#FFFFFF', marginBottom: '6px', lineHeight: '1.35' }}>
                   {cert.title}
                 </h3>
-                <p style={{ fontSize: '13px', color: 'var(--accent)', fontWeight: '500', marginBottom: '4px' }}>
+                
+                <p style={{ fontSize: '13px', color: 'rgba(255, 255, 255, 0.7)', fontWeight: '500', marginBottom: '4px' }}>
                   {cert.issuer}
                 </p>
-                <p style={{ fontSize: '12px', color: 'var(--text-dim)', margin: 0 }}>
+                
+                <p style={{ fontSize: '12px', color: 'var(--text-dim)', margin: 0, fontFamily: 'var(--font-mono)' }}>
                   {cert.date}
                 </p>
               </div>
@@ -132,8 +142,9 @@ const Certifications = () => {
                     style={{
                       display: 'inline-flex',
                       alignItems: 'center',
-                      gap: '6px',
+                      gap: '5px',
                       fontSize: '12px',
+                      fontWeight: '600',
                       color: 'var(--text-dim)',
                       textDecoration: 'none',
                       transition: 'color 0.2s ease',
@@ -142,7 +153,7 @@ const Certifications = () => {
                     onMouseOut={(e) => e.currentTarget.style.color = 'var(--text-dim)'}
                   >
                     <span>Verify Credential</span>
-                    <ExternalLink size={12} />
+                    <ExternalLink size={11} />
                   </a>
                 </div>
               )}

@@ -1,47 +1,57 @@
-// Lightweight SVG background blobs with subtle CSS animation — far less CPU than canvas particles
+// Ambient atmospheric background with subtle radial glow and micro-grid texture
+// Zero CPU overhead, no canvas jitter, perfectly crisp on high-DPI screens.
 const Particles = () => {
-  // Don't render on the server or when reduced-motion / touch; checks are handled upstream where this component is mounted.
   return (
-    <svg
-      aria-hidden
-      focusable="false"
-      viewBox="0 0 1200 800"
-      preserveAspectRatio="xMidYMid slice"
+    <div
+      aria-hidden="true"
       style={{
         position: 'fixed',
         inset: 0,
-        width: '100%',
-        height: '100%',
         zIndex: 0,
         pointerEvents: 'none',
-        opacity: 1
+        overflow: 'hidden',
       }}
     >
-      <defs>
-        <linearGradient id="g1" x1="0%" x2="100%">
-          <stop offset="0%" stopColor="rgba(59,130,246,0.06)" />
-          <stop offset="100%" stopColor="rgba(99,102,241,0.02)" />
-        </linearGradient>
-        <filter id="blur" x="-20%" y="-20%" width="140%" height="140%">
-          <feGaussianBlur stdDeviation="30" />
-        </filter>
-      </defs>
+      {/* Top ambient radial glow */}
+      <div
+        style={{
+          position: 'absolute',
+          top: '-150px',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          width: '1000px',
+          height: '600px',
+          background: 'radial-gradient(ellipse 50% 50% at 50% 50%, rgba(59, 130, 246, 0.08) 0%, rgba(37, 99, 235, 0.02) 50%, transparent 80%)',
+          filter: 'blur(40px)',
+        }}
+      />
 
-      <g filter="url(#blur)">
-        <ellipse cx="15%" cy="20%" rx="200" ry="120" fill="url(#g1)">
-          <animate attributeName="cx" dur="14s" values="10%;15%;20%;10%" repeatCount="indefinite" />
-          <animate attributeName="cy" dur="18s" values="15%;20%;18%;15%" repeatCount="indefinite" />
-        </ellipse>
-        <ellipse cx="85%" cy="30%" rx="220" ry="140" fill="rgba(99,102,241,0.03)">
-          <animate attributeName="cx" dur="16s" values="80%;85%;90%;80%" repeatCount="indefinite" />
-          <animate attributeName="cy" dur="20s" values="25%;30%;28%;25%" repeatCount="indefinite" />
-        </ellipse>
-        <ellipse cx="50%" cy="80%" rx="320" ry="200" fill="rgba(59,130,246,0.02)">
-          <animate attributeName="cx" dur="22s" values="45%;50%;55%;45%" repeatCount="indefinite" />
-          <animate attributeName="cy" dur="24s" values="75%;80%;78%;75%" repeatCount="indefinite" />
-        </ellipse>
-      </g>
-    </svg>
+      {/* Subtle secondary ambient glow for depth */}
+      <div
+        style={{
+          position: 'absolute',
+          top: '35%',
+          right: '-200px',
+          width: '600px',
+          height: '600px',
+          background: 'radial-gradient(circle, rgba(99, 102, 241, 0.03) 0%, transparent 70%)',
+          filter: 'blur(60px)',
+        }}
+      />
+
+      {/* Precision micro-grid overlay with radial fade */}
+      <div
+        style={{
+          position: 'absolute',
+          inset: 0,
+          backgroundImage: 'radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px)',
+          backgroundSize: '32px 32px',
+          maskImage: 'radial-gradient(ellipse 80% 60% at 50% 10%, #000 30%, transparent 90%)',
+          WebkitMaskImage: 'radial-gradient(ellipse 80% 60% at 50% 10%, #000 30%, transparent 90%)',
+          opacity: 0.7,
+        }}
+      />
+    </div>
   );
 };
 

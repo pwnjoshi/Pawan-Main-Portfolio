@@ -1,129 +1,144 @@
 import { motion } from 'framer-motion';
-import { ArrowUpRight, GitBranch, ExternalLink } from 'lucide-react';
+import { ExternalLink, GitBranch } from 'lucide-react';
 
-const labs = [
+const projects = [
   {
     id: "01",
-    title: "Autonomous Cognitive Engine",
-    desc: "A deep research framework utilizing ReAct loops and virtual file systems for autonomous agentic reasoning.",
-    type: "AI ARCHITECTURE",
-    tags: ["LangGraph", "Python", "RAG", "ReAct"],
-
-    color: "#8B5CF6",
-    link: "#",
-    github: "#"
+    title: "AWS Student Builder Platform & Portal",
+    type: "CLOUD PLATFORM",
+    desc: "Serverless campus platform built on AWS (S3, CloudFront, DynamoDB) serving 450+ registered builders across 200+ institutions in 35+ countries. Features multi-tenant Google OAuth & JWT auth, automated CLF-C02 certification verification, and sub-100ms API latency via DynamoDB GSIs.",
+    tags: ["React", "Node.js", "AWS S3", "CloudFront", "DynamoDB"],
+    accentColor: "#3B82F6",
+    liveLink: "https://aws-sbg-piet-official-site.vercel.app",
+    liveLabel: "Live Portal",
+    githubLink: "https://github.com/pwnjoshi/AWS-SBG-PIET-Official-Site"
   },
   {
     id: "02",
-    title: "InterviewGen AI",
-    desc: "End-to-end interview automation platform with multi-stage evaluation and stateful candidate management.",
-    type: "AUTOMATION",
-    tags: ["Django", "OpenAI", "PostgreSQL", "REST API"],
-
-    color: "#3B82F6",
-    link: "#",
-    github: "#"
+    title: "Autonomous Cognitive Engine",
+    type: "AI AGENT SYSTEMS",
+    desc: "Multi-step agent framework in LangGraph designed to decompose and execute complex engineering tasks autonomously with ~80% accuracy. Overcame context-overflow crashes on jobs with 10,000+ log lines by engineering an in-memory virtual file system, with LangSmith tracing pushing run reliability past 70%.",
+    tags: ["Python", "LangGraph", "LangSmith", "ReAct Loops", "VFS"],
+    accentColor: "#8B5CF6",
+    liveLink: "https://infyspringboard.onwingspan.com/public-assets/infosysheadstart/cert/lex_auth_01454259343803187223/14bb99d1-1b1d-45b5-badf-839bae33f2b5.pdf",
+    liveLabel: "Verified Credential",
+    githubLink: "https://github.com/pwnjoshi"
   },
   {
     id: "03",
-    title: "ARTAMS",
-    desc: "Real-time attendance engine engineered for AWS high-availability with O(1) lookup performance.",
-    type: "INFRASTRUCTURE",
-    tags: ["AWS", "Lambda", "DynamoDB", "CloudWatch"],
-
-    color: "#06B6D4",
-    link: "#",
-    github: "#"
+    title: "ARTAMS: Real-Time Attendance Engine",
+    type: "SYSTEMS & BACKEND",
+    desc: "High-throughput attendance and verification system written in C using in-memory hash tables for O(1) lookups and Haversine formula GPS anti-spoofing algorithms. Deployed on an AWS EC2 instance (Ubuntu 24.04) behind Nginx via FastCGI REST APIs to handle concurrent verification requests.",
+    tags: ["C", "AWS EC2", "Nginx", "FastCGI", "Data Structures"],
+    accentColor: "#06B6D4",
+    liveLink: "/Pawan_Joshi_Resume.pdf",
+    liveLabel: "Architecture Specs",
+    githubLink: "https://github.com/pwnjoshi"
   },
   {
     id: "04",
-    title: "Tech Sangi Platform",
-    desc: "Full-stack SaaS product powering Tech Sangi Pvt. Ltd. — from community tools to analytics dashboards.",
-    type: "SAAS / STARTUP",
-    tags: ["React", "Node.js", "AWS", "Stripe"],
-
-    color: "#F59E0B",
-    link: "https://techsangi.com.np",
-    github: "#"
+    title: "Tech Sangi SaaS Platform",
+    type: "FULL-STACK SAAS",
+    desc: "Production-grade SaaS platform powering Tech Sangi Pvt. Ltd. Supports client delivery pipelines, community resources, and internal tooling. Architected with scalable cloud primitives, secure authentication, Stripe billing, and continuous deployment workflows.",
+    tags: ["React", "Node.js", "AWS", "Stripe", "PostgreSQL"],
+    accentColor: "#10B981",
+    liveLink: "https://techsangi.com.np",
+    liveLabel: "Visit Platform",
+    githubLink: "https://github.com/pwnjoshi"
   }
 ];
 
 const Projects = () => {
   return (
-    <section id="lab" className="section-gap" style={{ background: '#080808' }}>
+    <section id="lab" className="section-gap" style={{ position: 'relative' }}>
       <div className="container">
         {/* Section Header */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '64px', flexWrap: 'wrap', gap: '16px' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '56px', flexWrap: 'wrap', gap: '20px' }}>
           <div>
-            <div className="mono-label" style={{ marginBottom: '16px' }}>/ FEATURED PROJECTS</div>
-            <h2 className="display-text" style={{ fontSize: 'clamp(36px, 5vw, 52px)' }}>
-              Projects & <span style={{ color: 'var(--accent)' }}>Systems</span>
+            <div className="mono-label" style={{ marginBottom: '12px', color: '#60A5FA' }}>
+              / 02 &mdash; SELECTED WORK
+            </div>
+            <h2 className="display-text" style={{ fontSize: 'clamp(32px, 4.5vw, 48px)' }}>
+              Projects &amp; <span style={{ color: '#60A5FA' }}>Systems</span>
             </h2>
           </div>
-          <p style={{ color: 'var(--text-dim)', fontSize: '15px', maxWidth: '360px', lineHeight: '1.6' }}>
-            Production-grade systems built from scratch — from AI reasoning engines to cloud-native infrastructure.
+          <p style={{ color: 'var(--text-dim)', fontSize: '15px', maxWidth: '420px', lineHeight: '1.6' }}>
+            Production systems built from scratch &mdash; from distributed cloud portals to low-level C backends and autonomous agent frameworks.
           </p>
         </div>
         
         {/* Projects Grid */}
         <div className="projects-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '24px' }}>
-          {labs.map((lab, index) => {
+          {projects.map((proj, index) => {
             return (
               <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
+                key={proj.id}
+                initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
+                viewport={{ once: true, margin: "-40px" }}
+                transition={{ duration: 0.5, delay: index * 0.08 }}
                 className="elite-card lab-card"
-                data-cursor="project"
                 style={{ 
-                  padding: '40px', 
+                  padding: '36px', 
                   display: 'flex',
                   flexDirection: 'column',
                   justifyContent: 'space-between',
+                  borderRadius: '18px',
+                  background: 'linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%)',
+                  border: '1px solid rgba(255, 255, 255, 0.08)',
                   position: 'relative',
                   overflow: 'hidden',
                   minHeight: '340px',
                   transition: 'border-color 0.3s ease, box-shadow 0.3s ease',
                 }}
-                onMouseOver={(e) => {
-                  e.currentTarget.style.borderColor = `${lab.color}33`;
-                  e.currentTarget.style.boxShadow = `0 20px 60px -15px ${lab.color}15, inset 0 1px 0 ${lab.color}20`;
-                }}
-                onMouseOut={(e) => {
-                  e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.1)';
-                  e.currentTarget.style.boxShadow = 'none';
-                }}
               >
-                {/* Top Row: Number + Type Label */}
+                {/* Top Row: Index + Discipline Label (No top-left icon as requested) */}
                 <div>
-                  <div className="mono-label" style={{ color: 'rgba(255,255,255,0.25)', fontSize: '10px', marginBottom: '24px' }}>
-                    {lab.id} / {lab.type}
+                  <div style={{ 
+                    fontFamily: 'var(--font-mono)', 
+                    fontSize: '11px', 
+                    letterSpacing: '0.12em',
+                    color: 'rgba(255, 255, 255, 0.4)',
+                    marginBottom: '18px',
+                    fontWeight: '600'
+                  }}>
+                    {proj.id} &mdash; {proj.type}
                   </div>
 
                   {/* Title & Description */}
-                  <h3 className="display-text" style={{ fontSize: 'clamp(22px, 2.5vw, 28px)', marginBottom: '14px', lineHeight: '1.2' }}>
-                    {lab.title}
+                  <h3 style={{ 
+                    fontSize: 'clamp(20px, 2.2vw, 24px)', 
+                    fontWeight: '700',
+                    color: '#FFFFFF',
+                    marginBottom: '12px', 
+                    lineHeight: '1.25',
+                    letterSpacing: '-0.01em'
+                  }}>
+                    {proj.title}
                   </h3>
-                  <p style={{ color: 'var(--text-dim)', fontSize: '15px', lineHeight: '1.6', marginBottom: '24px' }}>
-                    {lab.desc}
+                  
+                  <p style={{ 
+                    color: 'var(--text-dim)', 
+                    fontSize: '14px', 
+                    lineHeight: '1.65', 
+                    marginBottom: '24px' 
+                  }}>
+                    {proj.desc}
                   </p>
 
                   {/* Tech Tags */}
-                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginBottom: '28px' }}>
-                    {lab.tags.map((tag) => (
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: '28px' }}>
+                    {proj.tags.map((tag) => (
                       <span
                         key={tag}
                         style={{
-                          padding: '4px 10px',
+                          padding: '3px 9px',
                           borderRadius: '6px',
-                          background: 'rgba(255, 255, 255, 0.04)',
-                          border: '1px solid rgba(255, 255, 255, 0.08)',
+                          background: 'rgba(255, 255, 255, 0.035)',
+                          border: '1px solid rgba(255, 255, 255, 0.07)',
                           fontSize: '11px',
                           fontFamily: 'var(--font-mono)',
-                          color: 'var(--text-dim)',
-                          letterSpacing: '0.03em',
+                          color: 'rgba(255, 255, 255, 0.75)',
                         }}
                       >
                         {tag}
@@ -132,69 +147,61 @@ const Projects = () => {
                   </div>
                 </div>
 
-                {/* Bottom Row: Action Links */}
-                <div style={{ display: 'flex', alignItems: 'center', gap: '12px', paddingTop: '20px', borderTop: '1px solid rgba(255, 255, 255, 0.06)' }}>
+                {/* Bottom Row: Working Action Links */}
+                <div style={{ 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  gap: '12px', 
+                  paddingTop: '20px', 
+                  borderTop: '1px solid rgba(255, 255, 255, 0.06)',
+                  flexWrap: 'wrap'
+                }}>
                   <a
-                    href={lab.link}
+                    href={proj.liveLink}
                     target="_blank"
                     rel="noopener noreferrer"
                     style={{
                       display: 'inline-flex',
                       alignItems: 'center',
                       gap: '6px',
-                      padding: '8px 14px',
+                      padding: '7px 14px',
                       borderRadius: '8px',
-                      background: `${lab.color}15`,
-                      color: lab.color,
+                      background: 'rgba(59, 130, 246, 0.1)',
+                      color: '#60A5FA',
                       fontSize: '12px',
                       fontWeight: '600',
-                      fontFamily: 'var(--font-body)',
                       textDecoration: 'none',
-                      border: `1px solid ${lab.color}25`,
-                      transition: 'background 0.2s ease',
+                      border: '1px solid rgba(59, 130, 246, 0.25)',
+                      transition: 'all 0.2s ease',
                     }}
-                    onMouseOver={(e) => e.currentTarget.style.background = `${lab.color}25`}
-                    onMouseOut={(e) => e.currentTarget.style.background = `${lab.color}15`}
                   >
-                    <ExternalLink size={13} />
-                    View Project
+                    <span>{proj.liveLabel}</span>
+                    <ExternalLink size={12} />
                   </a>
+
                   <a
-                    href={lab.github}
+                    href={proj.githubLink}
                     target="_blank"
                     rel="noopener noreferrer"
                     style={{
                       display: 'inline-flex',
                       alignItems: 'center',
                       gap: '6px',
-                      padding: '8px 14px',
+                      padding: '7px 14px',
                       borderRadius: '8px',
-                      background: 'rgba(255, 255, 255, 0.04)',
+                      background: 'rgba(255, 255, 255, 0.03)',
                       color: 'var(--text-dim)',
                       fontSize: '12px',
                       fontWeight: '500',
-                      fontFamily: 'var(--font-body)',
                       textDecoration: 'none',
                       border: '1px solid rgba(255, 255, 255, 0.08)',
-                      transition: 'background 0.2s ease, color 0.2s ease',
+                      transition: 'all 0.2s ease',
                     }}
-                    onMouseOver={(e) => { e.currentTarget.style.background = 'rgba(255, 255, 255, 0.08)'; e.currentTarget.style.color = '#FFFFFF'; }}
-                    onMouseOut={(e) => { e.currentTarget.style.background = 'rgba(255, 255, 255, 0.04)'; e.currentTarget.style.color = 'var(--text-dim)'; }}
                   >
                     <GitBranch size={13} />
-                    Source
+                    <span>Source</span>
                   </a>
                 </div>
-
-                {/* Decorative Corner Glow */}
-                <div style={{ 
-                  position: 'absolute', top: '-60px', right: '-60px', 
-                  width: '200px', height: '200px', 
-                  background: `radial-gradient(circle, ${lab.color}08 0%, transparent 70%)`,
-                  borderRadius: '50%',
-                  zIndex: 0,
-                  pointerEvents: 'none'
-                }} />
               </motion.div>
             );
           })}

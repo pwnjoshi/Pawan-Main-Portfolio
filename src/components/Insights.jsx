@@ -1,226 +1,205 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Calendar, Loader } from 'lucide-react';
+import { ArrowUpRight, BookOpen } from 'lucide-react';
+
+const FALLBACK_ARTICLES = [
+  {
+    id: 'sbg-geu',
+    title: 'AWS Student Builder Group GEU: Engineering the Future Through Cloud, AI, and Innovation',
+    date: '2026',
+    excerpt: 'How we built a thriving builder community at Graphic Era University focused on hands-on cloud computing, Amazon Web Services, and agentic AI.',
+    tags: ['aws', 'cloud', 'community'],
+    link: 'https://dev.to/pwnjoshi/aws-student-builder-group-geu-engineering-the-future-through-cloud-ai-and-innovation-35nf'
+  },
+  {
+    id: 'ec2-ssh',
+    title: 'EC2 SSH Not Connecting? Here Are the 5 Things That Were Wrong (And How I Fixed Them)',
+    date: '2026',
+    excerpt: 'A practical debugging guide covering security groups, network ACLs, key permissions, and VPC routing issues when troubleshooting SSH into AWS EC2 instances.',
+    tags: ['aws', 'ec2', 'devops'],
+    link: 'https://dev.to/pwnjoshi/ec2-ssh-not-connecting-here-are-the-5-things-that-were-wrong-and-how-i-fixed-them-4ccp'
+  },
+  {
+    id: 'aws-roadmap',
+    title: 'How Students Can Learn AWS Without Spending Any Money (Real Roadmap)',
+    date: '2026',
+    excerpt: 'A step-by-step cost-free roadmap for engineering students to master AWS infrastructure, prepare for certifications, and build real portfolio systems.',
+    tags: ['aws', 'beginners', 'cloud'],
+    link: 'https://dev.to/pwnjoshi/how-students-can-learn-aws-without-spending-any-money-real-roadmap-5h32'
+  }
+];
 
 const Insights = () => {
-  const [insights, setInsights] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [articles, setArticles] = useState(FALLBACK_ARTICLES);
 
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        setLoading(true);
-        // Fetch articles from dev.to API for user pwnjoshi
-        const response = await fetch('https://dev.to/api/articles?username=pwnjoshi&per_page=6');
-        
-        if (!response.ok) {
-          throw new Error('Failed to fetch posts from dev.to');
-        }
-
+        const response = await fetch('https://dev.to/api/articles?username=pwnjoshi&per_page=4');
+        if (!response.ok) return;
         const data = await response.json();
-        
-        // Transform dev.to data to our format
-        const transformedPosts = data.slice(0, 3).map((post) => ({
-          id: post.id,
-          title: post.title,
-          date: new Date(post.published_at).toLocaleDateString('en-US', {
-            year: 'numeric',
-            month: 'long'
-          }),
-          excerpt: post.description || post.body_markdown?.substring(0, 150) + '...',
-          tags: post.tag_list.slice(0, 3), // First 3 tags
-          link: post.url,
-          cover: post.cover_image
-        }));
-
-        setInsights(transformedPosts);
-        setError(null);
-      } catch (err) {
-        console.error('Error fetching posts:', err);
-        setError(err.message);
-        // Fallback: set empty or default posts
-        setInsights([]);
-      } finally {
-        setLoading(false);
+        if (Array.isArray(data) && data.length > 0) {
+          const transformed = data.slice(0, 3).map((post) => ({
+            id: String(post.id),
+            title: post.title,
+            date: new Date(post.published_at).toLocaleDateString('en-US', {
+              year: 'numeric',
+              month: 'short'
+            }),
+            excerpt: post.description || (post.body_markdown ? post.body_markdown.substring(0, 140) + '...' : ''),
+            tags: post.tag_list ? post.tag_list.slice(0, 3) : ['cloud', 'aws'],
+            link: post.url
+          }));
+          setArticles(transformed);
+        }
+      } catch {
+        // Retain fallback seamlessly without displaying error slop
       }
     };
 
     fetchPosts();
   }, []);
+
   return (
-    <section id="insights" className="section-gap">
+    <section id="insights" className="section-gap" style={{ position: 'relative' }}>
       <div className="container">
-        <div style={{ marginBottom: '80px' }}>
-          <div className="mono-label" style={{ marginBottom: '16px' }}>/ WRITTEN THOUGHTS</div>
-          <h2 className="display-text" style={{ fontSize: '48px', marginBottom: '24px' }}>The Insights</h2>
-          <p style={{ fontSize: '18px', color: 'var(--text-dim)', maxWidth: '500px' }}>
-            Deep dives into AI, cloud architecture, and lessons learned. Powered by dev.to.
+        {/* Section Header */}
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '56px', flexWrap: 'wrap', gap: '20px' }}>
+          <div>
+            <div className="mono-label" style={{ marginBottom: '12px', color: '#60A5FA' }}>
+              / 04 &mdash; WRITING &amp; NOTES
+            </div>
+            <h2 className="display-text" style={{ fontSize: 'clamp(32px, 4.5vw, 48px)' }}>
+              Articles &amp; <span style={{ color: '#60A5FA' }}>Engineering Notes</span>
+            </h2>
+          </div>
+          <p style={{ color: 'var(--text-dim)', fontSize: '15px', maxWidth: '420px', lineHeight: '1.6' }}>
+            Practical write-ups on AWS cloud architecture, agent orchestration, and production debugging.
           </p>
         </div>
 
-        {loading ? (
-          <div style={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            minHeight: '300px',
-            gap: '12px'
-          }}>
-            <Loader size={24} style={{ animation: 'spin 1s linear infinite' }} />
-            <span style={{ color: 'var(--text-dim)' }}>Loading insights...</span>
-          </div>
-        ) : error || insights.length === 0 ? (
-          <div style={{
-            textAlign: 'center',
-            padding: '60px 20px',
-            background: 'rgba(59, 130, 246, 0.05)',
-            borderRadius: '20px',
-            border: '1px solid rgba(59, 130, 246, 0.2)'
-          }}>
-            <p style={{ color: 'var(--text-dim)', marginBottom: '16px' }}>
-              {error ? `Could not load posts: ${error}` : 'No posts found. Check out my dev.to profile directly!'}
-            </p>
-            <a 
-              href="https://dev.to/pwnjoshi" 
-              target="_blank" 
+        {/* Articles Grid */}
+        <div className="insights-grid" style={{ 
+          display: 'grid', 
+          gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', 
+          gap: '24px' 
+        }}>
+          {articles.map((post, index) => (
+            <motion.a
+              key={post.id}
+              href={post.link}
+              target="_blank"
               rel="noopener noreferrer"
-              className="btn btn-secondary"
-              style={{ display: 'inline-flex' }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: index * 0.08 }}
+              viewport={{ once: true, margin: "-30px" }}
+              className="elite-card"
+              style={{
+                padding: '32px',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'space-between',
+                borderRadius: '18px',
+                border: '1px solid rgba(255, 255, 255, 0.08)',
+                background: 'linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%)',
+                textDecoration: 'none',
+                color: 'inherit',
+                minHeight: '260px',
+                transition: 'border-color 0.25s ease, transform 0.25s ease',
+              }}
+              onMouseOver={(e) => {
+                e.currentTarget.style.borderColor = 'rgba(59, 130, 246, 0.35)';
+                e.currentTarget.style.transform = 'translateY(-3px)';
+              }}
+              onMouseOut={(e) => {
+                e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.08)';
+                e.currentTarget.style.transform = 'translateY(0)';
+              }}
             >
-              Visit my dev.to <ArrowRight size={16} />
-            </a>
-          </div>
-        ) : (
-          <>
-            <div className="insights-grid" style={{ 
-              display: 'grid', 
-              gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', 
-              gap: '32px' 
-            }}>
-              {insights.map((post, index) => (
-                <motion.a
-                  key={post.id}
-                  href={post.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  className="elite-card insights-card"
-                  style={{
-                    padding: '40px',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'space-between',
-                    cursor: 'pointer',
-                    transition: 'all 0.3s ease',
-                    position: 'relative',
-                    overflow: 'hidden',
-                    textDecoration: 'none',
-                    color: 'inherit',
-                    height: '100%'
-                  }}
-                  onMouseOver={(e) => {
-                    e.currentTarget.style.borderColor = 'var(--accent)';
-                    e.currentTarget.style.transform = 'translateY(-4px)';
-                  }}
-                  onMouseOut={(e) => {
-                    e.currentTarget.style.borderColor = 'var(--border-hairline)';
-                    e.currentTarget.style.transform = 'translateY(0)';
-                  }}
-                >
-                  {/* Top accent line */}
-                  <div style={{
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    height: '2px',
-                    background: 'linear-gradient(90deg, var(--accent), transparent)',
-                    opacity: 0.5
-                  }} />
+              <div>
+                {/* Meta row: Date + Reading tag */}
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
+                  <span style={{ 
+                    fontFamily: 'var(--font-mono)', 
+                    fontSize: '11px', 
+                    color: 'var(--text-dim)',
+                    letterSpacing: '0.05em'
+                  }}>
+                    {post.date}
+                  </span>
+                  
+                  <ArrowUpRight size={16} style={{ color: '#60A5FA', opacity: 0.8 }} />
+                </div>
 
-                  <div>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '16px' }}>
-                      <Calendar size={14} style={{ color: 'var(--accent)' }} />
-                      <span className="mono-label" style={{ fontSize: '10px', color: 'var(--text-dim)' }}>
-                        {post.date}
-                      </span>
-                    </div>
+                <h3 style={{ 
+                  fontSize: '18px', 
+                  fontWeight: '700', 
+                  color: '#FFFFFF', 
+                  lineHeight: '1.35', 
+                  marginBottom: '12px',
+                  letterSpacing: '-0.01em'
+                }}>
+                  {post.title}
+                </h3>
 
-                    <h3 className="display-text" style={{ fontSize: '20px', marginBottom: '12px', lineHeight: '1.3' }}>
-                      {post.title}
-                    </h3>
+                <p style={{ 
+                  fontSize: '14px', 
+                  color: 'var(--text-dim)', 
+                  lineHeight: '1.6', 
+                  margin: 0 
+                }}>
+                  {post.excerpt}
+                </p>
+              </div>
 
-                    <p style={{
-                      fontSize: '14px',
-                      color: 'var(--text-dim)',
-                      marginBottom: '24px',
-                      lineHeight: '1.6'
-                    }}>
-                      {post.excerpt}
-                    </p>
-
-                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginBottom: '24px' }}>
-                      {post.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="mono-label"
-                          style={{
-                            fontSize: '9px',
-                            background: 'rgba(59, 130, 246, 0.1)',
-                            padding: '4px 10px',
-                            borderRadius: '12px',
-                            border: '1px solid rgba(59, 130, 246, 0.2)',
-                            color: 'var(--accent)'
-                          }}
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-
-                  <motion.div
+              {/* Tag row */}
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginTop: '24px', paddingTop: '16px', borderTop: '1px solid rgba(255, 255, 255, 0.05)' }}>
+                {post.tags.map((tag) => (
+                  <span 
+                    key={tag}
                     style={{
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      gap: '8px',
-                      color: 'var(--accent)',
-                      fontSize: '14px',
-                      fontWeight: '500',
-                      width: 'fit-content'
+                      fontSize: '11px',
+                      fontFamily: 'var(--font-mono)',
+                      color: 'rgba(255, 255, 255, 0.6)',
+                      background: 'rgba(255, 255, 255, 0.035)',
+                      padding: '2px 8px',
+                      borderRadius: '4px'
                     }}
-                    whileHover={{ x: 4 }}
                   >
-                    Read on dev.to <ArrowRight size={16} />
-                  </motion.div>
-                </motion.a>
-              ))}
-            </div>
+                    #{tag}
+                  </span>
+                ))}
+              </div>
+            </motion.a>
+          ))}
+        </div>
 
-            {/* CTA to see all posts */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ delay: 0.3 }}
-              viewport={{ once: true }}
-              style={{ textAlign: 'center', marginTop: '80px' }}
-            >
-              <a 
-                href="https://dev.to/pwnjoshi" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="btn btn-secondary" 
-                style={{ display: 'inline-flex' }}
-              >
-                View all insights on dev.to <ArrowRight size={16} />
-              </a>
-            </motion.div>
-          </>
-        )}
+        {/* View all on dev.to */}
+        <div style={{ textAlign: 'center', marginTop: '40px' }}>
+          <a
+            href="https://dev.to/pwnjoshi"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '8px',
+              fontSize: '13px',
+              fontWeight: '600',
+              color: '#F1F5F9',
+              background: 'rgba(255, 255, 255, 0.04)',
+              border: '1px solid rgba(255, 255, 255, 0.1)',
+              padding: '10px 20px',
+              borderRadius: '10px',
+              textDecoration: 'none',
+              transition: 'all 0.2s ease'
+            }}
+          >
+            <BookOpen size={15} style={{ color: '#60A5FA' }} />
+            <span>Read more articles on Dev.to</span>
+          </a>
+        </div>
       </div>
     </section>
   );
