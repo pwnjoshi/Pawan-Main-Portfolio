@@ -77,31 +77,8 @@ const Hero = () => {
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
             className="hero-content"
           >
-            {/* Status & Location Row */}
+            {/* Location Row */}
             <div className="hero-badges" style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '20px', flexWrap: 'wrap' }}>
-              <div style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '8px',
-                padding: '4px 12px',
-                borderRadius: '9999px',
-                background: 'rgba(34, 197, 94, 0.08)',
-                border: '1px solid rgba(34, 197, 94, 0.25)',
-                fontSize: '12px',
-                color: '#4ADE80',
-                fontFamily: 'var(--font-mono)',
-                fontWeight: '500'
-              }}>
-                <span style={{
-                  width: '6px',
-                  height: '6px',
-                  borderRadius: '50%',
-                  backgroundColor: '#22C55E',
-                  boxShadow: '0 0 8px #22C55E'
-                }} />
-                Available for Roles &amp; Collaborations
-              </div>
-
               <div style={{
                 display: 'inline-flex',
                 alignItems: 'center',

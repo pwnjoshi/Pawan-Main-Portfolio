@@ -89,18 +89,8 @@ const Navbar = () => {
               zIndex: 2,
               display: 'inline-flex',
               alignItems: 'center',
-              gap: '8px',
             }}
           >
-            <span
-              style={{
-                width: '10px',
-                height: '10px',
-                borderRadius: '50%',
-                background: '#3B82F6',
-                boxShadow: '0 0 10px rgba(59, 130, 246, 0.8)',
-              }}
-            />
             <span
               className="display-text"
               style={{
