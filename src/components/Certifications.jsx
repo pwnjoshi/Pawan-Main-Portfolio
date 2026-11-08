@@ -88,7 +88,7 @@ const Certifications = () => {
               key={cert.title}
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.35, delay: index * 0.05 }}
+              transition={{ duration: 0.35, delay: index * 0.03, ease: [0.16, 1, 0.3, 1] }}
               viewport={{ once: true, margin: "-30px" }}
               className="elite-card"
               style={{
@@ -135,7 +135,8 @@ const Certifications = () => {
 
               {cert.badgeUrl && (
                 <div style={{ marginTop: '20px', paddingTop: '12px', borderTop: '1px solid rgba(255, 255, 255, 0.05)' }}>
-                  <a
+                  <motion.a
+                    whileTap={{ scale: 0.97 }}
                     href={cert.badgeUrl}
                     target="_blank"
                     rel="noopener noreferrer"
@@ -147,14 +148,14 @@ const Certifications = () => {
                       fontWeight: '600',
                       color: 'var(--text-dim)',
                       textDecoration: 'none',
-                      transition: 'color 0.2s ease',
+                      transition: 'color 0.15s ease',
                     }}
                     onMouseOver={(e) => e.currentTarget.style.color = '#FFFFFF'}
                     onMouseOut={(e) => e.currentTarget.style.color = 'var(--text-dim)'}
                   >
                     <span>Verify Credential</span>
                     <ExternalLink size={11} />
-                  </a>
+                  </motion.a>
                 </div>
               )}
             </motion.div>

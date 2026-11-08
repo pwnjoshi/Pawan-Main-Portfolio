@@ -2,6 +2,9 @@ import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MessageSquare, Menu, X } from 'lucide-react';
 
+const easeOutCubic = [0.16, 1, 0.3, 1];
+const easeInOutCubic = [0.4, 0, 0.2, 1];
+
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [hidden, setHidden] = useState(false);
@@ -15,7 +18,7 @@ const Navbar = () => {
       // Scrolled state for background blur
       setScrolled(currentY > 20);
 
-      // Smart hide/reveal on scroll
+      // Smart hide/reveal on scroll (on-screen movement uses ease in-out)
       if (currentY > 100) {
         if (currentY > lastScrollY.current + 8) {
           setHidden(true);  // scrolling down
@@ -44,7 +47,7 @@ const Navbar = () => {
     <motion.header
       initial={{ y: -40, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+      transition={{ duration: 0.45, ease: easeOutCubic }}
       style={{
         position: 'fixed',
         top: 0,
@@ -53,7 +56,7 @@ const Navbar = () => {
         zIndex: 50,
         padding: scrolled ? '10px 0' : '16px 0',
         transform: hidden ? 'translateY(-100%)' : 'translateY(0)',
-        transition: 'transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), padding 0.3s ease',
+        transition: 'transform 0.32s cubic-bezier(0.4, 0, 0.2, 1), padding 0.25s cubic-bezier(0.4, 0, 0.2, 1)',
       }}
     >
       <div className="container">
@@ -76,7 +79,7 @@ const Navbar = () => {
             boxShadow: scrolled
               ? '0 16px 36px -10px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.08)'
               : '0 8px 24px rgba(0, 0, 0, 0.25)',
-            transition: 'background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease',
+            transition: 'background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease',
           }}
         >
           {/* Left: Brand Identity */}
@@ -131,9 +134,10 @@ const Navbar = () => {
 
           {/* Right: CTA Button & Mobile Menu Toggle */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px', zIndex: 2, flexShrink: 0 }}>
+            {/* Scale buttons to 0.97 on press */}
             <motion.a
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
+              whileHover={{ scale: 1.01 }}
+              whileTap={{ scale: 0.97 }}
               href="#contact"
               className="btn nav-cta mobile-cta-hide"
               style={{
@@ -156,8 +160,9 @@ const Navbar = () => {
               <span>Let's talk</span>
             </motion.a>
 
-            {/* Mobile Menu Toggle Button */}
-            <button
+            {/* Mobile Menu Toggle Button with Scale 0.97 on Press */}
+            <motion.button
+              whileTap={{ scale: 0.97 }}
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label="Toggle Navigation Menu"
               className="mobile-menu-btn"
@@ -169,24 +174,69 @@ const Navbar = () => {
                 padding: '7px',
                 borderRadius: '8px',
                 cursor: 'pointer',
+                position: 'relative',
+                overflow: 'hidden',
+                width: '34px',
+                height: '34px',
+                alignItems: 'center',
+                justifyContent: 'center',
               }}
             >
-              {mobileMenuOpen ? <X size={18} /> : <Menu size={18} />}
-            </button>
+              {/* Crossfade icons with scale and blur */}
+              <AnimatePresence mode="wait" initial={false}>
+                {mobileMenuOpen ? (
+                  <motion.div
+                    key="close"
+                    initial={{ opacity: 0, scale: 0.8, filter: 'blur(3px)' }}
+                    animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
+                    exit={{ opacity: 0, scale: 0.8, filter: 'blur(3px)' }}
+                    transition={{ duration: 0.15, ease: easeOutCubic }}
+                    style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                  >
+                    <X size={18} />
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    key="menu"
+                    initial={{ opacity: 0, scale: 0.8, filter: 'blur(3px)' }}
+                    animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
+                    exit={{ opacity: 0, scale: 0.8, filter: 'blur(3px)' }}
+                    transition={{ duration: 0.15, ease: easeOutCubic }}
+                    style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                  >
+                    <Menu size={18} />
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.button>
           </div>
         </nav>
 
-        {/* Mobile Dropdown Menu */}
+        {/* Mobile Dropdown Popover */}
+        {/* Rules Applied:
+            1. Dropdown at 150-250ms (entrance: 200ms).
+            2. Exit about 20% shorter than entrance (exit: 160ms).
+            3. Start popovers at scale 0.95.
+            4. Transition in from the trigger not from the center (transformOrigin: top right).
+            5. Transition out to the trigger. Don't fade into the center.
+            6. Stagger list rows by 30 ms.
+        */}
         <AnimatePresence>
           {mobileMenuOpen && (
             <motion.div
-              initial={{ opacity: 0, y: -8, scale: 0.98 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -8, scale: 0.98 }}
-              transition={{ duration: 0.2 }}
+              initial={{ opacity: 0, scale: 0.95, y: -6 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ 
+                opacity: 0, 
+                scale: 0.95, 
+                y: -6,
+                transition: { duration: 0.16, ease: easeOutCubic } // 20% shorter than 0.2s entrance
+              }}
+              transition={{ duration: 0.2, ease: easeOutCubic }}
               style={{
+                transformOrigin: 'top right', // From the trigger not from the center
                 marginTop: '8px',
-                padding: '14px',
+                padding: '12px',
                 background: 'rgba(10, 11, 15, 0.96)',
                 backdropFilter: 'blur(24px)',
                 WebkitBackdropFilter: 'blur(24px)',
@@ -195,14 +245,22 @@ const Navbar = () => {
                 boxShadow: '0 20px 40px rgba(0, 0, 0, 0.6)',
                 display: 'flex',
                 flexDirection: 'column',
-                gap: '8px',
+                gap: '6px',
               }}
             >
-              {navItems.map((item) => (
-                <a
+              {navItems.map((item, index) => (
+                <motion.a
                   key={item.name}
                   href={item.href}
                   onClick={() => setMobileMenuOpen(false)}
+                  initial={{ opacity: 0, x: -8 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ 
+                    duration: 0.18, 
+                    delay: index * 0.03, // Stagger list rows by 30 ms
+                    ease: easeOutCubic 
+                  }}
+                  whileTap={{ scale: 0.97 }}
                   style={{
                     textDecoration: 'none',
                     color: '#E2E8F0',
@@ -211,15 +269,24 @@ const Navbar = () => {
                     fontSize: '14px',
                     fontWeight: '500',
                     background: 'rgba(255, 255, 255, 0.03)',
-                    transition: 'background 0.2s ease',
+                    transition: 'background 0.15s ease',
                   }}
                 >
                   {item.name}
-                </a>
+                </motion.a>
               ))}
-              <a
+
+              <motion.a
                 href="#contact"
                 onClick={() => setMobileMenuOpen(false)}
+                initial={{ opacity: 0, x: -8 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ 
+                  duration: 0.18, 
+                  delay: navItems.length * 0.03, // Stagger by 30 ms
+                  ease: easeOutCubic 
+                }}
+                whileTap={{ scale: 0.97 }}
                 style={{
                   textDecoration: 'none',
                   color: '#FFFFFF',
@@ -236,7 +303,7 @@ const Navbar = () => {
               >
                 <MessageSquare size={14} />
                 <span>Let's talk</span>
-              </a>
+              </motion.a>
             </motion.div>
           )}
         </AnimatePresence>

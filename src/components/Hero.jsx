@@ -134,8 +134,8 @@ const Hero = () => {
             <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', alignItems: 'center', marginBottom: '36px' }}>
               <motion.a 
                 whileHover={{ y: -2 }}
-                whileTap={{ y: 0 }}
-                transition={{ duration: 0.15 }}
+                whileTap={{ scale: 0.97 }}
+                transition={{ duration: 0.15, ease: [0.16, 1, 0.3, 1] }}
                 href="#lab" 
                 className="btn btn-primary"
                 style={{
@@ -154,8 +154,8 @@ const Hero = () => {
               
               <motion.a 
                 whileHover={{ y: -2 }}
-                whileTap={{ y: 0 }}
-                transition={{ duration: 0.15 }}
+                whileTap={{ scale: 0.97 }}
+                transition={{ duration: 0.15, ease: [0.16, 1, 0.3, 1] }}
                 href="/Pawan_Joshi_Resume.pdf" 
                 target="_blank"
                 rel="noopener noreferrer"

@@ -74,7 +74,7 @@ const Experience = () => {
               key={index}
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: index * 0.08 }}
+              transition={{ duration: 0.35, delay: index * 0.03, ease: [0.16, 1, 0.3, 1] }}
               viewport={{ once: true, margin: "-40px" }}
               className="elite-card journey-item"
               style={{ 
@@ -125,9 +125,10 @@ const Experience = () => {
                     </div>
                   </div>
 
-                  {/* Verification / Outbound Link */}
+                  {/* Verification / Outbound Link with Scale 0.97 on Press */}
                   {entry.verifyLink && (
-                    <a 
+                    <motion.a 
+                      whileTap={{ scale: 0.97 }}
                       href={entry.verifyLink} 
                       target="_blank" 
                       rel="noopener noreferrer"
@@ -144,16 +145,17 @@ const Experience = () => {
                         padding: '6px 12px',
                         borderRadius: '8px',
                         textDecoration: 'none',
-                        transition: 'all 0.2s ease'
+                        transition: 'background 0.15s ease'
                       }}
                     >
                       <CheckCircle size={13} />
                       <span>Verify Credential</span>
-                    </a>
+                    </motion.a>
                   )}
 
                   {entry.link && (
-                    <a 
+                    <motion.a 
+                      whileTap={{ scale: 0.97 }}
                       href={entry.link} 
                       target="_blank" 
                       rel="noopener noreferrer"
@@ -170,12 +172,12 @@ const Experience = () => {
                         padding: '6px 12px',
                         borderRadius: '8px',
                         textDecoration: 'none',
-                        transition: 'all 0.2s ease'
+                        transition: 'background 0.15s ease'
                       }}
                     >
                       <span>Visit Site</span>
                       <ExternalLink size={12} />
-                    </a>
+                    </motion.a>
                   )}
                 </div>
 

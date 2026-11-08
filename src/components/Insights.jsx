@@ -90,10 +90,11 @@ const Insights = () => {
               href={post.link}
               target="_blank"
               rel="noopener noreferrer"
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: index * 0.08 }}
+              transition={{ duration: 0.35, delay: index * 0.03, ease: [0.16, 1, 0.3, 1] }}
               viewport={{ once: true, margin: "-30px" }}
+              whileTap={{ scale: 0.97 }}
               className="elite-card"
               style={{
                 padding: '32px',
@@ -177,7 +178,8 @@ const Insights = () => {
 
         {/* View all on dev.to */}
         <div style={{ textAlign: 'center', marginTop: '40px' }}>
-          <a
+          <motion.a
+            whileTap={{ scale: 0.97 }}
             href="https://dev.to/pwnjoshi"
             target="_blank"
             rel="noopener noreferrer"
@@ -193,12 +195,12 @@ const Insights = () => {
               padding: '10px 20px',
               borderRadius: '10px',
               textDecoration: 'none',
-              transition: 'all 0.2s ease'
+              transition: 'background 0.15s ease'
             }}
           >
             <BookOpen size={15} style={{ color: '#60A5FA' }} />
             <span>Read more articles on Dev.to</span>
-          </a>
+          </motion.a>
         </div>
       </div>
     </section>

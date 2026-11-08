@@ -73,10 +73,10 @@ const Projects = () => {
             return (
               <motion.div
                 key={proj.id}
-                initial={{ opacity: 0, y: 24 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-40px" }}
-                transition={{ duration: 0.5, delay: index * 0.08 }}
+                transition={{ duration: 0.38, delay: index * 0.03, ease: [0.16, 1, 0.3, 1] }}
                 className="elite-card lab-card"
                 style={{ 
                   padding: '36px', 
@@ -89,7 +89,7 @@ const Projects = () => {
                   position: 'relative',
                   overflow: 'hidden',
                   minHeight: '340px',
-                  transition: 'border-color 0.3s ease, box-shadow 0.3s ease',
+                  transition: 'border-color 0.25s ease, box-shadow 0.25s ease',
                 }}
               >
                 {/* Top Row: Index + Discipline Label (No top-left icon as requested) */}
@@ -147,7 +147,7 @@ const Projects = () => {
                   </div>
                 </div>
 
-                {/* Bottom Row: Working Action Links */}
+                {/* Bottom Row: Working Action Links with Scale 0.97 on Press */}
                 <div style={{ 
                   display: 'flex', 
                   alignItems: 'center', 
@@ -156,7 +156,8 @@ const Projects = () => {
                   borderTop: '1px solid rgba(255, 255, 255, 0.06)',
                   flexWrap: 'wrap'
                 }}>
-                  <a
+                  <motion.a
+                    whileTap={{ scale: 0.97 }}
                     href={proj.liveLink}
                     target="_blank"
                     rel="noopener noreferrer"
@@ -172,14 +173,15 @@ const Projects = () => {
                       fontWeight: '600',
                       textDecoration: 'none',
                       border: '1px solid rgba(59, 130, 246, 0.25)',
-                      transition: 'all 0.2s ease',
+                      transition: 'background 0.15s ease',
                     }}
                   >
                     <span>{proj.liveLabel}</span>
                     <ExternalLink size={12} />
-                  </a>
+                  </motion.a>
 
-                  <a
+                  <motion.a
+                    whileTap={{ scale: 0.97 }}
                     href={proj.githubLink}
                     target="_blank"
                     rel="noopener noreferrer"
@@ -195,12 +197,12 @@ const Projects = () => {
                       fontWeight: '500',
                       textDecoration: 'none',
                       border: '1px solid rgba(255, 255, 255, 0.08)',
-                      transition: 'all 0.2s ease',
+                      transition: 'background 0.15s ease',
                     }}
                   >
                     <GitBranch size={13} />
                     <span>Source</span>
-                  </a>
+                  </motion.a>
                 </div>
               </motion.div>
             );

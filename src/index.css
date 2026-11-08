@@ -17,6 +17,18 @@
   /* Radii */
   --radius-btn: 10px;
   --radius-card: 18px;
+
+  /* Motion & Interaction Tokens:
+     - Use ease out for entrances
+     - Use ease in-out for on-screen movements
+     - Dropdowns 150-250ms (200ms), exits 20% shorter (160ms)
+     - Stagger by 30ms
+  */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --dropdown-duration: 200ms;
+  --dropdown-exit-duration: 160ms;
+  --stagger-delay: 30ms;
 }
 
 * {
@@ -145,6 +157,12 @@ a, button, .btn, [role="button"] {
   background: rgba(255, 255, 255, 0.08);
   border-color: rgba(255, 255, 255, 0.2);
   transform: translateY(-1px);
+}
+
+/* Scale buttons to 0.97 on press */
+.btn:active, button:active, a.btn:active, .btn-link:active {
+  transform: scale(0.97) !important;
+  transition: transform 0.08s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
 /* Metrics Ticker Desktop Base */
