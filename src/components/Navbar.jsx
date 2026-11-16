@@ -141,7 +141,8 @@ const Navbar = () => {
               href="#contact"
               className="btn nav-cta mobile-cta-hide"
               style={{
-                padding: '7px 14px',
+                padding: '8px 16px',
+                minHeight: '44px',
                 fontSize: '13px',
                 fontWeight: '600',
                 background: 'linear-gradient(135deg, #3B82F6 0%, #2563EB 100%)',
@@ -156,7 +157,7 @@ const Navbar = () => {
                 boxShadow: '0 4px 14px rgba(37, 99, 235, 0.35)',
               }}
             >
-              <MessageSquare size={13} />
+              <MessageSquare size={14} />
               <span>Let's talk</span>
             </motion.a>
 
@@ -171,13 +172,13 @@ const Navbar = () => {
                 background: 'rgba(255, 255, 255, 0.04)',
                 border: '1px solid rgba(255, 255, 255, 0.1)',
                 color: '#FFFFFF',
-                padding: '7px',
+                padding: '10px',
                 borderRadius: '8px',
                 cursor: 'pointer',
                 position: 'relative',
                 overflow: 'hidden',
-                width: '34px',
-                height: '34px',
+                minWidth: '44px',
+                minHeight: '44px',
                 alignItems: 'center',
                 justifyContent: 'center',
               }}
@@ -264,7 +265,10 @@ const Navbar = () => {
                   style={{
                     textDecoration: 'none',
                     color: '#E2E8F0',
-                    padding: '10px 14px',
+                    padding: '10px 16px',
+                    minHeight: '44px',
+                    display: 'flex',
+                    alignItems: 'center',
                     borderRadius: '8px',
                     fontSize: '14px',
                     fontWeight: '500',
@@ -290,7 +294,8 @@ const Navbar = () => {
                 style={{
                   textDecoration: 'none',
                   color: '#FFFFFF',
-                  padding: '10px 14px',
+                  padding: '10px 16px',
+                  minHeight: '44px',
                   borderRadius: '8px',
                   fontSize: '14px',
                   fontWeight: '600',

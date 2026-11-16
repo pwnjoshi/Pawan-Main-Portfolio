@@ -72,7 +72,7 @@ const Certifications = () => {
           <h2 className="display-text" style={{ fontSize: 'clamp(32px, 4.5vw, 48px)', marginBottom: '16px' }}>
             Certifications &amp; Badges
           </h2>
-          <p style={{ color: 'var(--text-dim)', fontSize: '16px', maxWidth: '580px', lineHeight: '1.6' }}>
+          <p className="readable-measure" style={{ color: 'var(--text-secondary)', fontSize: '16px', maxWidth: '65ch', lineHeight: '1.55' }}>
             Officially verified industry credentials across Cloud Computing, Generative AI, CloudOps, and Engineering Leadership.
           </p>
         </div>
@@ -80,8 +80,8 @@ const Certifications = () => {
         {/* 3-Column Clean Card Grid */}
         <div className="cert-grid" style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fill, minmax(270px, 1fr))',
-          gap: '20px'
+          gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
+          gap: '24px'
         }}>
           {certifications.map((cert, index) => (
             <motion.div
@@ -96,17 +96,18 @@ const Certifications = () => {
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'space-between',
-                borderRadius: '16px',
+                borderRadius: '18px',
                 border: '1px solid rgba(255, 255, 255, 0.08)',
                 background: 'linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%)',
-                minHeight: '210px'
+                boxShadow: 'var(--shadow-soft-sm)',
+                minHeight: '220px'
               }}
             >
               <div>
                 {/* Category Pill + Icon */}
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '14px' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
                   <span style={{
-                    padding: '3px 8px',
+                    padding: '4px 10px',
                     borderRadius: '6px',
                     background: 'rgba(59, 130, 246, 0.08)',
                     border: '1px solid rgba(59, 130, 246, 0.2)',
@@ -117,18 +118,18 @@ const Certifications = () => {
                   }}>
                     {cert.category}
                   </span>
-                  <ShieldCheck size={16} style={{ color: 'rgba(255, 255, 255, 0.35)' }} />
+                  <ShieldCheck size={16} style={{ color: 'rgba(255, 255, 255, 0.4)' }} />
                 </div>
 
-                <h3 style={{ fontSize: '15px', fontWeight: '700', color: '#FFFFFF', marginBottom: '6px', lineHeight: '1.35' }}>
+                <h3 style={{ fontSize: '16px', fontWeight: '700', color: '#FFFFFF', marginBottom: '8px', lineHeight: '1.35' }}>
                   {cert.title}
                 </h3>
                 
-                <p style={{ fontSize: '13px', color: 'rgba(255, 255, 255, 0.7)', fontWeight: '500', marginBottom: '4px' }}>
+                <p style={{ fontSize: '14px', color: 'rgba(255, 255, 255, 0.75)', fontWeight: '500', marginBottom: '4px' }}>
                   {cert.issuer}
                 </p>
                 
-                <p style={{ fontSize: '12px', color: 'var(--text-dim)', margin: 0, fontFamily: 'var(--font-mono)' }}>
+                <p style={{ fontSize: '12px', color: 'var(--text-secondary)', margin: 0, fontFamily: 'var(--font-mono)' }}>
                   {cert.date}
                 </p>
               </div>
@@ -143,18 +144,29 @@ const Certifications = () => {
                     style={{
                       display: 'inline-flex',
                       alignItems: 'center',
-                      gap: '5px',
-                      fontSize: '12px',
+                      gap: '6px',
+                      fontSize: '13px',
                       fontWeight: '600',
-                      color: 'var(--text-dim)',
+                      color: 'var(--text-secondary)',
                       textDecoration: 'none',
-                      transition: 'color 0.15s ease',
+                      minHeight: '44px',
+                      padding: '8px 12px',
+                      borderRadius: '8px',
+                      background: 'rgba(255, 255, 255, 0.02)',
+                      border: '1px solid rgba(255, 255, 255, 0.06)',
+                      transition: 'color 0.15s ease, background 0.15s ease, border-color 0.15s ease',
                     }}
-                    onMouseOver={(e) => e.currentTarget.style.color = '#FFFFFF'}
-                    onMouseOut={(e) => e.currentTarget.style.color = 'var(--text-dim)'}
+                    onMouseOver={(e) => {
+                      e.currentTarget.style.color = '#FFFFFF';
+                      e.currentTarget.style.borderColor = 'rgba(59, 130, 246, 0.3)';
+                    }}
+                    onMouseOut={(e) => {
+                      e.currentTarget.style.color = 'var(--text-secondary)';
+                      e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.06)';
+                    }}
                   >
                     <span>Verify Credential</span>
-                    <ExternalLink size={11} />
+                    <ExternalLink size={13} style={{ color: '#60A5FA' }} />
                   </motion.a>
                 </div>
               )}

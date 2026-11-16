@@ -78,10 +78,11 @@ const Experience = () => {
               viewport={{ once: true, margin: "-40px" }}
               className="elite-card journey-item"
               style={{ 
-                padding: '28px 32px',
-                borderRadius: '16px',
+                padding: '32px',
+                borderRadius: '20px',
                 background: 'linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%)',
                 border: '1px solid rgba(255, 255, 255, 0.08)',
+                boxShadow: 'var(--shadow-soft-sm)',
                 display: 'grid',
                 gridTemplateColumns: '220px 1fr',
                 gap: '32px',
@@ -98,7 +99,7 @@ const Experience = () => {
                   fontFamily: 'var(--font-mono)',
                   fontSize: '11px',
                   letterSpacing: '0.08em',
-                  color: entry.current ? '#4ADE80' : 'var(--text-dim)',
+                  color: entry.current ? '#4ADE80' : 'var(--text-secondary)',
                   marginBottom: '8px',
                   fontWeight: '600'
                 }}>
@@ -108,7 +109,7 @@ const Experience = () => {
                   {entry.date}
                 </div>
                 
-                <div style={{ fontSize: '13px', color: 'rgba(255, 255, 255, 0.45)', fontFamily: 'var(--font-mono)' }}>
+                <div style={{ fontSize: '13px', color: 'rgba(255, 255, 255, 0.5)', fontFamily: 'var(--font-mono)' }}>
                   {entry.location}
                 </div>
               </div>
@@ -120,12 +121,12 @@ const Experience = () => {
                     <h3 style={{ fontSize: '20px', fontWeight: '700', color: '#FFFFFF', margin: 0, letterSpacing: '-0.01em' }}>
                       {entry.title}
                     </h3>
-                    <div style={{ fontSize: '14px', color: '#60A5FA', fontWeight: '500', marginTop: '2px' }}>
+                    <div style={{ fontSize: '14px', color: '#60A5FA', fontWeight: '500', marginTop: '4px' }}>
                       {entry.company}
                     </div>
                   </div>
 
-                  {/* Verification / Outbound Link with Scale 0.97 on Press */}
+                  {/* Verification / Outbound Link with Scale 0.97 on Press and 44px tap target */}
                   {entry.verifyLink && (
                     <motion.a 
                       whileTap={{ scale: 0.97 }}
@@ -137,18 +138,19 @@ const Experience = () => {
                         display: 'inline-flex',
                         alignItems: 'center',
                         gap: '6px',
-                        fontSize: '12px',
+                        fontSize: '13px',
                         fontWeight: '600',
                         color: '#60A5FA',
                         background: 'rgba(59, 130, 246, 0.08)',
                         border: '1px solid rgba(59, 130, 246, 0.25)',
-                        padding: '6px 12px',
+                        minHeight: '44px',
+                        padding: '10px 16px',
                         borderRadius: '8px',
                         textDecoration: 'none',
                         transition: 'background 0.15s ease'
                       }}
                     >
-                      <CheckCircle size={13} />
+                      <CheckCircle size={15} />
                       <span>Verify Credential</span>
                     </motion.a>
                   )}
@@ -164,39 +166,41 @@ const Experience = () => {
                         display: 'inline-flex',
                         alignItems: 'center',
                         gap: '6px',
-                        fontSize: '12px',
+                        fontSize: '13px',
                         fontWeight: '600',
                         color: '#F1F5F9',
                         background: 'rgba(255, 255, 255, 0.04)',
                         border: '1px solid rgba(255, 255, 255, 0.1)',
-                        padding: '6px 12px',
+                        minHeight: '44px',
+                        padding: '10px 16px',
                         borderRadius: '8px',
                         textDecoration: 'none',
                         transition: 'background 0.15s ease'
                       }}
                     >
                       <span>Visit Site</span>
-                      <ExternalLink size={12} />
+                      <ExternalLink size={14} />
                     </motion.a>
                   )}
                 </div>
 
-                <p style={{ color: 'var(--text-dim)', fontSize: '14px', lineHeight: '1.65', margin: '12px 0 16px', maxWidth: '720px' }}>
+                {/* 16px minimum body, 1.55 line height, 65ch measure */}
+                <p className="readable-measure" style={{ color: 'var(--text-secondary)', fontSize: '16px', lineHeight: '1.55', margin: '12px 0 16px', maxWidth: '65ch' }}>
                   {entry.desc}
                 </p>
 
                 {/* Skill tags */}
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
                   {entry.skills.map((skill) => (
                     <span 
                       key={skill}
                       style={{
-                        fontSize: '11px',
+                        fontSize: '12px',
                         fontFamily: 'var(--font-mono)',
-                        color: 'rgba(255, 255, 255, 0.7)',
+                        color: 'rgba(255, 255, 255, 0.75)',
                         background: 'rgba(255, 255, 255, 0.04)',
-                        border: '1px solid rgba(255, 255, 255, 0.06)',
-                        padding: '3px 8px',
+                        border: '1px solid rgba(255, 255, 255, 0.08)',
+                        padding: '4px 10px',
                         borderRadius: '6px'
                       }}
                     >

@@ -78,20 +78,20 @@ const Hero = () => {
             className="hero-content"
           >
             {/* Location Row */}
-            <div className="hero-badges" style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '20px', flexWrap: 'wrap' }}>
+            <div className="hero-badges" style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '20px', flexWrap: 'wrap' }}>
               <div style={{
                 display: 'inline-flex',
                 alignItems: 'center',
-                gap: '5px',
-                padding: '4px 10px',
+                gap: '6px',
+                padding: '4px 12px',
                 borderRadius: '9999px',
                 background: 'rgba(255, 255, 255, 0.03)',
                 border: '1px solid rgba(255, 255, 255, 0.08)',
                 fontSize: '12px',
-                color: 'var(--text-dim)',
+                color: 'var(--text-secondary)',
                 fontFamily: 'var(--font-mono)'
               }}>
-                <MapPin size={12} style={{ opacity: 0.7 }} />
+                <MapPin size={13} style={{ color: '#60A5FA', opacity: 0.9 }} />
                 Dehradun, India
               </div>
             </div>
@@ -109,28 +109,29 @@ const Hero = () => {
             {/* Value Proposition */}
             <p style={{
               fontSize: 'clamp(18px, 2.2vw, 22px)',
-              color: '#F1F5F9',
+              color: '#F8FAFC',
               fontWeight: '500',
-              lineHeight: '1.4',
+              lineHeight: '1.45',
               marginBottom: '16px',
+              maxWidth: '65ch',
               fontFamily: 'var(--font-display)',
               letterSpacing: '-0.01em'
             }}>
               Software engineer specializing in autonomous AI agents and cloud infrastructure.
             </p>
 
-            {/* Context Narrative */}
-            <p className="hero-subtext" style={{ 
-              fontSize: '15px', 
-              color: 'var(--text-dim)', 
-              maxWidth: '540px', 
+            {/* Context Narrative - 16px min, 1.55 line-height, 65ch line measure */}
+            <p className="hero-subtext readable-measure" style={{ 
+              fontSize: '16px', 
+              color: 'var(--text-secondary)', 
+              maxWidth: '65ch', 
               marginBottom: '32px',
-              lineHeight: '1.65'
+              lineHeight: '1.55'
             }}>
               Co-Founder at <a href="https://techsangi.com.np" target="_blank" rel="noopener noreferrer" style={{ color: '#FFFFFF', textDecoration: 'none', borderBottom: '1px solid rgba(255, 255, 255, 0.3)', fontWeight: '500' }}>Tech Sangi</a>, founding leader of the AWS Student Builder Group at Graphic Era University, and former AI Engineering Intern at Infosys Springboard.
             </p>
             
-            {/* Primary Action Buttons */}
+            {/* Primary Action Buttons - 44px tap targets, 1 filled button */}
             <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', alignItems: 'center', marginBottom: '36px' }}>
               <motion.a 
                 whileHover={{ y: -2 }}
@@ -143,8 +144,12 @@ const Hero = () => {
                   color: '#09090B',
                   fontWeight: '600',
                   fontSize: '14px',
-                  padding: '11px 22px',
+                  minHeight: '44px',
+                  padding: '12px 24px',
                   borderRadius: '10px',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '8px',
                   boxShadow: '0 10px 25px -5px rgba(255, 255, 255, 0.12)'
                 }}
               >
@@ -166,8 +171,11 @@ const Hero = () => {
                   color: '#FFFFFF',
                   fontWeight: '500',
                   fontSize: '14px',
-                  padding: '11px 20px',
+                  minHeight: '44px',
+                  padding: '12px 20px',
                   borderRadius: '10px',
+                  display: 'inline-flex',
+                  alignItems: 'center',
                   gap: '8px'
                 }}
               >

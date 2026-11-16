@@ -73,110 +73,173 @@ const Insights = () => {
               Articles &amp; <span style={{ color: '#60A5FA' }}>Engineering Notes</span>
             </h2>
           </div>
-          <p style={{ color: 'var(--text-dim)', fontSize: '15px', maxWidth: '420px', lineHeight: '1.6' }}>
+          <p className="readable-measure" style={{ color: 'var(--text-secondary)', fontSize: '16px', maxWidth: '65ch', lineHeight: '1.55' }}>
             Practical write-ups on AWS cloud architecture, agent orchestration, and production debugging.
           </p>
         </div>
 
-        {/* Articles Grid */}
-        <div className="insights-grid" style={{ 
-          display: 'grid', 
-          gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', 
-          gap: '24px' 
-        }}>
-          {articles.map((post, index) => (
+        {/* Empty State says what to do next */}
+        {articles.length === 0 ? (
+          <div 
+            className="elite-card"
+            style={{
+              padding: '48px 32px',
+              borderRadius: '20px',
+              textAlign: 'center',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '16px',
+              maxWidth: '560px',
+              margin: '0 auto'
+            }}
+          >
+            <div style={{
+              width: '48px',
+              height: '48px',
+              borderRadius: '50%',
+              background: 'rgba(59, 130, 246, 0.1)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              color: '#60A5FA'
+            }}>
+              <BookOpen size={24} />
+            </div>
+            <h3 style={{ fontSize: '18px', fontWeight: '700', color: '#FFFFFF', margin: 0 }}>
+              No Articles Loaded
+            </h3>
+            <p className="readable-measure" style={{ color: 'var(--text-secondary)', fontSize: '16px', lineHeight: '1.55', margin: 0, maxWidth: '65ch' }}>
+              We could not reach the Dev.to feed at this time. Explore Pawan's full catalog of engineering deep-dives directly on Dev.to.
+            </p>
             <motion.a
-              key={post.id}
-              href={post.link}
+              whileTap={{ scale: 0.97 }}
+              href="https://dev.to/pwnjoshi"
               target="_blank"
               rel="noopener noreferrer"
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.35, delay: index * 0.03, ease: [0.16, 1, 0.3, 1] }}
-              viewport={{ once: true, margin: "-30px" }}
-              whileTap={{ scale: 0.97 }}
-              className="elite-card"
               style={{
-                padding: '32px',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'space-between',
-                borderRadius: '18px',
-                border: '1px solid rgba(255, 255, 255, 0.08)',
-                background: 'linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%)',
-                textDecoration: 'none',
-                color: 'inherit',
-                minHeight: '260px',
-                transition: 'border-color 0.25s ease, transform 0.25s ease',
-              }}
-              onMouseOver={(e) => {
-                e.currentTarget.style.borderColor = 'rgba(59, 130, 246, 0.35)';
-                e.currentTarget.style.transform = 'translateY(-3px)';
-              }}
-              onMouseOut={(e) => {
-                e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.08)';
-                e.currentTarget.style.transform = 'translateY(0)';
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '8px',
+                minHeight: '44px',
+                padding: '12px 24px',
+                borderRadius: '10px',
+                background: '#FFFFFF',
+                color: '#09090B',
+                fontSize: '14px',
+                fontWeight: '600',
+                textDecoration: 'none'
               }}
             >
-              <div>
-                {/* Meta row: Date + Reading tag */}
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
-                  <span style={{ 
-                    fontFamily: 'var(--font-mono)', 
-                    fontSize: '11px', 
-                    color: 'var(--text-dim)',
-                    letterSpacing: '0.05em'
+              <span>Visit Pawan on Dev.to</span>
+              <ArrowUpRight size={16} />
+            </motion.a>
+          </div>
+        ) : (
+          /* Articles Grid */
+          <div className="insights-grid" style={{ 
+            display: 'grid', 
+            gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', 
+            gap: '24px' 
+          }}>
+            {articles.map((post, index) => (
+              <motion.a
+                key={post.id}
+                href={post.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.35, delay: index * 0.03, ease: [0.16, 1, 0.3, 1] }}
+                viewport={{ once: true, margin: "-30px" }}
+                whileTap={{ scale: 0.97 }}
+                className="elite-card"
+                style={{
+                  padding: '32px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'space-between',
+                  borderRadius: '20px',
+                  border: '1px solid rgba(255, 255, 255, 0.08)',
+                  background: 'linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%)',
+                  textDecoration: 'none',
+                  color: 'inherit',
+                  minHeight: '260px',
+                  boxShadow: 'var(--shadow-soft-sm)',
+                  transition: 'border-color 0.25s ease, transform 0.25s ease',
+                }}
+                onMouseOver={(e) => {
+                  e.currentTarget.style.borderColor = 'rgba(59, 130, 246, 0.35)';
+                  e.currentTarget.style.transform = 'translateY(-3px)';
+                }}
+                onMouseOut={(e) => {
+                  e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.08)';
+                  e.currentTarget.style.transform = 'translateY(0)';
+                }}
+              >
+                <div>
+                  {/* Meta row: Date + Reading tag */}
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
+                    <span style={{ 
+                      fontFamily: 'var(--font-mono)', 
+                      fontSize: '11px', 
+                      color: 'var(--text-secondary)',
+                      letterSpacing: '0.05em'
+                    }}>
+                      {post.date}
+                    </span>
+                    
+                    <ArrowUpRight size={16} style={{ color: '#60A5FA', opacity: 0.8 }} />
+                  </div>
+
+                  <h3 style={{ 
+                    fontSize: '18px', 
+                    fontWeight: '700', 
+                    color: '#FFFFFF', 
+                    lineHeight: '1.35', 
+                    marginBottom: '12px',
+                    letterSpacing: '-0.01em'
                   }}>
-                    {post.date}
-                  </span>
-                  
-                  <ArrowUpRight size={16} style={{ color: '#60A5FA', opacity: 0.8 }} />
+                    {post.title}
+                  </h3>
+
+                  <p className="readable-measure" style={{ 
+                    fontSize: '16px', 
+                    color: 'var(--text-secondary)', 
+                    lineHeight: '1.55', 
+                    margin: 0,
+                    maxWidth: '65ch'
+                  }}>
+                    {post.excerpt}
+                  </p>
                 </div>
 
-                <h3 style={{ 
-                  fontSize: '18px', 
-                  fontWeight: '700', 
-                  color: '#FFFFFF', 
-                  lineHeight: '1.35', 
-                  marginBottom: '12px',
-                  letterSpacing: '-0.01em'
-                }}>
-                  {post.title}
-                </h3>
+                {/* Tag row */}
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginTop: '24px', paddingTop: '16px', borderTop: '1px solid rgba(255, 255, 255, 0.05)' }}>
+                  {post.tags.map((tag) => (
+                    <span 
+                      key={tag}
+                      style={{
+                        fontSize: '11px',
+                        fontFamily: 'var(--font-mono)',
+                        color: 'rgba(255, 255, 255, 0.7)',
+                        background: 'rgba(255, 255, 255, 0.035)',
+                        border: '1px solid rgba(255, 255, 255, 0.06)',
+                        padding: '4px 10px',
+                        borderRadius: '6px'
+                      }}
+                    >
+                      #{tag}
+                    </span>
+                  ))}
+                </div>
+              </motion.a>
+            ))}
+          </div>
+        )}
 
-                <p style={{ 
-                  fontSize: '14px', 
-                  color: 'var(--text-dim)', 
-                  lineHeight: '1.6', 
-                  margin: 0 
-                }}>
-                  {post.excerpt}
-                </p>
-              </div>
-
-              {/* Tag row */}
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginTop: '24px', paddingTop: '16px', borderTop: '1px solid rgba(255, 255, 255, 0.05)' }}>
-                {post.tags.map((tag) => (
-                  <span 
-                    key={tag}
-                    style={{
-                      fontSize: '11px',
-                      fontFamily: 'var(--font-mono)',
-                      color: 'rgba(255, 255, 255, 0.6)',
-                      background: 'rgba(255, 255, 255, 0.035)',
-                      padding: '2px 8px',
-                      borderRadius: '4px'
-                    }}
-                  >
-                    #{tag}
-                  </span>
-                ))}
-              </div>
-            </motion.a>
-          ))}
-        </div>
-
-        {/* View all on dev.to */}
+        {/* View all on dev.to with 44px tap target */}
         <div style={{ textAlign: 'center', marginTop: '40px' }}>
           <motion.a
             whileTap={{ scale: 0.97 }}
@@ -187,18 +250,19 @@ const Insights = () => {
               display: 'inline-flex',
               alignItems: 'center',
               gap: '8px',
-              fontSize: '13px',
+              fontSize: '14px',
               fontWeight: '600',
               color: '#F1F5F9',
               background: 'rgba(255, 255, 255, 0.04)',
               border: '1px solid rgba(255, 255, 255, 0.1)',
-              padding: '10px 20px',
+              minHeight: '44px',
+              padding: '12px 24px',
               borderRadius: '10px',
               textDecoration: 'none',
               transition: 'background 0.15s ease'
             }}
           >
-            <BookOpen size={15} style={{ color: '#60A5FA' }} />
+            <BookOpen size={16} style={{ color: '#60A5FA' }} />
             <span>Read more articles on Dev.to</span>
           </motion.a>
         </div>

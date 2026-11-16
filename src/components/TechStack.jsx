@@ -40,7 +40,7 @@ const TechStack = () => {
           <h2 className="display-text" style={{ fontSize: 'clamp(32px, 4.5vw, 48px)', marginBottom: '16px' }}>
             Technical Stack
           </h2>
-          <p style={{ color: 'var(--text-dim)', fontSize: '16px', maxWidth: '580px', lineHeight: '1.6' }}>
+          <p className="readable-measure" style={{ color: 'var(--text-secondary)', fontSize: '16px', maxWidth: '65ch', lineHeight: '1.55' }}>
             Core languages, distributed cloud tooling, and agent frameworks used across production applications.
           </p>
         </div>
@@ -63,9 +63,10 @@ const TechStack = () => {
                 className="elite-card"
                 style={{ 
                   padding: '32px', 
-                  borderRadius: '18px',
+                  borderRadius: '20px',
                   border: '1px solid rgba(255, 255, 255, 0.08)',
                   background: 'linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%)',
+                  boxShadow: 'var(--shadow-soft-sm)',
                   display: 'flex',
                   flexDirection: 'column',
                   justifyContent: 'space-between'
@@ -75,8 +76,8 @@ const TechStack = () => {
                   {/* Category Header */}
                   <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '8px' }}>
                     <div style={{
-                      width: '34px',
-                      height: '34px',
+                      width: '36px',
+                      height: '36px',
                       borderRadius: '8px',
                       background: 'rgba(59, 130, 246, 0.1)',
                       border: '1px solid rgba(59, 130, 246, 0.25)',
@@ -93,7 +94,7 @@ const TechStack = () => {
                     </h3>
                   </div>
 
-                  <p style={{ fontSize: '13px', color: 'var(--text-dim)', marginBottom: '22px' }}>
+                  <p style={{ fontSize: '14px', color: 'var(--text-secondary)', marginBottom: '24px', lineHeight: '1.5' }}>
                     {cat.desc}
                   </p>
                 </div>
@@ -105,9 +106,9 @@ const TechStack = () => {
                       key={skill}
                       style={{
                         padding: '6px 12px',
-                        borderRadius: '8px',
+                        borderRadius: '6px',
                         background: 'rgba(255, 255, 255, 0.035)',
-                        border: '1px solid rgba(255, 255, 255, 0.07)',
+                        border: '1px solid rgba(255, 255, 255, 0.08)',
                         fontSize: '12px',
                         fontWeight: '500',
                         fontFamily: 'var(--font-mono)',

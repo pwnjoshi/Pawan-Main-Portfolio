@@ -8,7 +8,6 @@ const projects = [
     type: "CLOUD PLATFORM",
     desc: "Serverless campus platform built on AWS (S3, CloudFront, DynamoDB) serving 450+ registered builders across 200+ institutions in 35+ countries. Features multi-tenant Google OAuth & JWT auth, automated CLF-C02 certification verification, and sub-100ms API latency via DynamoDB GSIs.",
     tags: ["React", "Node.js", "AWS S3", "CloudFront", "DynamoDB"],
-    accentColor: "#3B82F6",
     liveLink: "https://aws-sbg-piet-official-site.vercel.app",
     liveLabel: "Live Portal",
     githubLink: "https://github.com/pwnjoshi/AWS-SBG-PIET-Official-Site"
@@ -19,7 +18,6 @@ const projects = [
     type: "AI AGENT SYSTEMS",
     desc: "Multi-step agent framework in LangGraph designed to decompose and execute complex engineering tasks autonomously with ~80% accuracy. Overcame context-overflow crashes on jobs with 10,000+ log lines by engineering an in-memory virtual file system, with LangSmith tracing pushing run reliability past 70%.",
     tags: ["Python", "LangGraph", "LangSmith", "ReAct Loops", "VFS"],
-    accentColor: "#8B5CF6",
     liveLink: "https://infyspringboard.onwingspan.com/public-assets/infosysheadstart/cert/lex_auth_01454259343803187223/14bb99d1-1b1d-45b5-badf-839bae33f2b5.pdf",
     liveLabel: "Verified Credential",
     githubLink: "https://github.com/pwnjoshi"
@@ -30,7 +28,6 @@ const projects = [
     type: "SYSTEMS & BACKEND",
     desc: "High-throughput attendance and verification system written in C using in-memory hash tables for O(1) lookups and Haversine formula GPS anti-spoofing algorithms. Deployed on an AWS EC2 instance (Ubuntu 24.04) behind Nginx via FastCGI REST APIs to handle concurrent verification requests.",
     tags: ["C", "AWS EC2", "Nginx", "FastCGI", "Data Structures"],
-    accentColor: "#06B6D4",
     liveLink: "/Pawan_Joshi_Resume.pdf",
     liveLabel: "Architecture Specs",
     githubLink: "https://github.com/pwnjoshi"
@@ -41,7 +38,6 @@ const projects = [
     type: "FULL-STACK SAAS",
     desc: "Production-grade SaaS platform powering Tech Sangi Pvt. Ltd. Supports client delivery pipelines, community resources, and internal tooling. Architected with scalable cloud primitives, secure authentication, Stripe billing, and continuous deployment workflows.",
     tags: ["React", "Node.js", "AWS", "Stripe", "PostgreSQL"],
-    accentColor: "#10B981",
     liveLink: "https://techsangi.com.np",
     liveLabel: "Visit Platform",
     githubLink: "https://github.com/pwnjoshi"
@@ -62,7 +58,7 @@ const Projects = () => {
               Projects &amp; <span style={{ color: '#60A5FA' }}>Systems</span>
             </h2>
           </div>
-          <p style={{ color: 'var(--text-dim)', fontSize: '15px', maxWidth: '420px', lineHeight: '1.6' }}>
+          <p className="readable-measure" style={{ color: 'var(--text-secondary)', fontSize: '16px', maxWidth: '65ch', lineHeight: '1.55' }}>
             Production systems built from scratch &mdash; from distributed cloud portals to low-level C backends and autonomous agent frameworks.
           </p>
         </div>
@@ -79,33 +75,34 @@ const Projects = () => {
                 transition={{ duration: 0.38, delay: index * 0.03, ease: [0.16, 1, 0.3, 1] }}
                 className="elite-card lab-card"
                 style={{ 
-                  padding: '36px', 
+                  padding: '32px', 
                   display: 'flex',
                   flexDirection: 'column',
                   justifyContent: 'space-between',
-                  borderRadius: '18px',
+                  borderRadius: '20px',
                   background: 'linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%)',
                   border: '1px solid rgba(255, 255, 255, 0.08)',
                   position: 'relative',
                   overflow: 'hidden',
                   minHeight: '340px',
+                  boxShadow: 'var(--shadow-soft-sm)',
                   transition: 'border-color 0.25s ease, box-shadow 0.25s ease',
                 }}
               >
-                {/* Top Row: Index + Discipline Label (No top-left icon as requested) */}
+                {/* Top Row: Index + Discipline Label */}
                 <div>
                   <div style={{ 
                     fontFamily: 'var(--font-mono)', 
                     fontSize: '11px', 
                     letterSpacing: '0.12em',
-                    color: 'rgba(255, 255, 255, 0.4)',
-                    marginBottom: '18px',
+                    color: 'rgba(255, 255, 255, 0.5)',
+                    marginBottom: '16px',
                     fontWeight: '600'
                   }}>
                     {proj.id} &mdash; {proj.type}
                   </div>
 
-                  {/* Title & Description */}
+                  {/* Title & Description (16px minimum body, 1.55 line height, 65ch measure) */}
                   <h3 style={{ 
                     fontSize: 'clamp(20px, 2.2vw, 24px)', 
                     fontWeight: '700',
@@ -117,28 +114,29 @@ const Projects = () => {
                     {proj.title}
                   </h3>
                   
-                  <p style={{ 
-                    color: 'var(--text-dim)', 
-                    fontSize: '14px', 
-                    lineHeight: '1.65', 
-                    marginBottom: '24px' 
+                  <p className="readable-measure" style={{ 
+                    color: 'var(--text-secondary)', 
+                    fontSize: '16px', 
+                    lineHeight: '1.55', 
+                    marginBottom: '24px',
+                    maxWidth: '65ch'
                   }}>
                     {proj.desc}
                   </p>
 
                   {/* Tech Tags */}
-                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: '28px' }}>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginBottom: '24px' }}>
                     {proj.tags.map((tag) => (
                       <span
                         key={tag}
                         style={{
-                          padding: '3px 9px',
+                          padding: '4px 10px',
                           borderRadius: '6px',
                           background: 'rgba(255, 255, 255, 0.035)',
-                          border: '1px solid rgba(255, 255, 255, 0.07)',
-                          fontSize: '11px',
+                          border: '1px solid rgba(255, 255, 255, 0.08)',
+                          fontSize: '12px',
                           fontFamily: 'var(--font-mono)',
-                          color: 'rgba(255, 255, 255, 0.75)',
+                          color: 'rgba(255, 255, 255, 0.8)',
                         }}
                       >
                         {tag}
@@ -147,7 +145,7 @@ const Projects = () => {
                   </div>
                 </div>
 
-                {/* Bottom Row: Working Action Links with Scale 0.97 on Press */}
+                {/* Bottom Row: Working Action Links with Scale 0.97 on Press and 44px Tap Target */}
                 <div style={{ 
                   display: 'flex', 
                   alignItems: 'center', 
@@ -164,20 +162,21 @@ const Projects = () => {
                     style={{
                       display: 'inline-flex',
                       alignItems: 'center',
-                      gap: '6px',
-                      padding: '7px 14px',
+                      gap: '8px',
+                      padding: '10px 18px',
+                      minHeight: '44px',
                       borderRadius: '8px',
                       background: 'rgba(59, 130, 246, 0.1)',
                       color: '#60A5FA',
-                      fontSize: '12px',
+                      fontSize: '13px',
                       fontWeight: '600',
                       textDecoration: 'none',
                       border: '1px solid rgba(59, 130, 246, 0.25)',
-                      transition: 'background 0.15s ease',
+                      transition: 'background 0.15s ease, border-color 0.15s ease',
                     }}
                   >
                     <span>{proj.liveLabel}</span>
-                    <ExternalLink size={12} />
+                    <ExternalLink size={14} />
                   </motion.a>
 
                   <motion.a
@@ -188,19 +187,20 @@ const Projects = () => {
                     style={{
                       display: 'inline-flex',
                       alignItems: 'center',
-                      gap: '6px',
-                      padding: '7px 14px',
+                      gap: '8px',
+                      padding: '10px 18px',
+                      minHeight: '44px',
                       borderRadius: '8px',
                       background: 'rgba(255, 255, 255, 0.03)',
-                      color: 'var(--text-dim)',
-                      fontSize: '12px',
+                      color: 'var(--text-secondary)',
+                      fontSize: '13px',
                       fontWeight: '500',
                       textDecoration: 'none',
                       border: '1px solid rgba(255, 255, 255, 0.08)',
-                      transition: 'background 0.15s ease',
+                      transition: 'background 0.15s ease, color 0.15s ease',
                     }}
                   >
-                    <GitBranch size={13} />
+                    <GitBranch size={14} />
                     <span>Source</span>
                   </motion.a>
                 </div>
